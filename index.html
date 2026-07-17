@@ -1,0 +1,3125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>معيار — إدارتك الإعلامية الذكية</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- مكتبات النموذج التفاعلي -->
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--navy:#0A0F1A;--dark2:#111827;--card:#1A2236;
+--teal:#00D4AA;--gold:#F5A623;
+--green:#10B981;--yellow:#F59E0B;--red:#EF4444;
+--text1:#F1F5F9;--text2:#94A3B8;--text3:#64748B;
+}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans Arabic',sans-serif;background:var(--navy);color:var(--text1);overflow-x:hidden}
+h1,h2,h3,h4,h5{font-family:'Noto Kufi Arabic',sans-serif}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--dark2)}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
+
+/* Canvas Background */
+#bgCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+/* Floating Shapes */
+.float-shape{position:fixed;pointer-events:none;z-index:1;transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94),opacity 0.5s;will-change:transform}
+.float-shape.circle{border-radius:50%}
+.float-shape.square{border-radius:12px;transform:rotate(45deg)}
+.float-shape.triangle{width:0!important;height:0!important;background:transparent!important;border-left:20px solid transparent;border-right:20px solid transparent;border-bottom:35px solid var(--teal);opacity:0.15}
+.float-shape.diamond{border-radius:4px;transform:rotate(45deg)}
+.float-shape.hexagon{clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);background:var(--gold)!important}
+.float-shape.ring{border-radius:50%;background:transparent!important;border:2px solid var(--teal)}
+.float-shape.cross{background:transparent!important;position:relative}
+.float-shape.cross::before,.float-shape.cross::after{content:'';position:absolute;background:var(--gold);border-radius:2px}
+.float-shape.cross::before{width:3px;height:100%;left:50%;transform:translateX(-50%)}
+.float-shape.cross::after{height:3px;width:100%;top:50%;transform:translateY(-50%)}
+
+/* Attract/Repel */
+.attract{transition:transform 0.6s cubic-bezier(0.34,1.56,0.64,1)!important}
+.repel{transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94)!important}
+
+/* Nav */
+nav{position:fixed;top:0;right:0;left:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(10,15,26,0.8);border-bottom:1px solid rgba(0,212,170,0.1);transition:all 0.3s}
+nav.scrolled{padding:10px 40px;background:rgba(10,15,26,0.95)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo .shield{width:42px;height:42px;background:var(--teal);border-radius:10px;display:flex;align-items:center;justify-content:center}
+.nav-logo .shield svg{color:var(--navy)}
+.nav-logo span{font-family:'Noto Kufi Arabic';font-weight:700;font-size:1.3rem;color:var(--text1)}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:0.9rem;transition:color 0.3s;position:relative}
+.nav-links a:hover{color:var(--teal)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;right:0;width:0;height:2px;background:var(--teal);transition:width 0.3s}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:var(--teal)!important;color:var(--navy)!important;font-weight:600;padding:8px 24px!important;border-radius:8px!important;transition:all 0.3s!important}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,212,170,0.3)}
+.nav-cta::after{display:none!important}
+.mobile-toggle{display:none;background:none;border:none;color:var(--text1);cursor:pointer}
+
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px;z-index:2}
+.hero-content{max-width:800px;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,170,0.1);border:1px solid rgba(0,212,170,0.3);padding:6px 20px;border-radius:50px;font-size:0.85rem;color:var(--teal);margin-bottom:24px;animation:fadeInDown 0.8s}
+.hero-badge .dot{width:8px;height:8px;background:var(--teal);border-radius:50%;animation:pulse 2s infinite}
+.hero h1{font-size:3.5rem;font-weight:800;line-height:1.2;margin-bottom:20px;animation:fadeInUp 0.8s 0.2s both}
+.hero h1 .highlight{background:linear-gradient(135deg,var(--teal),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.2rem;color:var(--text2);line-height:1.8;margin-bottom:32px;animation:fadeInUp 0.8s 0.4s both}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeInUp 0.8s 0.6s both}
+.btn-primary{background:var(--teal);color:var(--navy);font-weight:700;font-family:'Noto Kufi Arabic';padding:14px 36px;border-radius:12px;border:none;cursor:pointer;font-size:1rem;transition:all 0.3s;position:relative;overflow:hidden}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,212,170,0.35)}
+.btn-primary::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);transition:left 0.5s}
+.btn-primary:hover::before{left:100%}
+.btn-secondary{background:transparent;color:var(--text1);font-weight:600;font-family:'Noto Kufi Arabic';padding:14px 36px;border-radius:12px;border:1px solid rgba(0,212,170,0.3);cursor:pointer;font-size:1rem;transition:all 0.3s}
+.btn-secondary:hover{border-color:var(--teal);background:rgba(0,212,170,0.05);transform:translateY(-3px)}
+.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:60px;animation:fadeInUp 0.8s 0.8s both}
+.hero-stat{text-align:center}
+.hero-stat .num{font-family:'Noto Kufi Arabic';font-size:2rem;font-weight:800;color:var(--teal)}
+.hero-stat .label{font-size:0.8rem;color:var(--text3);margin-top:4px}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;filter:blur(120px);opacity:0.15;pointer-events:none}
+.hero-glow.g1{top:-200px;right:-100px;background:var(--teal);animation:glowMove 8s ease-in-out infinite}
+.hero-glow.g2{bottom:-200px;left:-100px;background:var(--gold);animation:glowMove 10s ease-in-out infinite reverse}
+
+/* Sections */
+section{position:relative;z-index:2;padding:100px 40px}
+.section-header{text-align:center;margin-bottom:64px}
+.section-header .tag{display:inline-block;background:rgba(0,212,170,0.1);color:var(--teal);font-size:0.8rem;font-weight:600;padding:4px 16px;border-radius:50px;margin-bottom:16px;border:1px solid rgba(0,212,170,0.2)}
+.section-header h2{font-size:2.5rem;font-weight:800;margin-bottom:16px}
+.section-header p{color:var(--text2);max-width:600px;margin:0 auto;line-height:1.8}
+
+/* Animated Elements in Sections */
+.section-shapes{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden;pointer-events:none;z-index:0}
+.section-shapes .s{position:absolute;opacity:0.06}
+
+/* Idea Section */
+.idea-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:1200px;margin:0 auto}
+.idea-visual{position:relative;height:400px}
+.idea-card{position:absolute;background:var(--card);border:1px solid rgba(0,212,170,0.15);border-radius:16px;padding:24px;transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94);cursor:default}
+.idea-card:hover{border-color:var(--teal);transform:translateY(-8px)!important;box-shadow:0 20px 50px rgba(0,212,170,0.1)}
+.idea-card.c1{top:0;right:0;width:200px;animation:cardFloat1 6s ease-in-out infinite}
+.idea-card.c2{top:50px;left:0;width:220px;animation:cardFloat2 7s ease-in-out infinite}
+.idea-card.c3{bottom:0;right:40px;width:240px;animation:cardFloat3 8s ease-in-out infinite}
+.idea-card .ic{width:40px;height:40px;background:rgba(0,212,170,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.idea-card .ic svg{width:20px;height:20px;color:var(--teal)}
+.idea-card h4{font-size:0.95rem;margin-bottom:6px}
+.idea-card p{font-size:0.78rem;color:var(--text3);line-height:1.6}
+.idea-text h3{font-size:1.8rem;font-weight:700;margin-bottom:20px;line-height:1.5}
+.idea-text p{color:var(--text2);line-height:1.9;margin-bottom:16px}
+.idea-text .tagline{display:flex;align-items:center;gap:12px;background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.2);padding:16px 20px;border-radius:12px;margin-top:24px}
+.idea-text .tagline svg{color:var(--gold);flex-shrink:0}
+.idea-text .tagline span{color:var(--gold);font-weight:600;font-size:0.95rem}
+
+/* Objectives */
+.obj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto}
+.obj-card{background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:16px;padding:32px;transition:all 0.5s;position:relative;overflow:hidden}
+.obj-card::before{content:'';position:absolute;top:0;right:0;width:60px;height:60px;background:radial-gradient(circle,rgba(0,212,170,0.15),transparent);border-radius:0 16px 0 60px;transition:all 0.5s}
+.obj-card:hover{border-color:rgba(0,212,170,0.3);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,0.3)}
+.obj-card:hover::before{width:120px;height:120px}
+.obj-card .num{font-family:'Noto Kufi Arabic';font-size:2.5rem;font-weight:900;color:rgba(0,212,170,0.1);margin-bottom:12px;transition:color 0.5s}
+.obj-card:hover .num{color:rgba(0,212,170,0.2)}
+.obj-card h4{font-size:1.05rem;font-weight:600;margin-bottom:10px}
+.obj-card p{font-size:0.85rem;color:var(--text3);line-height:1.7}
+
+/* Audience */
+.audience-wrap{max-width:1200px;margin:0 auto}
+.audience-tags{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:48px}
+.audience-tag{background:var(--card);border:1px solid rgba(0,212,170,0.1);padding:10px 24px;border-radius:50px;font-size:0.9rem;color:var(--text2);transition:all 0.4s;cursor:default;position:relative;overflow:hidden}
+.audience-tag::after{content:'';position:absolute;bottom:0;right:0;width:0;height:2px;background:var(--teal);transition:width 0.4s}
+.audience-tag:hover{color:var(--teal);border-color:rgba(0,212,170,0.3);transform:translateY(-3px)}
+.audience-tag:hover::after{width:100%}
+
+/* Challenge */
+.challenge-box{max-width:900px;margin:0 auto;background:linear-gradient(135deg,rgba(239,68,68,0.05),rgba(245,166,35,0.05));border:1px solid rgba(239,68,68,0.15);border-radius:20px;padding:48px;position:relative;overflow:hidden}
+.challenge-box::before{content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(239,68,68,0.03),transparent 60%);animation:rotateSlow 20s linear infinite}
+.challenge-box h3{font-size:1.6rem;margin-bottom:24px;position:relative}
+.challenge-list{list-style:none;position:relative}
+.challenge-list li{display:flex;align-items:flex-start;gap:12px;padding:12px 0;color:var(--text2);font-size:0.95rem;border-bottom:1px solid rgba(255,255,255,0.04);transition:all 0.3s}
+.challenge-list li:hover{color:var(--text1);padding-right:8px}
+.challenge-list li svg{color:var(--red);flex-shrink:0;margin-top:4px}
+
+/* Differentiators */
+.diff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:1200px;margin:0 auto}
+.diff-card{display:flex;gap:20px;background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:16px;padding:28px;transition:all 0.5s;position:relative;overflow:hidden}
+.diff-card:hover{border-color:rgba(0,212,170,0.25);transform:translateX(-6px)}
+.diff-card .icon-box{width:50px;height:50px;min-width:50px;background:rgba(0,212,170,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;transition:all 0.5s}
+.diff-card:hover .icon-box{background:rgba(0,212,170,0.2);transform:scale(1.1) rotate(-5deg)}
+.diff-card .icon-box svg{color:var(--teal)}
+.diff-card h4{font-size:1rem;margin-bottom:6px}
+.diff-card p{font-size:0.82rem;color:var(--text3);line-height:1.7}
+
+/* Content Strategy */
+.strategy-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
+.strategy-tab{background:var(--card);border:1px solid rgba(0,212,170,0.1);color:var(--text2);padding:10px 24px;border-radius:10px;cursor:pointer;font-family:'Noto Kufi Arabic';font-size:0.9rem;transition:all 0.3s}
+.strategy-tab.active,.strategy-tab:hover{background:rgba(0,212,170,0.15);color:var(--teal);border-color:var(--teal)}
+.strategy-content{max-width:900px;margin:0 auto;background:var(--card);border:1px solid rgba(0,212,170,0.1);border-radius:16px;padding:40px;position:relative;overflow:hidden;min-height:200px}
+.strategy-panel{display:none;animation:fadeIn 0.5s}
+.strategy-panel.active{display:block}
+.strategy-panel h4{font-size:1.2rem;margin-bottom:16px;color:var(--teal)}
+.strategy-panel ul{list-style:none}
+.strategy-panel ul li{padding:8px 0;color:var(--text2);font-size:0.9rem;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.03)}
+.strategy-panel ul li svg{color:var(--teal);flex-shrink:0}
+
+/* Launch Phases */
+.phases-timeline{max-width:1000px;margin:0 auto;position:relative}
+.phases-timeline::before{content:'';position:absolute;right:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--teal),var(--gold),var(--teal));transform:translateX(50%)}
+.phase-item{display:grid;grid-template-columns:1fr 60px 1fr;gap:0;align-items:start;margin-bottom:48px;position:relative}
+.phase-item:nth-child(even) .phase-content{order:3}
+.phase-item:nth-child(even) .phase-dot{order:2}
+.phase-item:nth-child(even) .phase-space{order:1}
+.phase-content{background:var(--card);border:1px solid rgba(0,212,170,0.1);border-radius:16px;padding:28px;transition:all 0.5s}
+.phase-content:hover{border-color:rgba(0,212,170,0.3);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.3)}
+.phase-dot{width:60px;display:flex;justify-content:center;align-items:flex-start;padding-top:24px;position:relative;z-index:2}
+.phase-dot .dot-inner{width:20px;height:20px;background:var(--teal);border-radius:50%;border:4px solid var(--navy);box-shadow:0 0 20px rgba(0,212,170,0.4);animation:pulse 3s infinite}
+.phase-space{min-height:100px}
+.phase-content .phase-label{font-size:0.75rem;color:var(--teal);font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.phase-content h4{font-size:1.15rem;margin-bottom:12px}
+.phase-content ul{list-style:none}
+.phase-content ul li{padding:6px 0;color:var(--text3);font-size:0.85rem;display:flex;align-items:center;gap:8px}
+.phase-content ul li::before{content:'';width:5px;height:5px;background:var(--teal);border-radius:50%;flex-shrink:0}
+
+/* Policies */
+.policy-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto}
+.policy-card{background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:16px;padding:32px;transition:all 0.5s;position:relative}
+.policy-card:hover{border-color:rgba(0,212,170,0.25);transform:translateY(-6px)}
+.policy-card .p-icon{width:48px;height:48px;background:rgba(0,212,170,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:all 0.5s}
+.policy-card:hover .p-icon{background:rgba(0,212,170,0.2);transform:rotate(-10deg) scale(1.1)}
+.policy-card h4{font-size:1.05rem;margin-bottom:10px}
+.policy-card p{font-size:0.82rem;color:var(--text3);line-height:1.7}
+
+/* KPIs */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1200px;margin:0 auto}
+.kpi-card{background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:16px;padding:28px;text-align:center;transition:all 0.5s;position:relative;overflow:hidden}
+.kpi-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--gold));transform:scaleX(0);transition:transform 0.5s;transform-origin:right}
+.kpi-card:hover::after{transform:scaleX(1)}
+.kpi-card:hover{transform:translateY(-6px);border-color:rgba(0,212,170,0.2)}
+.kpi-card .kpi-num{font-family:'Noto Kufi Arabic';font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,var(--teal),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.kpi-card h4{font-size:0.95rem;margin-bottom:6px}
+.kpi-card p{font-size:0.78rem;color:var(--text3)}
+
+/* AI Section */
+.ai-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:1200px;margin:0 auto}
+.ai-card{background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:16px;padding:28px;display:flex;gap:16px;transition:all 0.5s;position:relative;overflow:hidden}
+.ai-card::before{content:'';position:absolute;top:0;right:0;width:4px;height:0;background:var(--teal);transition:height 0.5s;border-radius:0 0 4px 0}
+.ai-card:hover::before{height:100%}
+.ai-card:hover{border-color:rgba(0,212,170,0.2);transform:translateY(-4px)}
+.ai-card .ai-num{font-family:'Noto Kufi Arabic';font-size:1.8rem;font-weight:900;color:rgba(0,212,170,0.15);min-width:50px;transition:color 0.5s}
+.ai-card:hover .ai-num{color:rgba(0,212,170,0.3)}
+.ai-card h4{font-size:1rem;margin-bottom:6px}
+.ai-card p{font-size:0.82rem;color:var(--text3);line-height:1.7}
+
+/* Roadmap */
+.roadmap{max-width:1000px;margin:0 auto}
+.roadmap-phase{display:flex;gap:24px;margin-bottom:40px;align-items:stretch;transition:all 0.5s}
+.roadmap-phase:hover{transform:translateX(-8px)}
+.roadmap-bar{width:8px;min-height:100%;border-radius:4px;position:relative;overflow:hidden}
+.roadmap-bar .fill{position:absolute;top:0;right:0;bottom:0;border-radius:4px;transition:width 1.5s cubic-bezier(0.25,0.46,0.45,0.94);width:0}
+.roadmap-bar.animated .fill{width:100%}
+.roadmap-content{flex:1;background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:16px;padding:28px;transition:all 0.5s}
+.roadmap-phase:hover .roadmap-content{border-color:rgba(0,212,170,0.2)}
+.roadmap-content .rp-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.roadmap-content h4{font-size:1.15rem}
+.roadmap-content .rp-time{font-size:0.8rem;color:var(--text3);background:rgba(0,212,170,0.1);padding:4px 12px;border-radius:50px}
+.roadmap-content ul{list-style:none}
+.roadmap-content ul li{padding:6px 0;color:var(--text3);font-size:0.85rem;display:flex;align-items:center;gap:8px}
+.roadmap-content ul li::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+/* Cost */
+.cost-section{background:var(--dark2);border-radius:24px;padding:48px;max-width:1100px;margin:0 auto;border:1px solid rgba(0,212,170,0.08)}
+.cost-table{width:100%;border-collapse:collapse;margin-top:24px}
+.cost-table th{text-align:right;padding:14px 16px;font-family:'Noto Kufi Arabic';font-weight:600;color:var(--teal);border-bottom:2px solid rgba(0,212,170,0.2);font-size:0.9rem}
+.cost-table td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--text2);font-size:0.88rem}
+.cost-table tr:hover td{background:rgba(0,212,170,0.03);color:var(--text1)}
+.cost-table .total-row td{font-weight:700;color:var(--teal);border-top:2px solid rgba(0,212,170,0.2);font-size:0.95rem}
+
+/* Revenue */
+.revenue-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:1200px;margin:0 auto}
+.revenue-card{background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:16px;padding:32px;transition:all 0.5s;position:relative;overflow:hidden}
+.revenue-card::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(0,212,170,0.03),transparent 50%);opacity:0;transition:opacity 0.5s}
+.revenue-card:hover::after{opacity:1}
+.revenue-card:hover{border-color:rgba(245,166,35,0.3);transform:translateY(-6px)}
+.revenue-card .r-icon{width:52px;height:52px;background:rgba(245,166,35,0.1);border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;transition:all 0.5s}
+.revenue-card:hover .r-icon{background:rgba(245,166,35,0.2);transform:scale(1.1) rotate(-5deg)}
+.revenue-card .r-icon svg{color:var(--gold)}
+.revenue-card h4{font-size:1.1rem;margin-bottom:10px}
+.revenue-card p{font-size:0.85rem;color:var(--text3);line-height:1.7}
+
+/* Partners */
+.partners-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:0 auto}
+.partner-card{background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:14px;padding:24px;transition:all 0.5s;text-align:center}
+.partner-card:hover{border-color:rgba(0,212,170,0.25);transform:translateY(-4px) scale(1.02)}
+.partner-card h4{font-size:0.95rem;margin-bottom:8px;color:var(--teal)}
+.partner-card p{font-size:0.78rem;color:var(--text3);line-height:1.6}
+
+/* Prototype */
+.prototype-features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;margin:32px auto 0}
+.proto-feat{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:10px;padding:14px 18px;font-size:0.85rem;color:var(--text2);transition:all 0.4s}
+.proto-feat:hover{border-color:var(--teal);color:var(--teal);transform:translateX(-4px)}
+.proto-feat svg{color:var(--teal);flex-shrink:0}
+
+/* Footer */
+footer{position:relative;z-index:2;background:var(--dark2);border-top:1px solid rgba(0,212,170,0.1);padding:60px 40px 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto}
+.footer-brand p{color:var(--text3);font-size:0.85rem;line-height:1.8;margin-top:16px}
+.footer-col h4{font-family:'Noto Kufi Arabic';font-size:1rem;margin-bottom:16px;color:var(--text1)}
+.footer-col a{display:block;color:var(--text3);text-decoration:none;font-size:0.85rem;padding:4px 0;transition:all 0.3s}
+.footer-col a:hover{color:var(--teal);padding-right:6px}
+.footer-bottom{max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center;color:var(--text3);font-size:0.8rem}
+.disclaimer{background:rgba(245,166,35,0.06);border:1px solid rgba(245,166,35,0.15);border-radius:12px;padding:20px 28px;max-width:1200px;margin:0 auto;text-align:center;color:var(--gold);font-size:0.82rem;line-height:1.8}
+
+/* Animations */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+@keyframes glowMove{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,20px)}}
+@keyframes cardFloat1{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes cardFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes cardFloat3{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+@keyframes rotateSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes floatShape{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-20px) rotate(5deg)}50%{transform:translateY(-10px) rotate(-3deg)}75%{transform:translateY(-25px) rotate(2deg)}}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* Scroll Reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+
+/* Responsive */
+@media(max-width:1024px){
+.obj-grid,.policy-grid,.kpi-grid{grid-template-columns:repeat(2,1fr)}
+.diff-grid,.ai-grid,.revenue-grid{grid-template-columns:1fr}
+.idea-grid{grid-template-columns:1fr}
+.idea-visual{height:300px}
+.footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+section{padding:60px 20px}
+nav{padding:12px 20px}
+.nav-links{display:none;position:absolute;top:100%;right:0;left:0;background:rgba(10,15,26,0.98);padding:20px;flex-direction:column;gap:16px;border-bottom:1px solid rgba(0,212,170,0.1)}
+.nav-links.open{display:flex}
+.mobile-toggle{display:block}
+.hero h1{font-size:2.2rem}
+.hero-stats{flex-direction:column;gap:20px}
+.obj-grid,.policy-grid,.partners-grid{grid-template-columns:1fr}
+.kpi-grid{grid-template-columns:repeat(2,1fr)}
+.phase-item{grid-template-columns:1fr 40px;gap:0}
+.phase-space{display:none}
+.phases-timeline::before{right:19px}
+.phase-dot{width:40px;justify-content:center}
+.phase-dot .dot-inner{width:14px;height:14px}
+.cost-table{font-size:0.78rem}
+.cost-table th,.cost-table td{padding:8px 10px}
+.footer-grid{grid-template-columns:1fr}
+.prototype-features{grid-template-columns:1fr}
+}
+
+
+/* ==================================================
+   تنسيقات النموذج التفاعلي المضافة من ملف المنصة
+================================================== */
+:root {
+            --bg-primary: #0A0F1A;
+            --bg-secondary: #111827;
+            --bg-card: #1A2236;
+            --bg-card-hover: #1E2A42;
+            --accent: #00D4AA;
+            --accent-dim: rgba(0,212,170,0.15);
+            --accent-glow: rgba(0,212,170,0.3);
+            --gold: #F5A623;
+            --gold-dim: rgba(245,166,35,0.15);
+            --danger: #EF4444;
+            --danger-dim: rgba(239,68,68,0.15);
+            --warning: #F59E0B;
+            --success: #10B981;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --border: rgba(255,255,255,0.08);
+            --border-accent: rgba(0,212,170,0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'IBM Plex Sans Arabic', 'Noto Kufi Arabic', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Kufi Arabic', sans-serif;
+        }
+
+        /* خلفية متحركة */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            top: -200px; right: -100px;
+            animation: float1 8s ease-in-out infinite;
+        }
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, var(--gold-dim) 0%, transparent 70%);
+            bottom: -150px; left: -100px;
+            animation: float2 10s ease-in-out infinite;
+        }
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-50px, 30px) scale(1.1); }
+        }
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, -40px) scale(1.15); }
+        }
+
+        /* جسيمات */
+        .particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            width: 3px; height: 3px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: drift linear infinite;
+        }
+        @keyframes drift {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+        }
+
+        /* شريط تنقل */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0; right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(10,15,26,0.85);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(10,15,26,0.95);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        /* أزرار */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #00B894);
+            color: var(--bg-primary);
+            font-weight: 700;
+            padding: 12px 32px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-family: 'Noto Kufi Arabic', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.2));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+        .btn-primary:hover::after { opacity: 1; }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            font-weight: 600;
+            padding: 12px 32px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-accent);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-family: 'Noto Kufi Arabic', sans-serif;
+        }
+        .btn-secondary:hover {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #E8960F);
+            color: var(--bg-primary);
+            font-weight: 700;
+            padding: 12px 32px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-family: 'Noto Kufi Arabic', sans-serif;
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(245,166,35,0.3);
+        }
+
+        .btn-sm {
+            padding: 8px 20px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
+        /* بطاقات */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        .card:hover::before { opacity: 1; }
+
+        /* أيقونات دائرية */
+        .icon-circle {
+            width: 56px; height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        .icon-accent {
+            background: var(--accent-dim);
+            color: var(--accent);
+            border: 1px solid var(--border-accent);
+        }
+        .icon-gold {
+            background: var(--gold-dim);
+            color: var(--gold);
+            border: 1px solid rgba(245,166,35,0.3);
+        }
+        .icon-danger {
+            background: var(--danger-dim);
+            color: var(--danger);
+            border: 1px solid rgba(239,68,68,0.3);
+        }
+
+        /* أقسام */
+        .section { padding: 100px 0; position: relative; }
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+        .section-desc {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 680px;
+        }
+
+        /* خط فاصل زخرفي */
+        .divider-glow {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+            border: none;
+            margin: 0;
+        }
+
+        /* خطوات */
+        .step-connector {
+            position: absolute;
+            top: 28px;
+            right: -50%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            z-index: 0;
+        }
+
+        /* جدول */
+        .table-custom {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .table-custom thead th {
+            background: rgba(0,212,170,0.08);
+            padding: 14px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--accent);
+            text-align: right;
+            border-bottom: 1px solid var(--border-accent);
+        }
+        .table-custom thead th:first-child { border-radius: 0 12px 0 0; }
+        .table-custom thead th:last-child { border-radius: 12px 0 0 0; }
+        .table-custom tbody td {
+            padding: 14px 20px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+        .table-custom tbody tr:hover td {
+            background: rgba(0,212,170,0.03);
+            color: var(--text-primary);
+        }
+
+        /* شريط التقدم الدائري */
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 1.5s ease-in-out;
+        }
+
+        /* إشعار Toast */
+        .toast-container {
+            position: fixed;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+        .toast {
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            backdrop-filter: blur(20px);
+            animation: toastIn 0.4s ease, toastOut 0.4s ease 3s forwards;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+        .toast-success {
+            background: rgba(16,185,129,0.15);
+            border: 1px solid rgba(16,185,129,0.4);
+            color: #6EE7B7;
+        }
+        .toast-error {
+            background: rgba(239,68,68,0.15);
+            border: 1px solid rgba(239,68,68,0.4);
+            color: #FCA5A5;
+        }
+        .toast-info {
+            background: rgba(0,212,170,0.15);
+            border: 1px solid rgba(0,212,170,0.4);
+            color: #5EEAD4;
+        }
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes toastOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(-20px); }
+        }
+
+        /* مودال */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            z-index: 5000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px;
+            max-width: 560px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* سكرول مخصص */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--text-muted);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        /* أنيميشن الظهور عند السكرول */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* تأثير النبض */
+        @keyframes pulse-accent {
+            0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+            50% { box-shadow: 0 0 0 12px transparent; }
+        }
+        .pulse-accent { animation: pulse-accent 2s infinite; }
+
+        /* تأثير الكتابة */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: var(--accent);
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* شبكة خلفية */
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(0,212,170,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,170,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* عداد */
+        .counter { font-variant-numeric: tabular-nums; }
+
+        /* Tab نشط */
+        .tab-btn {
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: 'Noto Kufi Arabic', sans-serif;
+        }
+        .tab-btn.active {
+            background: var(--accent-dim);
+            color: var(--accent);
+            border-color: var(--border-accent);
+        }
+        .tab-btn:hover:not(.active) {
+            background: rgba(255,255,255,0.04);
+            color: var(--text-primary);
+        }
+
+        /* Input مخصص */
+        .input-custom {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 15px;
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            transition: all 0.3s;
+            outline: none;
+        }
+        .input-custom:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim);
+        }
+        .input-custom::placeholder { color: var(--text-muted); }
+
+        textarea.input-custom { resize: vertical; min-height: 120px; }
+
+        select.input-custom {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394A3B8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 14px center;
+            padding-left: 36px;
+        }
+
+        /* خطوات المقابلة */
+        .interview-step { display: none; }
+        .interview-step.active { display: block; animation: slideUp 0.5s ease; }
+
+        /* شريط التقدم الأفقي */
+        .progress-bar {
+            height: 6px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            border-radius: 3px;
+            transition: width 0.6s ease;
+        }
+
+        /* خطة اشتراك مميزة */
+        .plan-featured {
+            border-color: var(--accent) !important;
+            position: relative;
+        }
+        .plan-featured::after {
+            content: 'الالأكثر شعبية';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent), #00B894);
+            color: var(--bg-primary);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 20px;
+            border-radius: 0 0 8px 8px;
+            font-family: 'Noto Kufi Arabic', sans-serif;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0; right: 0;
+            width: 80%;
+            max-width: 360px;
+            height: 100vh;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border);
+            z-index: 2000;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            padding: 80px 28px 28px;
+        }
+        .mobile-menu.open { transform: translateX(0); }
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1999;
+            display: none;
+        }
+        .mobile-menu-overlay.open { display: block; }
+
+        /* Agent card hover */
+        .agent-card {
+            cursor: default;
+        }
+        .agent-card .agent-icon {
+            transition: all 0.4s;
+        }
+        .agent-card:hover .agent-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        /* HashTag trend bar */
+        .trend-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.06);
+            overflow: hidden;
+        }
+        .trend-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1.2s ease;
+        }
+
+        @media (max-width: 768px) {
+            .section { padding: 60px 0; }
+            .card { padding: 20px; }
+            .step-connector { display: none; }
+        }
+
+        /* تنقل سلس بين الصفحات الداخلية */
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+
+
+/* إزاحة الأقسام المضافة عن شريط التنقل الثابت */
+#check-center,#trends,#report-sample,#pricing,#interview,#academy,#faq{scroll-margin-top:90px}
+</style>
+</head>
+<body>
+
+<!-- حاوية إشعارات النموذج التفاعلي -->
+<div class="toast-container" id="toastContainer"></div>
+
+<canvas id="bgCanvas"></canvas>
+
+<!-- Floating Interactive Shapes -->
+<div id="floatingShapes"></div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="shield"><i data-lucide="shield-check" style="width:24px;height:24px"></i></div>
+    <span>معيار</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#idea">فكرة المشروع</a>
+    <a href="#objectives">الأهداف</a>
+    <a href="#ai">الذكاء الاصطناعي</a>
+    <a href="#roadmap">خارطة الطريق</a>
+    <a href="#cost">التكلفة</a>
+    <a href="#revenue">مصادر الدخل</a>
+    <a href="#check-center">مركز الفحص</a>
+    <a href="#trends">الترندات</a>
+    <a href="#pricing">الأسعار</a>
+    <a href="#" class="nav-cta">ابدأ الآن</a>
+  </div>
+  <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <i data-lucide="menu" style="width:24px;height:24px"></i>
+  </button>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-glow g1"></div>
+  <div class="hero-glow g2"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> منصة ذكية جديدة للإعلاميين</div>
+    <h1>منصة <span class="highlight">معيار</span><br>إدارتك الإعلامية الذكية</h1>
+    <p>احتراف الإدارات الإعلامية أصبح متاحًا للإعلامي وصانع المحتوى في منصة واحدة، وبتكلفة حسب الاستخدام.</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="document.getElementById('idea').scrollIntoView({behavior:'smooth'})">اكتشف المعيار</button>
+      <button class="btn-secondary" onclick="document.getElementById('prototype').scrollIntoView({behavior:'smooth'})">النموذج الأولي</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num" data-count="12">0</div><div class="label">أداة ذكية</div></div>
+      <div class="hero-stat"><div class="num" data-count="4">0</div><div class="label">مصادر دخل رئيسية</div></div>
+      <div class="hero-stat"><div class="num" data-count="2030">0</div><div class="label">160 ألف وظيفة في قطاع الإعلام السعودي بحلول 2030</div></div>
+      <div class="hero-stat"><div class="num" data-count="2">0</div><div class="label">شركات داعمه للمشروع </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 1. Idea Section -->
+<section id="idea">
+  <div class="section-header reveal">
+    <span class="tag">القسم الأول</span>
+    <h2>فكرة المشروع ورسالته</h2>
+    <p>منصة ويب ذكية تجمع عدة وكلاء ذكاء اصطناعي داخل تجربة واحدة</p>
+  </div>
+  <div class="idea-grid">
+    <div class="idea-visual reveal">
+      <div class="idea-card c1">
+        <div class="ic"><i data-lucide="file-text"></i></div>
+        <h4>فحص النصوص</h4>
+        <p>مراجعة المقالات والقصص والتغريدات وفق البصمة الإعلامية</p>
+      </div>
+      <div class="idea-card c2">
+        <div class="ic"><i data-lucide="image"></i></div>
+        <h4>فحص الصور</h4>
+        <p>الكشف عن حقوق الملكية والعناصر المحظورة في التصاميم</p>
+      </div>
+      <div class="idea-card c3">
+        <div class="ic"><i data-lucide="video"></i></div>
+        <h4>فحص الفيديو والصوت</h4>
+        <p>تحليل المقاطع الصوتية والبودكاست والفيديوهات بالكامل</p>
+      </div>
+    </div>
+    <div class="idea-text reveal reveal-delay-2">
+      <h3>تبني منصة «معيار» بصمة إعلامية خاصة بكل مستخدم</h3>
+      <p>لا تقدم المنصة حكمًا عامًا فقط، بل تبني ملفًا خاصًا بالمستخدم يسمى البصمة الإعلامية، ثم تقارن كل محتوى بهذه البصمة، وبالعقود والالتزامات، والأنظمة واللوائح، وسياسات منصات التواصل الاجتماعي.</p>
+      <p>وتصدر بعد الفحص تقريرًا منظمًا يوضح مستوى المخاطر، وأسباب التنبيهات، والأجزاء التي تحتاج إلى تعديل، والصياغات أو الحلول البديلة المقترحة.</p>
+      <div class="tagline">
+        <i data-lucide="shield-check" style="width:22px;height:22px"></i>
+        <span>قبل أن تنشر، مرّر المحتوى على معيار</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Objectives -->
+<section id="objectives" style="background:var(--dark2)">
+  <div class="section-header reveal">
+    <span class="tag">القسم الثاني</span>
+    <h2>أهداف المشروع</h2>
+    <p>جمع أدوات الإعلامي وصانع المحتوى في منصة واحدة</p>
+  </div>
+  <div class="obj-grid">
+    <div class="obj-card reveal"><div class="num">01</div><h4>منصة واحدة شاملة</h4><p>جمع أدوات الإعلامي وصانع المحتوى في مكان واحد بدل التشتت بين أدوات متعددة</p></div>
+    <div class="obj-card reveal reveal-delay-1"><div class="num">02</div><h4>مراجعة قبل النشر</h4><p>مراجعة المحتوى قبل النشر وتقليل المخالفات والمخاطر المحتملة</p></div>
+    <div class="obj-card reveal reveal-delay-2"><div class="num">03</div><h4>توافق تنظيمي</h4><p>التأكد من توافق المحتوى مع الأنظمة والعقود والهوية الإعلامية</p></div>
+    <div class="obj-card reveal reveal-delay-1"><div class="num">04</div><h4>محتوى آمن واحترافي</h4><p>مساعدة المستخدم على صناعة محتوى أكثر أمانًا واحترافية</p></div>
+    <div class="obj-card reveal reveal-delay-2"><div class="num">05</div><h4>بديل الإدارات المكلفة</h4><p>تمكين الأفراد من الوصول إلى خدمات قريبة من مستوى الإدارات الإعلامية المتخصصة</p></div>
+    <div class="obj-card reveal reveal-delay-3"><div class="num">06</div><h4>دفع حسب الاستخدام</h4><p>تقديم نموذج مرن يعتمد على الدفع حسب الاستخدام بالكريدت مع مراجعة بشرية للحالات المعقدة</p></div>
+  </div>
+  <div style="max-width:1200px;margin:48px auto 0">
+    <h3 style="text-align:center;font-size:1.3rem;margin-bottom:24px;color:var(--text2)" class="reveal">الفئات المستهدفة</h3>
+    <div class="audience-tags reveal">
+      <span class="audience-tag">الإعلاميون</span>
+      <span class="audience-tag">صنّاع المحتوى</span>
+      <span class="audience-tag">المؤثرون والمشاهير</span>
+      <span class="audience-tag">مقدمو البرامج</span>
+      <span class="audience-tag">الصحفيون</span>
+      <span class="audience-tag">الكتّاب</span>
+      <span class="audience-tag">مقدمو البودكاست</span>
+      <span class="audience-tag">أصحاب الحسابات المهنية</span>
+      <span class="audience-tag">مديرو أعمال المشاهير</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Challenge -->
+<section id="challenge">
+  <div class="section-header reveal">
+    <span class="tag">القسم الثالث</span>
+    <h2>التحدي وعناصر التميز</h2>
+  </div>
+  <div class="challenge-box reveal">
+    <h3>التحدي الذي يعالجه المشروع</h3>
+    <p style="color:var(--text2);margin-bottom:20px;line-height:1.8">يواجه الإعلاميون وصنّاع المحتوى والمؤثرون الذين لا يملكون إدارات إعلامية متخصصة صعوبة في إدارة محتواهم باحتراف، بسبب ارتفاع تكلفة التعاقد مع الشركات والوكالات المتخصصة.</p>
+    <ul class="challenge-list">
+      <li><i data-lucide="alert-triangle" style="width:18px;height:18px"></i>ضعف الهوية الإعلامية وتشتت المخرجات بين أكثر من منصة</li>
+      <li><i data-lucide="alert-triangle" style="width:18px;height:18px"></i>نشر محتوى لا يتوافق مع شخصية المستخدم أو مشروعه</li>
+      <li><i data-lucide="alert-triangle" style="width:18px;height:18px"></i>الوقوع في مخالفات نظامية أو مهنية</li>
+      <li><i data-lucide="alert-triangle" style="width:18px;height:18px"></i>مخالفة شروط عقد إعلاني أو رعاية</li>
+      <li><i data-lucide="alert-triangle" style="width:18px;height:18px"></i>استخدام صورة أو موسيقى أو علامة تجارية دون حق واضح</li>
+      <li><i data-lucide="alert-triangle" style="width:18px;height:18px"></i>نشر محتوى قبل مراجعته بصورة كافية</li>
+      <li><i data-lucide="alert-triangle" style="width:18px;height:18px"></i>صعوبة الحصول على مستشار متخصص للحالات الحساسة</li>
+    </ul>
+  </div>
+  <div style="margin-top:48px">
+    <h3 style="text-align:center;font-size:1.3rem;margin-bottom:32px;color:var(--text2)" class="reveal">عناصر تميز المشروع</h3>
+    <div class="diff-grid">
+      <div class="diff-card reveal"><div class="icon-box"><i data-lucide="layers"></i></div><div><h4>أدوات موحدة</h4><p>يجمع أدوات إدارة وصناعة المحتوى الإعلامي في منصة واحدة</p></div></div>
+      <div class="diff-card reveal reveal-delay-1"><div class="icon-box"><i data-lucide="fingerprint"></i></div><div><h4>بصمة إعلامية فريدة</h4><p>يصمم هوية إعلامية خاصة لكل مستخدم أو مشروع ويحافظ على اتساقها</p></div></div>
+      <div class="diff-card reveal reveal-delay-2"><div class="icon-box"><i data-lucide="scale"></i></div><div><h4>مراجعة شاملة</h4><p>يراجع توافق المحتوى مع الأنظمة واللوائح والعقود قبل نشره</p></div></div>
+      <div class="diff-card reveal reveal-delay-3"><div class="icon-box"><i data-lucide="credit-card"></i></div><div><h4>دفع مرن</h4><p>يعتمد على نظام الدفع حسب الاستخدام بالكريدت</p></div></div>
+      <div class="diff-card reveal reveal-delay-1"><div class="icon-box"><i data-lucide="brain"></i></div><div><h4>ذكاء + خبرة بشرية</h4><p>يجمع بين سرعة الذكاء الاصطناعي وخبرة المستشار البشري المتخصص</p></div></div>
+      <div class="diff-card reveal reveal-delay-2"><div class="icon-box"><i data-lucide="file-bar-chart"></i></div><div><h4>تقارير واضحة</h4><p>يعرض النتائج في تقرير يتضمن درجة الامتثال ومستوى المخاطر والحلول المقترحة</p></div></div>
+      <div class="diff-card reveal reveal-delay-3"><div class="icon-box"><i data-lucide="info"></i></div><div><h4>نتائج إرشادية</h4><p>لا يقدم حكمًا قانونيًا نهائيًا بل نتيجة إرشادية تساعد المستخدم على اتخاذ القرار</p></div></div>
+      <div class="diff-card reveal reveal-delay-4"><div class="icon-box"><i data-lucide="user-check"></i></div><div><h4>إدارة اعمال للمحترفين</h4><p>عقود لإدارة أعمال تشمل الظهور الاعلامي, متابعة العقود, إدارة المحتوى </p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Content Strategy -->
+<section id="strategy" style="background:var(--dark2)">
+  <div class="section-header reveal">
+    <span class="tag">القسم الرابع</span>
+    <h2>استراتيجية المحتوى</h2>
+    <p>تثقيف الإعلاميين بالمخاطر الإعلامية وإظهار كيف تساعدهم معيار</p>
+  </div>
+  <div class="strategy-tabs reveal">
+    <button class="strategy-tab active" onclick="switchTab(this,0)">المحتوى التوعوي</button>
+    <button class="strategy-tab" onclick="switchTab(this,1)">المحتوى التعليمي</button>
+    <button class="strategy-tab" onclick="switchTab(this,2)">المحتوى التطبيقي</button>
+    <button class="strategy-tab" onclick="switchTab(this,3)">دراسات الحالات</button>
+    <button class="strategy-tab" onclick="switchTab(this,4)">محتوى الترندات</button>
+  </div>
+  <div class="strategy-content reveal">
+    <div class="strategy-panel active">
+      <h4>المحتوى التوعوي</h4>
+      <ul>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>شرح الأنظمة والمخالفات المحتملة</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>حقوق الملكية الفكرية وكيفية حمايتها</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>أخطاء النشر الشائعة وكيفية تجنبها</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>المخاطر القانونية للمحتوى غير المراجع</li>
+      </ul>
+    </div>
+    <div class="strategy-panel">
+      <h4>المحتوى التعليمي</h4>
+      <ul>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>نصائح لصناعة الفيديو والبودكاست والمقالات</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>بناء الهوية الإعلامية الاحترافية</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>تحسين أسلوب الكتابة والخطاب</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>إعداد خطط محتوى فعّالة</li>
+      </ul>
+    </div>
+    <div class="strategy-panel">
+      <h4>المحتوى التطبيقي</h4>
+      <ul>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>عرض كيفية فحص المحتوى باستخدام معيار</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>تحسين المحتوى بعد المراجعة</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>شرح أدوات المنصة وطريقة استخدامها</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>نماذج عملية لتقارير الفحص</li>
+      </ul>
+    </div>
+    <div class="strategy-panel">
+      <h4>دراسات الحالات</h4>
+      <ul>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>مقارنة المحتوى قبل استخدام معيار وبعده</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>بيان المخاطر أو التعارضات التي تم اكتشافها</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>قصص نجاح حقيقية من المستخدمين</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>تحليل أخطاء شائعة تم تجنبها</li>
+      </ul>
+    </div>
+    <div class="strategy-panel">
+      <h4>محتوى الترندات</h4>
+      <ul>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>تحليل الهاشتاقات والموضوعات الرائجة</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>أفكار مناسبة للاستفادة من الترندات</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>تجنب الإضرار بهوية المستخدم أو مخالفة الأنظمة</li>
+        <li><i data-lucide="check-circle" style="width:16px;height:16px"></i>ربط الترندات بالبصمة الإعلامية للمستخدم</li>
+      </ul>
+    </div>
+  </div>
+  <div style="max-width:900px;margin:32px auto 0;text-align:center" class="reveal">
+    <p style="color:var(--text3);font-size:0.85rem;margin-bottom:16px">المنصات المناسبة: تيك توك · إنستغرام · إكس · يوتيوب · لينكدإن · المدونة · النشرة البريدية · الموقع</p>
+    <p style="color:var(--teal);font-size:0.9rem;font-weight:600">لست بحاجة إلى إدارة إعلامية مكلفة؛ «معيار» يمنحك الأدوات والخبرة وتدفع فقط مقابل مقدار استخدامك</p>
+  </div>
+</section>
+
+<!-- 5. Launch Plan -->
+<section id="launch">
+  <div class="section-header reveal">
+    <span class="tag">القسم الخامس</span>
+    <h2>خطة ومحتوى الإطلاق</h2>
+    <p>ثلاث مراحل مدروسة لضمان نجاح إطلاق المنصة</p>
+  </div>
+  <div class="phases-timeline">
+    <div class="phase-item reveal">
+      <div class="phase-content">
+        <div class="phase-label">المرحلة الأولى</div>
+        <h4>ما قبل الإطلاق</h4>
+        <p style="color:var(--text3);font-size:0.82rem;margin-bottom:12px">المدة: أسبوعان قبل الإطلاق</p>
+        <ul>
+          <li>نشر محتوى تشويقي يوضح المشكلات</li>
+          <li>عرض أخطاء شائعة قد تسبب مخالفات</li>
+          <li>إطلاق صفحة تسجيل مبكر برصيد مجاني</li>
+          <li>التعاون مع إعلاميين ومؤثرين لتجربة المنصة</li>
+          <li>نشر عد تنازلي لموعد الإطلاق</li>
+          <li>جمع بيانات المستخدمين المهتمين</li>
+        </ul>
+      </div>
+      <div class="phase-dot"><div class="dot-inner"></div></div>
+      <div class="phase-space"></div>
+    </div>
+    <div class="phase-item reveal">
+      <div class="phase-space"></div>
+      <div class="phase-dot"><div class="dot-inner" style="background:var(--gold);box-shadow:0 0 20px rgba(245,166,35,0.4)"></div></div>
+      <div class="phase-content">
+        <div class="phase-label" style="color:var(--gold)">المرحلة الثانية</div>
+        <h4>مرحلة الإطلاق</h4>
+        <p style="color:var(--text3);font-size:0.82rem;margin-bottom:12px">المدة: أسبوع الإطلاق</p>
+        <ul>
+          <li>نشر فيديو الإطلاق الرسمي</li>
+          <li>شرح مختصر لفكرة المشروع وأدواته</li>
+          <li>عرض تجربة عملية قبل وبعد معيار</li>
+          <li>منح المستخدمين الجدد رصيد كريدت تجريبي</li>
+          <li>تنظيم بث مباشر وجلسة تعريفية</li>
+          <li>نشر شهادات وتجارب المستخدمين الأوائل</li>
+        </ul>
+      </div>
+    </div>
+    <div class="phase-item reveal">
+      <div class="phase-content">
+        <div class="phase-label">المرحلة الثالثة</div>
+        <h4>ما بعد الإطلاق</h4>
+        <p style="color:var(--text3);font-size:0.82rem;margin-bottom:12px">المدة: أول شهر بعد الإطلاق</p>
+        <ul>
+          <li>نشر شروحات قصيرة لكل أداة</li>
+          <li>مشاركة حالات واقعية وتجارب</li>
+          <li>نصائح أسبوعية عن صناعة المحتوى</li>
+          <li>تحديات ومسابقات برصيد كريدت</li>
+          <li>جمع ملاحظات المستخدمين وتحسين المنصة</li>
+          <li>قياس معدل العودة والاستخدام</li>
+        </ul>
+      </div>
+      <div class="phase-dot"><div class="dot-inner"></div></div>
+      <div class="phase-space"></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:48px" class="reveal">
+    <p style="color:var(--gold);font-size:1.1rem;font-weight:700;font-family:'Noto Kufi Arabic'">معيار… إدارتك الإعلامية الذكية في مكان واحد</p>
+  </div>
+</section>
+
+<!-- 6. Policies -->
+<section id="policies" style="background:var(--dark2)">
+  <div class="section-header reveal">
+    <span class="tag">القسم السادس</span>
+    <h2>دليل السياسات التحريرية</h2>
+    <p>الضوابط التي تلتزم بها منصة معيار عند نشر المحتوى</p>
+  </div>
+  <div class="policy-grid">
+    <div class="policy-card reveal"><div class="p-icon"><i data-lucide="check-square"></i></div><h4>الدقة والموثوقية</h4><p>التحقق من صحة المعلومات والاعتماد على المصادر الرسمية وتجنب المعلومات المضللة</p></div>
+    <div class="policy-card reveal reveal-delay-1"><div class="p-icon"><i data-lucide="eye"></i></div><h4>وضوح المحتوى</h4><p>لغة مباشرة ومفهومة مع توضيح المصطلحات المعقدة وعدم استخدام عناوين مبالغ فيها</p></div>
+    <div class="policy-card reveal reveal-delay-2"><div class="p-icon"><i data-lucide="lock"></i></div><h4>احترام الخصوصية</h4><p>عدم نشر بيانات المستخدمين أو محتواهم أو نتائج فحصهم إلا بإذن صريح</p></div>
+    <div class="policy-card reveal reveal-delay-1"><div class="p-icon"><i data-lucide="copyright"></i></div><h4>الملكية الفكرية</h4><p>لا تستخدم عناصر مملوكة للغير إلا بعد الحصول على إذن أو ترخيص رسمي</p></div>
+    <div class="policy-card reveal reveal-delay-2"><div class="p-icon"><i data-lucide="megaphone"></i></div><h4>المحتوى الإعلاني</h4><p>توضيح المحتوى المدفوع بصورة صريحة وعدم تقديم ادعاءات غير مثبتة</p></div>
+    <div class="policy-card reveal reveal-delay-3"><div class="p-icon"><i data-lucide="brain"></i></div><h4>استخدام الذكاء الاصطناعي</h4><p>خضوع المخرجات للمراجعة البشرية وعدم اختلاق معلومات أو مصادر</p></div>
+  </div>
+  <div style="max-width:900px;margin:32px auto 0" class="reveal">
+    <h4 style="color:var(--red);margin-bottom:12px;font-size:0.95rem">المحتوى المحظور</h4>
+    <p style="color:var(--text3);font-size:0.85rem;line-height:1.8">لا تنشر المنصة محتوى يتضمن معلومات مضللة أو ينتهك الخصوصية أو الملكية الفكرية أو يسيء للأفراد أو يخالف القيم العامة أو يقدم نتائج الفحص كحكم قانوني نهائي أو يكشف معلومات سرية عن المستخدمين.</p>
+  </div>
+  <div style="max-width:900px;margin:24px auto 0" class="reveal">
+    <h4 style="color:var(--text2);margin-bottom:12px;font-size:0.95rem">التشريعات المنظمة</h4>
+    <p style="color:var(--text3);font-size:0.82rem;line-height:1.8">نظام الإعلام المرئي والمسموع · نظام المطبوعات والنشر · نظام حماية حقوق المؤلف · نظام حماية البيانات الشخصية · نظام مكافحة جرائم المعلوماتية · نظام التجارة الإلكترونية · مبادئ أخلاقيات الذكاء الاصطناعي (سدايا) · سياسات منصات التواصل</p>
+  </div>
+</section>
+
+<!-- 7. KPIs -->
+<section id="kpis">
+  <div class="section-header reveal">
+    <span class="tag">القسم السابع</span>
+    <h2>مؤشرات الأداء الرئيسية</h2>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi-card reveal"><div class="kpi-num" data-count="50">0</div><h4>مستخدم تجريبي</h4><p>الوصول إلى 50 مستخدمًا في التجربة الأولى</p></div>
+    <div class="kpi-card reveal reveal-delay-1"><div class="kpi-num">100%</div><h4>بصمة إعلامية</h4><p>نسبة إكمال إنشاء البصمة الإعلامية</p></div>
+    <div class="kpi-card reveal reveal-delay-2"><div class="kpi-num">4</div><h4>أنواع فحص</h4><p>نصوص وصور وصوت وفيديو</p></div>
+    <div class="kpi-card reveal reveal-delay-3"><div class="kpi-num">₨</div><h4>استعداد للدفع</h4><p>مستخدمون مستعدون لشراء الكريدت</p></div>
+  </div>
+  <div style="max-width:1000px;margin:40px auto 0">
+    <h4 style="text-align:center;color:var(--text2);margin-bottom:20px;font-size:1rem" class="reveal">مؤشرات التشغيل المستمرة</h4>
+    <div class="obj-grid reveal" style="grid-template-columns:repeat(3,1fr)">
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">المستخدمون النشطون</h4><p>عدد المستخدمين النشطين شهريًا</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">عمليات الفحص</h4><p>عدد عمليات فحص المحتوى</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">معدل العودة</h4><p>معدل العودة إلى المنصة</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">استهلاك الكريدت</h4><p>معدل شراء واستهلاك الكريدت</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">دقة المراجعة</h4><p>دقة المراجعة الذكية</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">رضا المستخدمين</h4><p>نسبة رضا المستخدمين</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Visual Identity -->
+<section id="identity" style="background:var(--dark2)">
+  <div class="section-header reveal">
+    <span class="tag">القسم الثامن</span>
+    <h2>دليل الهوية البصرية والتحريرية</h2>
+  </div>
+  <div style="max-width:1000px;margin:0 auto">
+    <div class="reveal" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:40px">
+      <div style="background:var(--card);border-radius:16px;padding:32px;border:1px solid rgba(0,212,170,0.08)">
+        <h4 style="margin-bottom:16px">الألوان الأساسية</h4>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <div style="text-align:center"><div style="width:50px;height:50px;background:#0A0F1A;border-radius:10px;border:1px solid rgba(255,255,255,0.1)"></div><span style="font-size:0.7rem;color:var(--text3)">كحلي</span></div>
+          <div style="text-align:center"><div style="width:50px;height:50px;background:#111827;border-radius:10px;border:1px solid rgba(255,255,255,0.1)"></div><span style="font-size:0.7rem;color:var(--text3)">داكن</span></div>
+          <div style="text-align:center"><div style="width:50px;height:50px;background:#1A2236;border-radius:10px;border:1px solid rgba(255,255,255,0.1)"></div><span style="font-size:0.7rem;color:var(--text3)">بطاقات</span></div>
+          <div style="text-align:center"><div style="width:50px;height:50px;background:#00D4AA;border-radius:10px"></div><span style="font-size:0.7rem;color:var(--text3)">فيروزي</span></div>
+          <div style="text-align:center"><div style="width:50px;height:50px;background:#F5A623;border-radius:10px"></div><span style="font-size:0.7rem;color:var(--text3)">ذهبي</span></div>
+        </div>
+      </div>
+      <div style="background:var(--card);border-radius:16px;padding:32px;border:1px solid rgba(0,212,170,0.08)">
+        <h4 style="margin-bottom:16px">ألوان التقارير</h4>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div style="text-align:center"><div style="width:50px;height:50px;background:#10B981;border-radius:10px"></div><span style="font-size:0.7rem;color:#10B981">منخفض</span></div>
+          <div style="text-align:center"><div style="width:50px;height:50px;background:#F59E0B;border-radius:10px"></div><span style="font-size:0.7rem;color:#F59E0B">مراجعة</span></div>
+          <div style="text-align:center"><div style="width:50px;height:50px;background:#EF4444;border-radius:10px"></div><span style="font-size:0.7rem;color:#EF4444">مرتفع</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="background:var(--card);border-radius:16px;padding:32px;border:1px solid rgba(0,212,170,0.08);margin-bottom:24px">
+      <h4 style="margin-bottom:16px">شخصية العلامة</h4>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <span class="audience-tag">ذكية ومواكبة</span>
+        <span class="audience-tag">موثوقة ومسؤولة</span>
+        <span class="audience-tag">واضحة وغير معقدة</span>
+        <span class="audience-tag">مساندة وليست مخيفة</span>
+        <span class="audience-tag">احترافية وقريبة</span>
+      </div>
+    </div>
+    <div class="reveal" style="background:var(--card);border-radius:16px;padding:32px;border:1px solid rgba(0,212,170,0.08)">
+      <h4 style="margin-bottom:12px;color:var(--gold)">التنبيه النظامي</h4>
+      <p style="color:var(--text3);font-size:0.88rem;line-height:1.8">نتائج «معيار» إرشادية لدعم القرار، ولا تمثل حكمًا قانونيًا نهائيًا أو بديلًا عن المراجعة البشرية المتخصصة.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 9. AI -->
+<section id="ai">
+  <div class="section-header reveal">
+    <span class="tag">القسم التاسع</span>
+    <h2>توظيف الذكاء الاصطناعي</h2>
+    <p>12 مجالًا يوظف فيها الذكاء الاصطناعي في منصة معيار</p>
+  </div>
+  <div class="ai-grid">
+    <div class="ai-card reveal"><div class="ai-num">01</div><div><h4>تحليل المحتوى متعدد الوسائط</h4><p>تحليل النصوص والصور والصوت والفيديو واستخراج النصوص والتعرف على العناصر الظاهرة</p></div></div>
+    <div class="ai-card reveal reveal-delay-1"><div class="ai-num">02</div><div><h4>مراجعة الامتثال الإعلامي</h4><p>فحص المحتوى ومقارنته بالأنظمة واللوائح للكشف عن المخاطر المحتملة</p></div></div>
+    <div class="ai-card reveal reveal-delay-2"><div class="ai-num">03</div><div><h4>مراجعة العقود والالتزامات</h4><p>تحليل عقود الإعلانات والرعاية واستخراج الشروط والمحظورات</p></div></div>
+    <div class="ai-card reveal reveal-delay-1"><div class="ai-num">04</div><div><h4>بناء البصمة الإعلامية</h4><p>إنشاء بصمة خاصة تشمل نبرة الخطاب وأسلوب الكتابة والقيم البصرية</p></div></div>
+    <div class="ai-card reveal reveal-delay-2"><div class="ai-num">05</div><div><h4>صناعة المحتوى وتطويره</h4><p>توليد الأفكار والنصوص والسيناريوهات وإعادة الصياغة وتحسين النبرة</p></div></div>
+    <div class="ai-card reveal reveal-delay-3"><div class="ai-num">06</div><div><h4>قياس المخاطر والتوصيات</h4><p>إصدار تقرير بدرجة الامتثال ومستوى المخاطر والحلول البديلة</p></div></div>
+    <div class="ai-card reveal reveal-delay-1"><div class="ai-num">07</div><div><h4>رصد الترندات</h4><p>تحليل الموضوعات الرائجة واقتراح طرق مناسبة للاستفادة منها</p></div></div>
+    <div class="ai-card reveal reveal-delay-2"><div class="ai-num">08</div><div><h4>تخصيص تجربة المستخدم</h4><p>التعلم من طريقة الاستخدام لتقديم توصيات أكثر تخصيصًا</p></div></div>
+    <div class="ai-card reveal reveal-delay-3"><div class="ai-num">09</div><div><h4>التعليم والتوعية</h4><p>محتوى تعليمي داخل أكاديمية معيار عن الملكية الفكرية والأزمات الإعلامية</p></div></div>
+    <div class="ai-card reveal reveal-delay-1"><div class="ai-num">10</div><div><h4>دعم اتخاذ القرار</h4><p>مقارنة نسخ المحتوى وتحديد الأنسب مع توضيح نقاط القوة والمخاطر</p></div></div>
+    <div class="ai-card reveal reveal-delay-2"><div class="ai-num">11</div><div><h4>خدمة العملاء الذكية</h4><p>مساعد ذكي يشرح الأدوات ويوجه المستخدم ويجيب عن الأسئلة المتكررة</p></div></div>
+    <div class="ai-card reveal reveal-delay-3"><div class="ai-num">12</div><div><h4>تحليل الأداء والتطوير</h4><p>تحليل الخدمات الأكثر طلبًا وفرص تطوير الأدوات وكفاءة استهلاك الكريدت</p></div></div>
+  </div>
+</section>
+
+<!-- 10. Roadmap -->
+<section id="roadmap" style="background:var(--dark2)">
+  <div class="section-header reveal">
+    <span class="tag">القسم العاشر</span>
+    <h2>آفاق التطوير المستقبلية</h2>
+  </div>
+  <div class="roadmap">
+    <div class="roadmap-phase reveal">
+      <div class="roadmap-bar"><div class="fill" style="background:var(--teal)"></div></div>
+      <div class="roadmap-content">
+        <div class="rp-header"><h4>المرحلة الأولى: النموذج التشغيلي</h4><span class="rp-time">6 - 12 شهرًا</span></div>
+        <ul>
+          <li style="--dot-color:var(--teal)">تطوير النسخة الأساسية المستقرة</li>
+          <li style="--dot-color:var(--teal)">فحص النصوص والصور والصوت والفيديو</li>
+          <li style="--dot-color:var(--teal)">بناء البصمة الإعلامية وتحليل العقود</li>
+          <li style="--dot-color:var(--teal)">تشغيل نظام الكريدت والدفع</li>
+          <li style="--dot-color:var(--teal)">توفير المراجعة البشرية وقياس الدقة</li>
+        </ul>
+      </div>
+    </div>
+    <div class="roadmap-phase reveal reveal-delay-1">
+      <div class="roadmap-bar"><div class="fill" style="background:var(--gold)"></div></div>
+      <div class="roadmap-content">
+        <div class="rp-header"><h4>المرحلة الثانية: توسيع الأدوات</h4><span class="rp-time" style="color:var(--gold);background:rgba(245,166,35,0.1)">12 - 24 شهرًا</span></div>
+        <ul>
+          <li>إطلاق مرصد الهاشتاقات والترندات</li>
+          <li>إضافة مخطط المحتوى والجدولة</li>
+          <li>إطلاق أكاديمية معيار</li>
+          <li>تطوير تطبيق للهواتف</li>
+          <li>توسيع شبكة المستشارين وربط أدوات الإنتاج</li>
+        </ul>
+      </div>
+    </div>
+    <div class="roadmap-phase reveal reveal-delay-2">
+      <div class="roadmap-bar"><div class="fill" style="background:linear-gradient(to bottom,var(--teal),var(--gold))"></div></div>
+      <div class="roadmap-content">
+        <div class="rp-header"><h4>المرحلة الثالثة: التوسع والنمو</h4><span class="rp-time">24 - 36 شهرًا</span></div>
+        <ul>
+          <li>وكلاء متخصصون: رياضي وتجاري وصحي وترفيهي</li>
+          <li>واجهة برمجية لربط معيار بمنصات أخرى</li>
+          <li>حسابات جماعية للفرق والمنشآت</li>
+          <li>نسخ للجامعات والحاضنات والبرامج التدريبية</li>
+          <li>التوسع مستقبلًا إلى أسواق الخليج</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. Cost -->
+<section id="cost">
+  <div class="section-header reveal">
+    <span class="tag">القسم الحادي عشر</span>
+    <h2>التكلفة</h2>
+  </div>
+  <div class="cost-section reveal">
+    <h3 style="font-size:1.2rem;margin-bottom:8px">تكلفة النسخة التجريبية لـ 50 مستخدمًا</h3>
+    <p style="color:var(--text3);font-size:0.82rem;margin-bottom:24px">لا تشمل المطورين أو الموظفين أو البرمجة</p>
+    <table class="cost-table">
+      <thead><tr><th>البند</th><th>التكلفة</th></tr></thead>
+      <tbody>
+        <tr><td>التأسيس لمرة واحدة (نطاق + إعداد)</td><td>50 - 150 ريال</td></tr>
+        <tr><td>التشغيل الثابت شهريًا (استضافة + قواعد بيانات + مراقبة)</td><td>5 - 83 ريال</td></tr>
+        <tr><td>التشغيل المتغير (تحليل 50 مستخدمًا + احتياطي)</td><td>450 - 550 ريال</td></tr>
+        <tr class="total-row"><td>إجمالي تشغيل 50 مستخدمًا شهريًا</td><td>550 - 650 ريال</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:40px">
+      <h3 style="font-size:1.2rem;margin-bottom:8px">ميزانية السنة الأولى</h3>
+      <p style="color:var(--text3);font-size:0.82rem;margin-bottom:24px">متوسط الإنفاق التشغيلي: 60,000 ريال شهريًا</p>
+      <table class="cost-table">
+        <thead><tr><th>البند</th><th>الميزانية السنوية</th></tr></thead>
+        <tbody>
+          <tr><td>تطوير المنتج والفريق التقني</td><td>280,000 ريال</td></tr>
+          <tr><td>الذكاء الاصطناعي والاستضافة والتخزين</td><td>100,000 ريال</td></tr>
+          <tr><td>تحديث القاعدة التشريعية والاستشارات</td><td>60,000 ريال</td></tr>
+          <tr><td>المراجعة البشرية حسب الطلب</td><td>65,000 ريال</td></tr>
+          <tr><td>الأمن السيبراني وحماية البيانات</td><td>40,000 ريال</td></tr>
+          <tr><td>التسويق واكتساب العملاء</td><td>80,000 ريال</td></tr>
+          <tr><td>خدمة العملاء والإدارة</td><td>55,000 ريال</td></tr>
+          <tr><td>الأدوات والتراخيص والمحاسبة</td><td>25,000 ريال</td></tr>
+          <tr><td>احتياطي التشغيل والتطوير</td><td>15,000 ريال</td></tr>
+          <tr class="total-row"><td>الإجمالي السنوي</td><td>720,000 ريال</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 12. Revenue -->
+<section id="revenue" style="background:var(--dark2)">
+  <div class="section-header reveal">
+    <span class="tag">القسم الثاني عشر</span>
+    <h2>مصادر الدخل</h2>
+  </div>
+  <div class="revenue-grid">
+    <div class="revenue-card reveal">
+      <div class="r-icon"><i data-lucide="coins"></i></div>
+      <h4>شراء كريدت </h4>
+      <p>يشتري المستخدم رصيدًا ثم يستهلك منه عند استخدام الخدمات. يختلف المقدار بحسب نوع المحتوى وحجمه ومدته وعدد طبقات الفحص.</p>
+    </div>
+    <div class="revenue-card reveal reveal-delay-1">
+      <div class="r-icon"><i data-lucide="message-circle"></i></div>
+      <h4>جلسات الاستشارة الإعلامية</h4>
+      <p>جلسات يقدمها مستشارون إعلاميون متخصصون: بناء الهوية الإعلامية، تطوير المشاريع، إدارة السمعة، والتعامل مع الأزمات.</p>
+    </div>
+    <div class="revenue-card reveal reveal-delay-2">
+      <div class="r-icon"><i data-lucide="file-signature"></i></div>
+      <h4>جلسات الاستشارة القانونية</h4>
+      <p>مراجعة بنود الحصرية، تعارض العقود، حقوق استخدام الاسم والصورة، شروط الإعلانات والرعاية.</p>
+    </div>
+    <div class="revenue-card reveal reveal-delay-3">
+      <div class="r-icon"><i data-lucide="calendar-check"></i></div>
+      <h4>عقود ادارة الاعمال </h4>
+      <p>تنظيم العقود, ادارة الشراكات, الظهور الاعلامي, ادارة المحتوى .</p>
+    </div>
+  </div>
+</section>
+
+<!-- 13. Funding -->
+<section id="funding">
+  <div class="section-header reveal">
+    <span class="tag">القسم الثالث عشر</span>
+    <h2>مصادر التمويل المحتملة</h2>
+    <p>فرص تمويل محتملة لا تمثل تمويلًا مضمونًا</p>
+  </div>
+  <div class="partners-grid reveal">
+    <div class="partner-card"><h4>حاضنة 1932 هب</h4><p>الشراكة القائمة · تطوير النموذج والإرشاد الإداري</p></div>
+    <div class="partner-card"><h4>التمويل الذاتي " شركة Fameai"</h4><p>المرحلة الأولى وإعادة استثمار الإيرادات المبكرة</p></div>
+    <div class="partner-card"><h4>برامج منشآت</h4><p>دعم الشركات التقنية الناشئة</p></div>
+    <div class="partner-card"><h4>مسرعات الذكاء الاصطناعي</h4><p>برامج ومسرعات متخصصة في الذكاء الاصطناعي</p></div>
+    <div class="partner-card"><h4>التمويل الثقافي والإعلامي</h4><p>فرص التمويل المتاحة في القطاع الإعلامي</p></div>
+    <div class="partner-card"><h4>المستثمرون الملائكيون</h4><p>صناديق رأس المال الجريء والاستثمار المبكر</p></div>
+  </div>
+</section>
+
+<!-- 14. Partnerships -->
+<section id="partnerships" style="background:var(--dark2)">
+  <div class="section-header reveal">
+    <span class="tag">القسم الرابع عشر</span>
+    <h2>فرص الشراكات</h2>
+  </div>
+  <div class="partners-grid reveal">
+    <div class="partner-card"><h4>حاضنة 1932 هب</h4><p>تطوير النموذج · الإرشاد · خفض التكاليف · الاستعداد للاستثمار</p></div>
+    <div class="partner-card"><h4>هيئة تنظيم الإعلام</h4><p>تحديث المرجع التشريعي · برامج توعوية · اختبار الحلول التقنية</p></div>
+    <div class="partner-card"><h4>وزارة الإعلام</h4><p>تدريب الإعلاميين · تجارب عملية · برامج الابتكار</p></div>
+    <div class="partner-card"><h4>سدايا</h4><p>حوكمة الذكاء الاصطناعي · حماية البيانات · تطوير النماذج العربية</p></div>
+    <div class="partner-card"><h4>الهيئة السعودية للملكية الفكرية</h4><p>التوعية بحقوق المؤلف · أدوات فحص الملكية الفكرية</p></div>
+    <div class="partner-card"><h4>الجامعات</h4><p>الأبحاث · اختبار الدقة · التدريب التعاوني · استقطاب المواهب</p></div>
+    <div class="partner-card"><h4>شركات التقنية السحابية</h4><p>أرصدة سحابية · تخفيضات الذكاء الاصطناعي · أمن سيبراني</p></div>
+    <div class="partner-card"><h4>وكالات المؤثرين</h4><p>الوصول للعملاء · تجربة المنصة · خدمات مشتركة</p></div>
+    <div class="partner-card"><h4>الأكاديمية السعودية للإعلام</h4><p>التدريب · التجارب العملية · نشر الوعي بالامتثال</p></div>
+  </div>
+</section>
+
+<!-- 15. Prototype -->
+<section id="prototype">
+  <div class="section-header reveal">
+    <span class="tag">القسم الخامس عشر</span>
+    <h2>النموذج الأولي</h2>
+    <p>موقع إلكتروني يعرض تجربة منصة معيار ووظائفها الأساسية</p>
+  </div>
+  <div class="prototype-features reveal">
+    <div class="proto-feat"><i data-lucide="layout-dashboard" style="width:18px;height:18px"></i>الصفحة التعريفية للمشروع</div>
+    <div class="proto-feat"><i data-lucide="user-plus" style="width:18px;height:18px"></i>إنشاء حساب وتسجيل الدخول</div>
+    <div class="proto-feat"><i data-lucide="fingerprint" style="width:18px;height:18px"></i>إنشاء البصمة الإعلامية</div>
+    <div class="proto-feat"><i data-lucide="folder-plus" style="width:18px;height:18px"></i>إضافة مشروع جديد</div>
+    <div class="proto-feat"><i data-lucide="upload" style="width:18px;height:18px"></i>رفع النصوص والصور والصوت والفيديو</div>
+    <div class="proto-feat"><i data-lucide="target" style="width:18px;height:18px"></i>اختيار نوع المحتوى والمنصة المستهدفة</div>
+    <div class="proto-feat"><i data-lucide="scan-search" style="width:18px;height:18px"></i>فحص المحتوى</div>
+    <div class="proto-feat"><i data-lucide="gauge" style="width:18px;height:18px"></i>عرض درجة الامتثال ومستوى المخاطر</div>
+    <div class="proto-feat"><i data-lucide="message-square-warning" style="width:18px;height:18px"></i>عرض الملاحظات والحلول المقترحة</div>
+    <div class="proto-feat"><i data-lucide="wallet" style="width:18px;height:18px"></i>إدارة الكريدت</div>
+    <div class="proto-feat"><i data-lucide="file-lock" style="width:18px;height:18px"></i>حفظ بيانات العقود والالتزامات</div>
+    <div class="proto-feat"><i data-lucide="user-check" style="width:18px;height:18px"></i>طلب مراجعة بشرية متخصصة</div>
+    <div class="proto-feat"><i data-lucide="settings" style="width:18px;height:18px"></i>لوحة إدارة المستخدم والمشرف</div>
+    <div class="proto-feat"><i data-lucide="shield" style="width:18px;height:18px"></i>صفحة السياسات والخصوصية</div>
+    <div class="proto-feat"><i data-lucide="banknote" style="width:18px;height:18px"></i>صفحة الأسعار ومصادر الدخل</div>
+  </div>
+</section>
+
+<!-- ================================================== -->
+<!-- بداية النموذج التفاعلي المضاف بعد القسم الخامس عشر -->
+<!-- ================================================== -->
+
+<section class="section" id="check-center" style="background: rgba(0,212,170,0.02);">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center reveal">
+<span class="section-label" style="background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border-accent);">
+<i class="fas fa-microscope"></i>
+                جرّب الآن
+            </span>
+<h2 class="section-title mt-4">مركز فحص المحتوى</h2>
+<p class="section-desc mx-auto">الصق نصًا واختر منصة النشر ثم احصل على تقرير امتثال فوري</p>
+</div>
+<div class="reveal max-w-3xl mx-auto mt-12">
+<div class="card" style="border-color: var(--border-accent);">
+<!-- تبويبات نوع الفحص -->
+<div class="flex flex-wrap gap-2 mb-6">
+<button class="tab-btn active" onclick="switchCheckTab(this, 'text')"><i class="fas fa-font ml-1"></i> نص</button>
+<button class="tab-btn" onclick="switchCheckTab(this, 'image')"><i class="fas fa-image ml-1"></i> صورة</button>
+<button class="tab-btn" onclick="switchCheckTab(this, 'audio')"><i class="fas fa-microphone ml-1"></i> صوت</button>
+<button class="tab-btn" onclick="switchCheckTab(this, 'video')"><i class="fas fa-video ml-1"></i> فيديو</button>
+</div>
+<!-- فحص النص -->
+<div class="check-panel" id="check-text">
+<textarea class="input-custom mb-4" id="checkTextInput" placeholder="الصق النص الذي تريد فحصه هنا... مثال: هذا المنتج يعالج جميع الأمراض المزمنة خلال أسبوع واحد فقط!" rows="5"></textarea>
+<div class="grid sm:grid-cols-2 gap-4 mb-4">
+<div>
+<label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">منصة النشر</label>
+<select class="input-custom" id="checkPlatform">
+<option value="x">X (تويتر)</option>
+<option value="tiktok">TikTok</option>
+<option value="instagram">Instagram</option>
+<option value="youtube">YouTube</option>
+<option value="linkedin">LinkedIn</option>
+<option value="snapchat">Snapchat</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">نوع المحتوى</label>
+<select class="input-custom" id="checkType">
+<option value="post">منشور عادي</option>
+<option value="ad">إعلان مدفوع</option>
+<option value="comment">تعليق أو رد</option>
+<option value="article">مقال أو تحليل</option>
+<option value="campaign">حملة تسويقية</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<label class="flex items-center gap-2 cursor-pointer text-sm" style="color: var(--text-secondary);">
+<input class="w-4 h-4 accent-[#00D4AA] rounded" id="checkIsAd" type="checkbox"/>
+                            هذا المحتوى إعلاني
+                        </label>
+<label class="flex items-center gap-2 cursor-pointer text-sm" style="color: var(--text-secondary);">
+<input class="w-4 h-4 accent-[#00D4AA] rounded" id="checkHasContract" type="checkbox"/>
+                            مرتبط بعقد
+                        </label>
+</div>
+</div>
+<!-- فحص الصورة -->
+<div class="check-panel" id="check-image" style="display: none;">
+<div class="border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all hover:border-[#00D4AA]" onclick="document.getElementById('imageUpload').click()" style="border-color: var(--border);">
+<i class="fas fa-cloud-arrow-up text-4xl mb-3" style="color: var(--text-muted);"></i>
+<p class="text-sm" style="color: var(--text-secondary);">اسحب الصورة هنا أو انقر للاختيار</p>
+<p class="text-xs mt-1" style="color: var(--text-muted);">PNG, JPG, WebP — حتى 10 ميجابايت</p>
+<input accept="image/*" class="hidden" id="imageUpload" type="file"/>
+</div>
+</div>
+<!-- فحص الصوت -->
+<div class="check-panel" id="check-audio" style="display: none;">
+<div class="border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all hover:border-[#00D4AA]" onclick="document.getElementById('audioUpload').click()" style="border-color: var(--border);">
+<i class="fas fa-headphones text-4xl mb-3" style="color: var(--text-muted);"></i>
+<p class="text-sm" style="color: var(--text-secondary);">ارفع ملف الصوت أو التسجيل</p>
+<p class="text-xs mt-1" style="color: var(--text-muted);">MP3, WAV, M4A — حتى 50 ميجابايت</p>
+<input accept="audio/*" class="hidden" id="audioUpload" type="file"/>
+</div>
+</div>
+<!-- فحص الفيديو -->
+<div class="check-panel" id="check-video" style="display: none;">
+<div class="border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all hover:border-[#00D4AA]" onclick="document.getElementById('videoUpload').click()" style="border-color: var(--border);">
+<i class="fas fa-film text-4xl mb-3" style="color: var(--text-muted);"></i>
+<p class="text-sm" style="color: var(--text-secondary);">ارفع مقطع الفيديو</p>
+<p class="text-xs mt-1" style="color: var(--text-muted);">MP4, MOV, WebM — حتى 500 ميجابايت</p>
+<input accept="video/*" class="hidden" id="videoUpload" type="file"/>
+</div>
+</div>
+<!-- تكلفة وتشغيل -->
+<div class="flex items-center justify-between flex-wrap gap-4 pt-4" style="border-top: 1px solid var(--border);">
+<div class="flex items-center gap-2 text-sm" style="color: var(--text-muted);">
+<i class="fas fa-coins" style="color: var(--gold);"></i>
+<span>التكلفة المتوقعة: <strong id="costEstimate" style="color: var(--gold);">3 كريدت</strong></span>
+</div>
+<button class="btn-primary btn-sm" onclick="runCheck()">
+<i class="fas fa-search-plus ml-2"></i>
+                        تشغيل الفحص
+                    </button>
+</div>
+</div>
+<!-- نتيجة الفحص -->
+<div class="card mt-6" id="checkResult" style="display: none; border-color: var(--border-accent);">
+<div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+<div>
+<h3 class="text-lg font-bold">تقرير الامتثال</h3>
+<p class="text-xs mt-1" style="color: var(--text-muted);">تقرير رقم: RPT-2025-00847  |  <span id="reportDate"></span></p>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-center">
+<div class="text-2xl font-bold" id="complianceScore" style="color: var(--danger);">0</div>
+<div class="text-xs" style="color: var(--text-muted);">درجة الامتثال</div>
+</div>
+<div class="w-px h-10" style="background: var(--border);"></div>
+<div class="text-center">
+<div class="text-2xl font-bold" id="riskScore" style="color: var(--danger);">0</div>
+<div class="text-xs" style="color: var(--text-muted);">درجة المخاطر</div>
+</div>
+<div class="w-px h-10" style="background: var(--border);"></div>
+<div class="px-4 py-2 rounded-lg text-sm font-bold" id="statusBadge" style="background: var(--danger-dim); color: var(--danger);">لا ينصح بالنشر</div>
+</div>
+</div>
+<!-- التنبيهات -->
+<div class="space-y-3" id="alertsList"></div>
+<!-- إجراءات -->
+<div class="flex flex-wrap gap-3 mt-6 pt-6" style="border-top: 1px solid var(--border);">
+<button class="btn-secondary btn-sm" onclick="showToast('تم حفظ التقرير بنجاح', 'success')"><i class="fas fa-save ml-1"></i> حفظ التقرير</button>
+<button class="btn-secondary btn-sm" onclick="showToast('تم تحميل التقرير بصيغة PDF', 'success')"><i class="fas fa-download ml-1"></i> تحميل PDF</button>
+<button class="btn-secondary btn-sm" onclick="showToast('تم نسخ رابط المشاركة', 'info')"><i class="fas fa-share ml-1"></i> مشاركة</button>
+<button class="btn-gold btn-sm" onclick="openModal('humanReviewModal')"><i class="fas fa-user-check ml-1"></i> مراجعة بشرية</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<hr class="divider-glow">
+
+<section class="section" id="trends" style="background: rgba(245,166,35,0.02);">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center reveal">
+<span class="section-label" style="background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(245,166,35,0.3);">
+<i class="fas fa-fire-flame-curved"></i>
+                مرصد معيار
+            </span>
+<h2 class="section-title mt-4">مرصد الهاشتاقات والترندات</h2>
+<p class="section-desc mx-auto">اكتشف الاتجاهات وقارنها بهويتك وعقودك قبل أن تتفاعل معها</p>
+</div>
+<div class="reveal max-w-5xl mx-auto mt-12">
+<!-- فلاتر -->
+<div class="card mb-6">
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div>
+<label class="block text-xs font-medium mb-2" style="color: var(--text-muted);">الفترة الزمنية</label>
+<select class="input-custom text-sm" id="trendPeriod" onchange="filterTrends()">
+<option value="today">اليوم</option>
+<option value="week">هذا الأسبوع</option>
+<option selected="" value="month">هذا الشهر</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-medium mb-2" style="color: var(--text-muted);">المنصة</label>
+<select class="input-custom text-sm" id="trendPlatform" onchange="filterTrends()">
+<option value="all">جميع المنصات</option>
+<option value="x">X</option>
+<option value="tiktok">TikTok</option>
+<option value="instagram">Instagram</option>
+<option value="youtube">YouTube</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-medium mb-2" style="color: var(--text-muted);">المجال</label>
+<select class="input-custom text-sm" id="trendField" onchange="filterTrends()">
+<option value="all">جميع المجالات</option>
+<option value="tech">التقنية</option>
+<option value="sports">الرياضة</option>
+<option value="business">الأعمال</option>
+<option value="entertainment">الترفيه</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-medium mb-2" style="color: var(--text-muted);">درجة المخاطرة</label>
+<select class="input-custom text-sm" id="trendRisk" onchange="filterTrends()">
+<option value="all">الكل</option>
+<option value="low">منخفضة</option>
+<option value="medium">متوسطة</option>
+<option value="high">عالية</option>
+</select>
+</div>
+</div>
+</div>
+<!-- قائمة الترندات -->
+<div class="space-y-4" id="trendsList"></div>
+</div>
+</div>
+</section>
+
+<hr class="divider-glow">
+
+<section class="section" id="report-sample">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center reveal">
+<span class="section-label" style="background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border-accent);">
+<i class="fas fa-clipboard-check"></i>
+                نموذج تقرير
+            </span>
+<h2 class="section-title mt-4">شكل تقرير الامتثال</h2>
+<p class="section-desc mx-auto">تقارير معيار تشبه إيصال مراجعة احترافي — واضحة ومنظمة وقابلة للعمل</p>
+</div>
+<div class="reveal mt-12">
+<div class="card" style="border-color: var(--border-accent);">
+<!-- رأس التقرير -->
+<div class="flex items-start justify-between flex-wrap gap-4 pb-6" style="border-bottom: 1px solid var(--border);">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, var(--accent), #00B894);"><i class="fas fa-shield-halved text-sm" style="color: var(--bg-primary);"></i></div>
+<span class="font-bold">تقرير امتثال — معيار</span>
+</div>
+<p class="text-sm" style="color: var(--text-muted);">تقرير رقم: RPT-2025-00847</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-center">
+<svg class="progress-ring" height="70" width="70">
+<circle cx="35" cy="35" fill="none" r="30" stroke="rgba(255,255,255,0.06)" stroke-width="5"></circle>
+<circle class="progress-ring-circle" cx="35" cy="35" fill="none" r="30" stroke="#F59E0B" stroke-dasharray="188.5" stroke-dashoffset="56.5" stroke-linecap="round" stroke-width="5"></circle>
+</svg>
+<div style="margin-top: -52px; position: relative; text-align: center;">
+<span class="text-lg font-bold" style="color: #F59E0B;">70</span>
+</div>
+<div class="text-xs mt-4" style="color: var(--text-muted);">الامتثال</div>
+</div>
+<div class="text-center">
+<svg class="progress-ring" height="70" width="70">
+<circle cx="35" cy="35" fill="none" r="30" stroke="rgba(255,255,255,0.06)" stroke-width="5"></circle>
+<circle class="progress-ring-circle" cx="35" cy="35" fill="none" r="30" stroke="#EF4444" stroke-dasharray="188.5" stroke-dashoffset="75.4" stroke-linecap="round" stroke-width="5"></circle>
+</svg>
+<div style="margin-top: -52px; position: relative; text-align: center;">
+<span class="text-lg font-bold" style="color: #EF4444;">60</span>
+</div>
+<div class="text-xs mt-4" style="color: var(--text-muted);">المخاطر</div>
+</div>
+<div class="px-4 py-2 rounded-lg text-sm font-bold" style="background: var(--gold-dim); color: var(--gold);">
+                            يحتاج تعديل
+                        </div>
+</div>
+</div>
+<!-- بيانات المحتوى -->
+<div class="grid sm:grid-cols-3 gap-4 py-5" style="border-bottom: 1px solid var(--border);">
+<div><span class="text-xs" style="color: var(--text-muted);">المحتوى:</span><p class="text-sm font-medium mt-1">منشور إعلاني — منتج صحي</p></div>
+<div><span class="text-xs" style="color: var(--text-muted);">المنصة:</span><p class="text-sm font-medium mt-1">X (تويتر)</p></div>
+<div><span class="text-xs" style="color: var(--text-muted);">التاريخ:</span><p class="text-sm font-medium mt-1">2025/07/09 — 21:42</p></div>
+</div>
+<!-- جدول الطبقات -->
+<div class="py-5" style="border-bottom: 1px solid var(--border);">
+<h4 class="text-sm font-bold mb-3" style="color: var(--accent);">طبقات المراجعة</h4>
+<div class="overflow-x-auto">
+<table class="table-custom">
+<thead>
+<tr>
+<th>الطبقة</th>
+<th>النتيجة</th>
+<th>التنبيهات</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>الهوية الإعلامية</td><td><span style="color: var(--success);">متوافق</span></td><td>0</td></tr>
+<tr><td>السياسات الشخصية</td><td><span style="color: var(--success);">متوافق</span></td><td>0</td></tr>
+<tr><td>العقود</td><td><span style="color: var(--warning);">تنبيه</span></td><td>1</td></tr>
+<tr><td>الأنظمة</td><td><span style="color: var(--danger);">مخالفة</span></td><td>2</td></tr>
+<tr><td>سياسات المنصة</td><td><span style="color: var(--warning);">تنبيه</span></td><td>1</td></tr>
+<tr><td>الدقة</td><td><span style="color: var(--danger);">مخالفة</span></td><td>1</td></tr>
+<tr><td>السمعة</td><td><span style="color: var(--success);">متوافق</span></td><td>0</td></tr>
+<tr><td>الخصوصية</td><td><span style="color: var(--success);">متوافق</span></td><td>0</td></tr>
+<tr><td>الجمهور</td><td><span style="color: var(--success);">متوافق</span></td><td>0</td></tr>
+<tr><td>الملكية الفكرية</td><td><span style="color: var(--success);">متوافق</span></td><td>0</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- تفاصيل التنبيهات -->
+<div class="py-5">
+<h4 class="text-sm font-bold mb-4" style="color: var(--accent);">تفاصيل التنبيهات</h4>
+<div class="space-y-4">
+<div class="p-4 rounded-xl" style="background: var(--danger-dim); border: 1px solid rgba(239,68,68,0.2);">
+<div class="flex items-start justify-between flex-wrap gap-2">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded text-xs font-bold" style="background: var(--danger); color: white;">حرج</span>
+<span class="text-sm font-bold">ادعاء غير موثق</span>
+</div>
+<p class="text-sm" style="color: var(--text-secondary);">"يعالج جميع الأمراض المزمنة خلال أسبوع واحد فقط"</p>
+</div>
+</div>
+<div class="grid sm:grid-cols-2 gap-3 mt-3 text-xs" style="color: var(--text-muted);">
+<div><strong>السبب:</strong> ادعاء علاجي يحتاج إلى إثبات علمي ومصدر موثوق</div>
+<div><strong>المصدر:</strong> ضوابط الإعلانات الصحية — نظام الهيئة السعودية للصحة</div>
+</div>
+<div class="mt-3 p-3 rounded-lg" style="background: rgba(0,0,0,0.2);">
+<div class="text-xs font-bold mb-1" style="color: var(--accent);">الصياغة البديلة المقترحة:</div>
+<p class="text-sm" style="color: var(--text-primary);">"منتج يدعم الصحة العامة ويمكن أن يكون جزءًا من نمط حياة متوازن. استشر طبيبك قبل الاستخدام."</p>
+</div>
+</div>
+<div class="p-4 rounded-xl" style="background: var(--danger-dim); border: 1px solid rgba(239,68,68,0.2);">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded text-xs font-bold" style="background: var(--danger); color: white;">حرج</span>
+<span class="text-sm font-bold">إفصاح إعلاني مفقود</span>
+</div>
+<p class="text-sm" style="color: var(--text-secondary);">المحتوى إعلاني لكنه لا يحتوي على إفصاح واضح وفق سياسات المنصة</p>
+<div class="mt-3 p-3 rounded-lg" style="background: rgba(0,0,0,0.2);">
+<div class="text-xs font-bold mb-1" style="color: var(--accent);">الصياغة البديلة:</div>
+<p class="text-sm" style="color: var(--text-primary);">أضف في بداية المنشور: "إعلان" أو "مدفوع" وفق متطلبات المنصة</p>
+</div>
+</div>
+<div class="p-4 rounded-xl" style="background: var(--gold-dim); border: 1px solid rgba(245,166,35,0.2);">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 rounded text-xs font-bold" style="background: var(--warning); color: var(--bg-primary);">متوسط</span>
+<span class="text-sm font-bold">تعارض تعاقدي محتمل</span>
+</div>
+<p class="text-sm" style="color: var(--text-secondary);">عقدك مع شركة "صحة بلس" يتضمن شرط حصرية في مجال المنتجات الصحية</p>
+<div class="mt-2 text-xs" style="color: var(--text-muted);">المصدر: عقد رعاية رقم CT-2025-012 — البند 7.3</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<hr class="divider-glow">
+
+<section class="section" id="pricing">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center reveal">
+<span class="section-label" style="background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border-accent);">
+<i class="fas fa-tags"></i>
+                الأسعار
+            </span>
+<h2 class="section-title mt-4">اختر الخطة المناسبة</h2>
+<p class="section-desc mx-auto">الاشتراك يفتح الأبواب، والكريدت يشغّل الأدوات</p>
+</div>
+<div class="grid md:grid-cols-2 gap-6 mt-16 max-w-5xl mx-auto">
+<!-- Premium -->
+<div class="reveal card plan-featured" style="transition-delay: 0.15s;">
+<h3 class="text-lg font-bold mb-1">Premium</h3>
+<p class="text-xs mb-4" style="color: var(--text-muted);">للمحترفين والإعلاميين</p>
+<div class="mb-6">
+<span class="text-4xl font-bold" style="color: var(--accent);">79</span>
+<span class="text-sm" style="color: var(--text-muted);"> ر.س/شهر</span>
+</div>
+<ul class="space-y-3 mb-6 text-sm" style="color: var(--text-secondary);">
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> جميع أدوات الفحص</li>
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> تحليل العقود</li>
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> مرصد متقدم</li>
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> تقارير موسعة</li>
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> 20 عقود</li>
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> دعم أولوية</li>
+</ul>
+<button class="btn-primary btn-sm w-full" onclick="showToast('تم توجيهك إلى صفحة الاشتراك', 'success')">اشترك الآن</button>
+</div>
+<!-- خاص -->
+<div class="reveal card" style="transition-delay: 0.25s;">
+<h3 class="text-lg font-bold mb-1">خاص</h3>
+<p class="text-xs mb-4" style="color: var(--text-muted);">للشركات والإعلاميين والمؤثرين وكبار الشخصيات</p>
+<div class="mb-6">
+<span class="text-4xl font-bold" style="color: var(--gold);">حسب الاتفاق</span>
+</div>
+<ul class="space-y-3 mb-6 text-sm" style="color: var(--text-secondary);">
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> كل مزايا Premium</li>
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> عقود غير محدودة</li>
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> صلاحيات مدير أعمال</li>
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> تنبيهات عاجلة</li>
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> مراجعات بشرية ذات أولوية</li>
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> تقارير متخصصة</li>
+</ul>
+<button class="btn-secondary btn-sm w-full" onclick="showToast('سيتم التواصل معك لترتيب الاشتراك', 'info')">تواصل معنا</button>
+</div>
+</div>
+<!-- جدول استهلاك الكريدت -->
+<div class="reveal mt-16">
+<h3 class="text-xl font-bold text-center mb-8">تكلفة الكريدت حسب الخدمة</h3>
+<div class="overflow-x-auto">
+<table class="table-custom">
+<thead>
+<tr>
+<th>الخدمة</th>
+<th>طريقة احتساب الرصيد</th>
+<th>التكلفة التقريبية</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>فحص تعليق قصير</td><td>تكلفة ثابتة</td><td style="color: var(--gold);">1 كريدت</td></tr>
+<tr><td>فحص منشور نصي</td><td>حسب طول النص</td><td style="color: var(--gold);">2 - 5 كريدت</td></tr>
+<tr><td>فحص مقال</td><td>حسب عدد الكلمات</td><td style="color: var(--gold);">5 - 15 كريدت</td></tr>
+<tr><td>تحليل عقد</td><td>حسب عدد الصفحات</td><td style="color: var(--gold);">10 - 30 كريدت</td></tr>
+<tr><td>تحليل صورة</td><td>لكل صورة</td><td style="color: var(--gold);">3 كريدت</td></tr>
+<tr><td>تحليل صوت</td><td>حسب عدد الدقائق</td><td style="color: var(--gold);">2 كريدت/دقيقة</td></tr>
+<tr><td>تحليل فيديو</td><td>حسب المدة والدقة</td><td style="color: var(--gold);">5 كريدت/دقيقة</td></tr>
+<tr><td>تحليل هاشتاقات</td><td>حسب الفترة والعمق</td><td style="color: var(--gold);">5 - 20 كريدت</td></tr>
+<tr><td>توليد محتوى</td><td>حسب الحجم</td><td style="color: var(--gold);">3 - 10 كريدت</td></tr>
+<tr><td>مراجعة بشرية</td><td>مبلغ منفصل</td><td style="color: var(--gold);">50 - 200 كريدت</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+
+<hr class="divider-glow">
+
+<section class="section" id="interview" style="background: rgba(0,212,170,0.02);">
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center reveal">
+<span class="section-label" style="background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border-accent);">
+<i class="fas fa-comments"></i>
+                تجربة تفاعلية
+            </span>
+<h2 class="section-title mt-4">مرشد معيار للهوية</h2>
+<p class="section-desc mx-auto">جرّب مقابلة تفاعلية مبسطة مع مرشد الهوية الإعلامية</p>
+</div>
+<div class="reveal mt-12">
+<div class="card" style="border-color: var(--border-accent);">
+<!-- شريط التقدم -->
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-medium" style="color: var(--text-muted);">تقدم المقابلة</span>
+<span class="text-xs font-bold" id="interviewProgress" style="color: var(--accent);">السؤال 1 من 5</span>
+</div>
+<div class="progress-bar mb-6">
+<div class="progress-bar-fill" id="interviewBar" style="width: 20%;"></div>
+</div>
+<!-- رسالة المرشد -->
+<div class="flex gap-3 mb-6">
+<div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--accent), #00B894);">
+<i class="fas fa-robot text-sm" style="color: var(--bg-primary);"></i>
+</div>
+<div class="p-4 rounded-2xl rounded-tr-md max-w-lg" style="background: rgba(0,212,170,0.08); border: 1px solid var(--border-accent);">
+<p class="text-sm leading-relaxed" id="interviewQuestion">مرحبًا! أنا مرشد معيار للهوية الإعلامية. سأساعدك في بناء بصمتك الإعلامية الشخصية. لنبدأ: من أنت مهنيًا؟ ما تخصصك الأساسي؟</p>
+</div>
+</div>
+<!-- خطوات المقابلة -->
+<div class="interview-step active" id="interviewStep1">
+<input class="input-custom mb-3" id="ans1" placeholder="مثال: صحفي اقتصادي متخصص في أسواق المال" type="text"/>
+<button class="btn-primary btn-sm" onclick="nextInterviewStep(2)">التالي <i class="fas fa-arrow-left mr-1"></i></button>
+</div>
+<div class="interview-step" id="interviewStep2">
+<input class="input-custom mb-3" id="ans2" placeholder="مثال: مقالات تحليلية، تقارير مالية، تغريدات إخبارية" type="text"/>
+<div class="flex gap-3">
+<button class="btn-secondary btn-sm" onclick="prevInterviewStep(1)"><i class="fas fa-arrow-right mr-1"></i> السابق</button>
+<button class="btn-primary btn-sm" onclick="nextInterviewStep(3)">التالي <i class="fas fa-arrow-left mr-1"></i></button>
+</div>
+</div>
+<div class="interview-step" id="interviewStep3">
+<input class="input-custom mb-3" id="ans3" placeholder="مثال: المهتمون بالاستثمار والمستثمرون الصغار والمتوسطون" type="text"/>
+<div class="flex gap-3">
+<button class="btn-secondary btn-sm" onclick="prevInterviewStep(2)"><i class="fas fa-arrow-right mr-1"></i> السابق</button>
+<button class="btn-primary btn-sm" onclick="nextInterviewStep(4)">التالي <i class="fas fa-arrow-left mr-1"></i></button>
+</div>
+</div>
+<div class="interview-step" id="interviewStep4">
+<select class="input-custom mb-3" id="ans4">
+<option value="">اختر نبرة الخطاب...</option>
+<option value="formal">رسمية ومهنية</option>
+<option value="semi">شبه رسمية ومبسطة</option>
+<option value="casual">غير رسمية وساخرة</option>
+<option value="educational">تعليمية وشرحية</option>
+</select>
+<div class="flex gap-3">
+<button class="btn-secondary btn-sm" onclick="prevInterviewStep(3)"><i class="fas fa-arrow-right mr-1"></i> السابق</button>
+<button class="btn-primary btn-sm" onclick="nextInterviewStep(5)">التالي <i class="fas fa-arrow-left mr-1"></i></button>
+</div>
+</div>
+<div class="interview-step" id="interviewStep5">
+<textarea class="input-custom mb-3" id="ans5" placeholder="مثال: الدين، السياسة الحزبية، الإعلانات عن المنتجات المالية غير المرخصة" rows="3"></textarea>
+<div class="flex gap-3">
+<button class="btn-secondary btn-sm" onclick="prevInterviewStep(4)"><i class="fas fa-arrow-right mr-1"></i> السابق</button>
+<button class="btn-primary btn-sm" onclick="finishInterview()"><i class="fas fa-check mr-1"></i> إنشاء البصمة</button>
+</div>
+</div>
+<!-- نتيجة المقابلة -->
+<div id="interviewResult" style="display: none;">
+<div class="p-5 rounded-xl" style="background: rgba(0,212,170,0.05); border: 1px solid var(--border-accent);">
+<div class="flex items-center gap-2 mb-4">
+<i class="fas fa-fingerprint" style="color: var(--accent);"></i>
+<h4 class="font-bold" style="color: var(--accent);">تم إنشاء البصمة الإعلامية</h4>
+</div>
+<div class="space-y-3 text-sm" id="fingerprintData"></div>
+<button class="btn-primary btn-sm mt-4" onclick="showToast('تم اعتماد البصمة الإعلامية بنجاح', 'success')"><i class="fas fa-check-double ml-1"></i> اعتماد البصمة</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<hr class="divider-glow">
+
+<section class="section" id="academy">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center reveal">
+<span class="section-label" style="background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(245,166,35,0.3);">
+<i class="fas fa-graduation-cap"></i>
+                تعلّم
+            </span>
+<h2 class="section-title mt-4">أكاديمية معيار</h2>
+<p class="section-desc mx-auto">محتوى تعليمي مخصص يرفع وعيك الإعلامي بناءً على أخطائك الفعلية</p>
+</div>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+<div class="reveal card" style="transition-delay: 0.05s;">
+<div class="w-full h-40 rounded-xl mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,212,170,0.1), rgba(245,166,35,0.1));">
+<i class="fas fa-ad text-4xl" style="color: var(--accent); opacity: 0.5;"></i>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded" style="background: var(--accent-dim); color: var(--accent);">إعلانات</span>
+<h3 class="font-bold mt-2 mb-1">أساسيات الإفصاح الإعلاني</h3>
+<p class="text-xs" style="color: var(--text-secondary);">متى تحتاج لإضافة إفصاح إعلاني وكيف تصيغه وفق كل منصة</p>
+<div class="flex items-center gap-3 mt-3 text-xs" style="color: var(--text-muted);">
+<span><i class="fas fa-clock ml-1"></i> 8 دقائق</span>
+<span><i class="fas fa-play-circle ml-1"></i> فيديو</span>
+</div>
+</div>
+<div class="reveal card" style="transition-delay: 0.1s;">
+<div class="w-full h-40 rounded-xl mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(245,166,35,0.1), rgba(239,68,68,0.1));">
+<i class="fas fa-user-shield text-4xl" style="color: var(--gold); opacity: 0.5;"></i>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded" style="background: var(--gold-dim); color: var(--gold);">خصوصية</span>
+<h3 class="font-bold mt-2 mb-1">حماية بيانات جمهورك</h3>
+<p class="text-xs" style="color: var(--text-secondary);">كيف تتجنب نشر بيانات شخصية وظاهرة بالخطأ في محتواك</p>
+<div class="flex items-center gap-3 mt-3 text-xs" style="color: var(--text-muted);">
+<span><i class="fas fa-clock ml-1"></i> 12 دقيقة</span>
+<span><i class="fas fa-play-circle ml-1"></i> فيديو</span>
+</div>
+</div>
+<div class="reveal card" style="transition-delay: 0.15s;">
+<div class="w-full h-40 rounded-xl mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0,212,170,0.1), rgba(16,185,129,0.1));">
+<i class="fas fa-file-signature text-4xl" style="color: var(--accent); opacity: 0.5;"></i>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded" style="background: var(--accent-dim); color: var(--accent);">عقود</span>
+<h3 class="font-bold mt-2 mb-1">بنود تعاقدية تحتاج انتباه</h3>
+<p class="text-xs" style="color: var(--text-secondary);">أهم البنود التي يجب أن تراجعها قبل توقيع أي عقد إعلامي</p>
+<div class="flex items-center gap-3 mt-3 text-xs" style="color: var(--text-muted);">
+<span><i class="fas fa-clock ml-1"></i> 15 دقيقة</span>
+<span><i class="fas fa-book-open ml-1"></i> مقال</span>
+</div>
+</div>
+</div>
+<!-- تنبيه تعليمي مخصص -->
+<div class="reveal max-w-2xl mx-auto mt-10">
+<div class="card" style="background: linear-gradient(135deg, var(--gold-dim), var(--bg-card)); border-color: rgba(245,166,35,0.3);">
+<div class="flex items-start gap-3">
+<div class="icon-circle icon-gold flex-shrink-0"><i class="fas fa-lightbulb"></i></div>
+<div>
+<h4 class="font-bold text-sm mb-1" style="color: var(--gold);">توصية مخصصة لك</h4>
+<p class="text-sm" style="color: var(--text-secondary);">تكررت في تقاريرك ملاحظات مرتبطة بالخصوصية، لذلك نقترح عليك درسًا قصيرًا عن حماية بيانات الجمهور في المنشورات المصورة.</p>
+<button class="btn-gold btn-sm mt-3" onclick="showToast('تم فتح الدرس المخصص', 'info')">ابدأ الدرس</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<hr class="divider-glow">
+
+<section class="section" id="faq">
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center reveal">
+<span class="section-label" style="background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border-accent);">
+<i class="fas fa-circle-question"></i>
+                مساعدة
+            </span>
+<h2 class="section-title mt-4">الأسئلة الشائعة</h2>
+</div>
+<div class="reveal mt-12 space-y-3" id="faqList"></div>
+</div>
+</section>
+
+<!-- ================================================== -->
+<!-- نهاية النموذج التفاعلي -->
+<!-- ================================================== -->
+
+<!-- Disclaimer -->
+<section style="padding:40px 40px 80px;z-index:2;position:relative">
+  <div class="disclaimer reveal">
+    <strong>تنبيه:</strong> هذه الوثيقة سياسة داخلية أولية، ولا تغني عن مراجعتها واعتمادها من مستشار قانوني مختص قبل الإطلاق التجاري الرسمي. نتائج «معيار» إرشادية لدعم القرار، ولا تمثل حكمًا قانونيًا نهائيًا أو بديلًا عن المراجعة البشرية المتخصصة.
+  </div>
+</section> 
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" style="margin-bottom:8px">
+        <div class="shield"><i data-lucide="shield-check" style="width:24px;height:24px"></i></div>
+        <span>معيار</span>
+      </a>
+      <p>منصة ذكية تجمع أدوات الإعلامي في مكان واحد، وتساعده على صناعة محتواه وإدارته ومراجعته قبل النشر بمستوى احترافي وتكلفة مرنة.</p>
+    </div>
+    <div class="footer-col">
+      <h4>المنصة</h4>
+      <a href="#idea">فكرة المشروع</a>
+      <a href="#objectives">الأهداف</a>
+      <a href="#ai">الذكاء الاصطناعي</a>
+      <a href="#roadmap">خارطة الطريق</a>
+    </div>
+    <div class="footer-col">
+      <h4>المشروع</h4>
+      <a href="#cost">التكلفة</a>
+      <a href="#revenue">مصادر الدخل</a>
+      <a href="#funding">التمويل</a>
+      <a href="#prototype">النموذج الأولي</a>
+    </div>
+    <div class="footer-col">
+      <h4>الشراكات</h4>
+      <a href="#partnerships">فرص الشراكات</a>
+      <a href="#policies">السياسات</a>
+      <a href="#kpis">مؤشرات الأداء</a>
+      <a href="#identity">الهوية البصرية</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 معيار — جميع الحقوق محفوظة</span>
+    <span>معيار… إدارتك الإعلامية الذكية في مكان واحد</span>
+  </div>
+</footer>
+
+<!-- نوافذ النموذج التفاعلي -->
+
+<div class="modal-overlay" id="loginModal">
+<div class="modal-box">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold">تسجيل الدخول</h3>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-white/5 transition-colors" onclick="closeModal('loginModal')" style="color: var(--text-muted);"><i class="fas fa-xmark"></i></button>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">البريد الإلكتروني أو رقم الجوال</label>
+<input class="input-custom" id="loginEmail" placeholder="أدخل بريدك أو رقمك" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">كلمة المرور</label>
+<input class="input-custom" id="loginPass" placeholder="أدخل كلمة المرور" type="password"/>
+</div>
+<div class="flex items-center justify-between text-sm">
+<label class="flex items-center gap-2 cursor-pointer" style="color: var(--text-muted);">
+<input class="w-4 h-4 accent-[#00D4AA] rounded" type="checkbox"/>
+                    تذكرني
+                </label>
+<a class="hover:underline" href="#" style="color: var(--accent);">نسيت كلمة المرور؟</a>
+</div>
+<button class="btn-primary w-full" onclick="handleLogin()">تسجيل الدخول</button>
+<div class="text-center text-sm" style="color: var(--text-muted);">
+                ليس لديك حساب؟ <a class="font-medium hover:underline" href="#" onclick="closeModal('loginModal'); openModal('registerModal');" style="color: var(--accent);">أنشئ حسابًا</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="registerModal">
+<div class="modal-box">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold">إنشاء حساب جديد</h3>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-white/5 transition-colors" onclick="closeModal('registerModal')" style="color: var(--text-muted);"><i class="fas fa-xmark"></i></button>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">الاسم الكامل</label>
+<input class="input-custom" id="regName" placeholder="أدخل اسمك" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">البريد الإلكتروني</label>
+<input class="input-custom" id="regEmail" placeholder="أدخل بريدك الإلكتروني" type="email"/>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">نوع الاستخدام</label>
+<select class="input-custom" id="regType">
+<option value="">اختر نوع استخدامك...</option>
+<option value="journalist">إعلامي</option>
+<option value="creator">صانع محتوى</option>
+<option value="influencer">مؤثر</option>
+<option value="podcast">مقدم بودكاست</option>
+<option value="writer">كاتب</option>
+<option value="manager">مدير أعمال</option>
+<option value="other">حساب مهني آخر</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">كلمة المرور</label>
+<input class="input-custom" id="regPass" placeholder="أنشئ كلمة مرور قوية" type="password"/>
+</div>
+<label class="flex items-start gap-2 cursor-pointer text-sm" style="color: var(--text-muted);">
+<input class="w-4 h-4 accent-[#00D4AA] rounded mt-0.5" type="checkbox"/>
+                أوافق على شروط الاستخدام وسياسة الخصوصية
+            </label>
+<button class="btn-primary w-full" onclick="handleRegister()">إنشاء الحساب</button>
+<div class="text-center text-sm" style="color: var(--text-muted);">
+                لديك حساب بالفعل؟ <a class="font-medium hover:underline" href="#" onclick="closeModal('registerModal'); openModal('loginModal');" style="color: var(--accent);">سجّل الدخول</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay" id="humanReviewModal">
+<div class="modal-box">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold">طلب مراجعة بشرية</h3>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-white/5 transition-colors" onclick="closeModal('humanReviewModal')" style="color: var(--text-muted);"><i class="fas fa-xmark"></i></button>
+</div>
+<div class="p-4 rounded-xl mb-4" style="background: var(--gold-dim); border: 1px solid rgba(245,166,35,0.3);">
+<p class="text-sm" style="color: var(--gold);"><i class="fas fa-info-circle ml-1"></i> تكلفة المراجعة البشرية تتراوح بين 50 - 200 كريدت حسب نوع المحتوى ودرجة التعقيد.</p>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">سبب طلب المراجعة</label>
+<select class="input-custom">
+<option value="">اختر السبب...</option>
+<option>تنبيهات عالية الخطورة تحتاج رأي بشري</option>
+<option>مسألة قانونية أو تعاقدية معقدة</option>
+<option>عدم ثقة في نتيجة الفحص الآلي</option>
+<option>رأي ثاني قبل النشر</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium mb-2" style="color: var(--text-secondary);">ملاحظات إضافية (اختياري)</label>
+<textarea class="input-custom" placeholder="أضف أي ملاحظات تريدها للمراجع..." rows="3"></textarea>
+</div>
+<button class="btn-gold w-full" onclick="closeModal('humanReviewModal'); showToast('تم إرسال طلب المراجعة البشرية بنجاح', 'success');">إرسال الطلب</button>
+</div>
+</div>
+</div>
+
+<script>
+// Initialize Lucide Icons
+lucide.createIcons();
+
+// ===================== PARTICLE CANVAS =====================
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let mouse = {x: -1000, y: -1000};
+
+function resizeCanvas(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+  constructor(){
+    this.reset();
+  }
+  reset(){
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+    this.opacity = Math.random() * 0.4 + 0.1;
+    this.color = Math.random() > 0.7 ? '#F5A623' : '#00D4AA';
+  }
+  update(){
+    this.x += this.speedX;
+    this.y += this.speedY;
+    // Mouse interaction for particles
+    const dx = mouse.x - this.x;
+    const dy = mouse.y - this.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if(dist < 150){
+      const force = (150 - dist) / 150;
+      this.x -= dx * force * 0.02;
+      this.y -= dy * force * 0.02;
+      this.opacity = Math.min(0.8, this.opacity + 0.02);
+    } else {
+      this.opacity += (0.2 - this.opacity) * 0.01;
+    }
+    if(this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+  }
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.globalAlpha = this.opacity;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+}
+
+for(let i = 0; i < 120; i++) particles.push(new Particle());
+
+function connectParticles(){
+  for(let a = 0; a < particles.length; a++){
+    for(let b = a + 1; b < particles.length; b++){
+      const dx = particles[a].x - particles[b].x;
+      const dy = particles[a].y - particles[b].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if(dist < 120){
+        ctx.beginPath();
+        ctx.strokeStyle = '#00D4AA';
+        ctx.globalAlpha = 0.04 * (1 - dist/120);
+        ctx.lineWidth = 0.5;
+        ctx.moveTo(particles[a].x, particles[a].y);
+        ctx.lineTo(particles[b].x, particles[b].y);
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+    }
+  }
+}
+
+function animateParticles(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  connectParticles();
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// ===================== FLOATING SHAPES =====================
+const shapesContainer = document.getElementById('floatingShapes');
+const floatingShapes = [];
+const shapeTypes = ['circle','square','ring','diamond','hexagon','cross'];
+const shapeColors = ['#00D4AA','#F5A623','#00D4AA','#F5A623','#00D4AA','#F5A623'];
+
+for(let i = 0; i < 20; i++){
+  const type = shapeTypes[i % shapeTypes.length];
+  const el = document.createElement('div');
+  el.className = `float-shape ${type}`;
+  const size = Math.random() * 30 + 15;
+  if(type === 'triangle'){
+    el.style.borderBottomColor = shapeColors[i % shapeColors.length];
+  } else if(type === 'ring'){
+    el.style.width = size + 'px';
+    el.style.height = size + 'px';
+    el.style.borderColor = shapeColors[i % shapeColors.length];
+  } else if(type === 'cross'){
+    el.style.width = size + 'px';
+    el.style.height = size + 'px';
+  } else if(type !== 'triangle'){
+    el.style.width = size + 'px';
+    el.style.height = size + 'px';
+    el.style.background = shapeColors[i % shapeColors.length];
+  }
+  el.style.opacity = Math.random() * 0.12 + 0.04;
+  el.style.left = Math.random() * 100 + '%';
+  el.style.top = Math.random() * 100 + '%';
+  el.style.animation = `floatShape ${Math.random()*6+6}s ease-in-out infinite`;
+  el.style.animationDelay = `-${Math.random()*6}s`;
+  
+  const isAttract = Math.random() > 0.5;
+  el.dataset.behavior = isAttract ? 'attract' : 'repel';
+  el.dataset.origX = parseFloat(el.style.left);
+  el.dataset.origY = parseFloat(el.style.top);
+  el.dataset.origOpacity = el.style.opacity;
+  
+  shapesContainer.appendChild(el);
+  floatingShapes.push({el, origLeft: parseFloat(el.style.left), origTop: parseFloat(el.style.top), origOpacity: el.style.opacity, isAttract});
+}
+
+// ===================== MOUSE TRACKING =====================
+document.addEventListener('mousemove', (e) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+  
+  // Interactive floating shapes
+  floatingShapes.forEach(s => {
+    const rect = s.el.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const maxDist = 200;
+    
+    if(dist < maxDist){
+      const force = (maxDist - dist) / maxDist;
+      if(s.isAttract){
+        // Attract: move toward mouse
+        const moveX = dx * force * 0.15;
+        const moveY = dy * force * 0.15;
+        s.el.style.transform = s.el.classList.contains('square') || s.el.classList.contains('diamond') 
+          ? `rotate(45deg) translate(${moveX}px, ${moveY}px)` 
+          : `translate(${moveX}px, ${moveY}px)`;
+        s.el.style.opacity = parseFloat(s.origOpacity) + force * 0.15;
+      } else {
+        // Repel: move away from mouse
+        const moveX = -dx * force * 0.25;
+        const moveY = -dy * force * 0.25;
+        s.el.style.transform = s.el.classList.contains('square') || s.el.classList.contains('diamond') 
+          ? `rotate(45deg) translate(${moveX}px, ${moveY}px)` 
+          : `translate(${moveX}px, ${moveY}px)`;
+        s.el.style.opacity = Math.max(0.02, parseFloat(s.origOpacity) - force * 0.03);
+      }
+    } else {
+      s.el.style.transform = s.el.classList.contains('square') || s.el.classList.contains('diamond') 
+        ? 'rotate(45deg)' : '';
+      s.el.style.opacity = s.origOpacity;
+    }
+  });
+});
+
+document.addEventListener('mouseleave', () => {
+  mouse.x = -1000;
+  mouse.y = -1000;
+});
+
+// ===================== SCROLL EFFECTS =====================
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      // Animate roadmap bars
+      const bars = entry.target.querySelectorAll('.roadmap-bar');
+      bars.forEach(b => setTimeout(() => b.classList.add('animated'), 300));
+    }
+  });
+}, {threshold: 0.1, rootMargin: '0px 0px -50px 0px'});
+revealEls.forEach(el => revealObserver.observe(el));
+
+// ===================== COUNTER ANIMATION =====================
+const counters = document.querySelectorAll('[data-count]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting && !entry.target.dataset.counted){
+      entry.target.dataset.counted = 'true';
+      const target = parseInt(entry.target.dataset.count);
+      let current = 0;
+      const step = Math.max(1, Math.floor(target / 60));
+      const interval = setInterval(() => {
+        current += step;
+        if(current >= target){
+          current = target;
+          clearInterval(interval);
+        }
+        entry.target.textContent = current;
+      }, 25);
+    }
+  });
+}, {threshold: 0.5});
+counters.forEach(c => counterObserver.observe(c));
+
+// ===================== STRATEGY TABS =====================
+function switchTab(btn, index){
+  document.querySelectorAll('.strategy-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.strategy-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.strategy-panel')[index].classList.add('active');
+}
+
+// ===================== ROADMAP BAR ANIMATION =====================
+const roadmapBars = document.querySelectorAll('.roadmap-bar');
+const roadmapObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('animated');
+    }
+  });
+}, {threshold: 0.3});
+roadmapBars.forEach(b => roadmapObserver.observe(b));
+
+// ===================== SMOOTH SCROLL FOR NAV LINKS =====================
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href');
+    if(id && id !== '#'){
+      e.preventDefault();
+      const target = document.querySelector(id);
+      if(target){
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+        document.getElementById('navLinks').classList.remove('open');
+      }
+    }
+  });
+});
+</script>
+
+<script>
+(function(){
+'use strict';
+// =============================================
+// البيانات
+// =============================================
+
+// بيانات الترندات
+const trendsData = [
+    { tag: '#الذكاء_الاصطناعي', platform: 'x', field: 'tech', risk: 'low', growth: 'صاعد', volume: 92000, suitability: 95, color: '#00D4AA' },
+    { tag: '#كأس_العالم_2026', platform: 'x', field: 'sports', risk: 'low', growth: 'ذروة', volume: 185000, suitability: 40, color: '#10B981' },
+    { tag: '#تقنية_العميق', platform: 'tiktok', field: 'tech', risk: 'medium', growth: 'صاعد', volume: 45000, suitability: 80, color: '#F59E0B' },
+    { tag: '#صفقات_الاستثمار', platform: 'linkedin', field: 'business', risk: 'low', growth: 'ناشئ', volume: 12000, suitability: 90, color: '#00D4AA' },
+    { tag: '#دراما_رمضان', platform: 'x', field: 'entertainment', risk: 'medium', growth: 'متراجع', volume: 67000, suitability: 15, color: '#EF4444' },
+    { tag: '#السياحة_السعودية', platform: 'instagram', field: 'tech', risk: 'low', growth: 'صاعد', volume: 38000, suitability: 70, color: '#10B981' },
+    { tag: '#ترند_مثير_للجدل', platform: 'tiktok', field: 'entertainment', risk: 'high', growth: 'ذروة', volume: 150000, suitability: 5, color: '#EF4444' },
+    { tag: '#ريادة_الأعمال', platform: 'linkedin', field: 'business', risk: 'low', growth: 'مستقر', volume: 22000, suitability: 85, color: '#00D4AA' },
+];
+
+// بيانات الأسئلة الشائعة
+const faqData = [
+    { q: 'هل معيار بديل عن المستشار القانوني؟', a: 'لا. نتائج معيار إرشادية لدعم القرار، ولا تمثل حكمًا قانونيًا نهائيًا. المنصة تساعدك على اكتشاف المخاطر المحتملة قبل النشر، وتوفر خيار التصعيد إلى مراجع بشري متخصص عند الحاجة.' },
+    { q: 'كيف تحمي معيار بياناتي وعقودي؟', a: 'نستخدم تشفيرًا كاملًا للاتصالات والملفات المخزنة، مع فصل بيانات المستخدمين وصلاحيات واضحة. لا نستخدم ملفاتك لتدريب النماذج دون موافقة، ونوفر خيار الحذف التلقائي بعد مدة محددة.' },
+    { q: 'ما الفرق بين الاشتراك والكريدت؟', a: 'الاشتراك يمنحك صلاحية الوصول إلى الأدوات والخصائص، بينما الكريدت هو الرصيد الذي يُستهلك فعليًا عند تشغيل عمليات التحليل. كل عملية لها تكلفة مختلفة حسب نوعها وحجمها.' },
+    { q: 'هل يمكنني استخدام معيار بدون إنشاء بصمة إعلامية؟', a: 'يمكنك تجربة بعض الأدوات بشكل محدود، لكن النتائج ستكون عامة وغير مخصصة. البصمة الإعلامية هي ما يجعل التحليل دقيقًا ومتعلقًا بهويتك وعقودك وسياساتك الشخصية.' },
+    { q: 'كيف تتعامل معيار مع التحديثات التنظيمية؟', a: 'نحن نراقب التحديثات عبر مصادر رسمية، ونمر بعملية تحقق وتلخيص ومراجعة بشرية قبل اعتماد أي قاعدة جديدة في محرك الفحص. كما نرسل تنبيهات مخصصة حسب تخصص كل مستخدم.' },
+    { q: 'ما المنصات التي يدعمها مركز الفحص؟', a: 'يدعم فحص المحتوى المخصص للنشر على X، TikTok، Instagram، YouTube، LinkedIn، وSnapchat، مع تحديث مستمر لسياسات كل منصة.' },
+];
+
+// =============================================
+// الجسيمات المتحركة
+// =============================================
+function createParticles() {
+    const container = document.getElementById('particles');
+    if (!container) return;
+    for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (8 + Math.random() * 12) + 's';
+        p.style.animationDelay = Math.random() * 10 + 's';
+        p.style.width = (2 + Math.random() * 3) + 'px';
+        p.style.height = p.style.width;
+        container.appendChild(p);
+    }
+}
+createParticles();
+
+// =============================================
+// التنقل
+// =============================================
+function navigateTo(id) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// شريط التنقل عند التمرير
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+
+    // تحديث الرابط النشط
+    const sections = ['hero', 'how-it-works', 'features', 'agents', 'trends', 'pricing'];
+    const links = document.querySelectorAll('.nav-link');
+    let current = '';
+    sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section && window.scrollY >= section.offsetTop - 200) {
+            current = id;
+        }
+    });
+    links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === '#' + current) {
+            link.style.color = 'var(--accent)';
+            link.style.background = 'var(--accent-dim)';
+        } else {
+            link.style.color = 'var(--text-secondary)';
+            link.style.background = 'transparent';
+        }
+    });
+});
+
+// القائمة الجانبية
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const overlay = document.getElementById('mobileOverlay');
+    const icon = document.getElementById('menuIcon');
+    menu.classList.toggle('open');
+    overlay.classList.toggle('open');
+    if (menu.classList.contains('open')) {
+        icon.className = 'fas fa-xmark';
+    } else {
+        icon.className = 'fas fa-bars';
+    }
+}
+
+// =============================================
+// أنيميشن الظهور عند السكرول
+// =============================================
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// =============================================
+// عدادات الأرقام
+// =============================================
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.dataset.target);
+            let current = 0;
+            const increment = Math.max(1, Math.floor(target / 40));
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                el.textContent = current;
+            }, 40);
+            counterObserver.unobserve(el);
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.counter').forEach(el => counterObserver.observe(el));
+
+// =============================================
+// المودالات
+// =============================================
+function openModal(id) {
+    document.getElementById(id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+    document.getElementById(id).classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// إغلاق بالنقر خارج المودال
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
+// =============================================
+// إشعارات Toast
+// =============================================
+function showToast(message, type = 'info') {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', info: 'fa-info-circle' };
+    toast.innerHTML = `<i class="fas ${icons[type]}"></i> ${message}`;
+    container.appendChild(toast);
+    setTimeout(() => { toast.remove(); }, 3500);
+}
+
+// =============================================
+// تسجيل الدخول وإنشاء الحساب
+// =============================================
+function handleLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const pass = document.getElementById('loginPass').value.trim();
+    if (!email || !pass) {
+        showToast('يرجى ملء جميع الحقول', 'error');
+        return;
+    }
+    closeModal('loginModal');
+    showToast('تم تسجيل الدخول بنجاح — مرحبًا بك في معيار', 'success');
+}
+
+function handleRegister() {
+    const name = document.getElementById('regName').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const type = document.getElementById('regType').value;
+    const pass = document.getElementById('regPass').value.trim();
+    if (!name || !email || !type || !pass) {
+        showToast('يرجى ملء جميع الحقول', 'error');
+        return;
+    }
+    if (pass.length < 6) {
+        showToast('كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+        return;
+    }
+    closeModal('registerModal');
+    showToast('تم إنشاء الحساب بنجاح — سيُنقلك إلى مقابلة مرشد الهوية', 'success');
+}
+
+// =============================================
+// مركز الفحص
+// =============================================
+function switchCheckTab(btn, type) {
+    document.querySelectorAll('.check-panel').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('#check-center .tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('check-' + type).style.display = 'block';
+
+    // تحديث التكلفة
+    const costs = { text: '3 كريدت', image: '3 كريدت', audio: '10 كريدت', video: '25 كريدت' };
+    document.getElementById('costEstimate').textContent = costs[type];
+}
+
+function runCheck() {
+    const text = document.getElementById('checkTextInput').value.trim();
+    if (!text && document.querySelector('#check-text').style.display !== 'none') {
+        showToast('يرجى إدخال النص المراد فحصه', 'error');
+        return;
+    }
+
+    showToast('جارٍ تحليل المحتوى...', 'info');
+
+    setTimeout(() => {
+        const resultDiv = document.getElementById('checkResult');
+        resultDiv.style.display = 'block';
+        resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // تحديد النتيجة حسب المحتوى
+        const hasIssues = text.includes('يعالج') || text.includes('جميع') || text.includes('فقط') || text.length < 5;
+
+        let compliance, risk, status, statusColor, statusBg;
+        if (!hasIssues && text.length > 10) {
+            compliance = 95; risk = 5;
+            status = 'جاهز للنشر'; statusColor = 'var(--success)'; statusBg = 'rgba(16,185,129,0.15)';
+        } else if (hasIssues) {
+            compliance = 35; risk = 75;
+            status = 'لا ينصح بالنشر'; statusColor = 'var(--danger)'; statusBg = 'var(--danger-dim)';
+        } else {
+            compliance = 70; risk = 40;
+            status = 'يحتاج تعديل'; statusColor = 'var(--warning)'; statusBg = 'var(--gold-dim)';
+        }
+
+        // تحريك الأرقام
+        animateNumber('complianceScore', compliance, statusColor === 'var(--danger)' ? 'var(--danger)' : compliance > 80 ? 'var(--success)' : 'var(--warning)');
+        animateNumber('riskScore', risk, risk > 60 ? 'var(--danger)' : risk > 30 ? 'var(--warning)' : 'var(--success)');
+
+        const badge = document.getElementById('statusBadge');
+        badge.textContent = status;
+        badge.style.color = statusColor;
+        badge.style.background = statusBg;
+
+        document.getElementById('reportDate').textContent = new Date().toLocaleString('ar-SA');
+
+        // التنبيهات
+        const alertsList = document.getElementById('alertsList');
+        alertsList.innerHTML = '';
+
+        if (hasIssues) {
+            alertsList.innerHTML += createAlert('حرج', 'var(--danger)', 'var(--danger-dim)',
+                'ادعاء غير موثق',
+                'العبارة تحتوي على ادعاء يحتاج إلى إثبات علمي ومصدر موثوق',
+                'ضوابط الإعلانات الصحية',
+                'يمكنك إعادة الصياغة بطريقة أكثر دقة مع ذكر المصدر أو استخدام عبارات مثل "قد يساعد" بدل "يعالج"');
+            alertsList.innerHTML += createAlert('حرج', 'var(--danger)', 'var(--danger-dim)',
+                'إفصاح إعلاني مفقود',
+                'إذا كان المحتوى إعلانيًا يجب إضافة إفصاح واضح',
+                'سياسات منصة النشر',
+                'أضف "#إعلان" أو "مدفوع" في بداية المنشور');
+        }
+
+        if (text.length > 0 && text.length < 10) {
+            alertsList.innerHTML += createAlert('متوسط', 'var(--warning)', 'var(--gold-dim)',
+                'نص قصير جدًا',
+                'النص قصير وقد لا يوفر سياقًا كافيًا للتقييم الدقيق',
+                'محرك التحليل',
+                'يُنصح بتقديم نص أكثر تفصيلاً للحصول على تقرير أشمل');
+        }
+
+        if (!hasIssues && text.length > 10) {
+            alertsList.innerHTML += createAlert('منخفض', 'var(--success)', 'rgba(16,185,129,0.1)',
+                'لا توجد تنبيهات جوهرية',
+                'المحتوى متوافق مع الهوية والسياسات الأساسية',
+                '—',
+                'يمكنك النشر بثقة. تابع المراقبة للتحديثات المستقبلية.');
+        }
+
+        showToast('تم إنشاء تقرير الامتثال بنجاح', 'success');
+    }, 2000);
+}
+
+function createAlert(level, color, bg, title, reason, source, suggestion) {
+    return `
+        <div class="p-4 rounded-xl" style="background: ${bg}; border: 1px solid ${color}22;">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="px-2 py-0.5 rounded text-xs font-bold" style="background: ${color}; color: ${color === 'var(--success)' ? 'var(--bg-primary)' : 'white'};">${level}</span>
+                <span class="text-sm font-bold">${title}</span>
+            </div>
+            <p class="text-sm mb-2" style="color: var(--text-secondary);">${reason}</p>
+            <div class="text-xs mb-2" style="color: var(--text-muted);">المصدر: ${source}</div>
+            <div class="p-3 rounded-lg" style="background: rgba(0,0,0,0.2);">
+                <div class="text-xs font-bold mb-1" style="color: var(--accent);">التوصية:</div>
+                <p class="text-sm" style="color: var(--text-primary);">${suggestion}</p>
+            </div>
+        </div>
+    `;
+}
+
+function animateNumber(id, target, color) {
+    const el = document.getElementById(id);
+    el.style.color = color;
+    let current = 0;
+    const timer = setInterval(() => {
+        current += Math.max(1, Math.floor(target / 30));
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = current;
+    }, 30);
+}
+
+// =============================================
+// مرصد الترندات
+// =============================================
+function renderTrends(data) {
+    const container = document.getElementById('trendsList');
+    container.innerHTML = '';
+
+    if (data.length === 0) {
+        container.innerHTML = '<div class="card text-center py-8"><p style="color: var(--text-muted);">لا توجد ترندات تطابق التصفية المحددة</p></div>';
+        return;
+    }
+
+    data.forEach((t, i) => {
+        const riskColors = { low: 'var(--success)', medium: 'var(--warning)', high: 'var(--danger)' };
+        const riskLabels = { low: 'منخفضة', medium: 'متوسطة', high: 'عالية' };
+        const growthColors = { 'ناشئ': '#818CF8', 'صاعد': 'var(--accent)', 'ذروة': 'var(--gold)', 'متراجع': 'var(--danger)', 'مستقر': 'var(--text-muted)' };
+        const platformIcons = { x: 'fa-x-twitter', tiktok: 'fa-tiktok', instagram: 'fa-instagram', youtube: 'fa-youtube', linkedin: 'fa-linkedin-in' };
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.style.transitionDelay = (i * 0.05) + 's';
+        card.innerHTML = `
+            <div class="flex items-start justify-between flex-wrap gap-4">
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-3 mb-2 flex-wrap">
+                        <h4 class="text-lg font-bold" style="color: ${t.color};">${t.tag}</h4>
+                        <span class="px-2 py-0.5 rounded text-xs" style="background: rgba(255,255,255,0.05); color: var(--text-muted);">
+                            <i class="fab ${platformIcons[t.platform] || 'fa-globe'} ml-1"></i> ${t.platform.toUpperCase()}
+                        </span>
+                        <span class="px-2 py-0.5 rounded text-xs font-bold" style="background: ${riskColors[t.risk]}22; color: ${riskColors[t.risk]};">مخاطرة ${riskLabels[t.risk]}</span>
+                        <span class="px-2 py-0.5 rounded text-xs" style="background: ${growthColors[t.growth]}22; color: ${growthColors[t.growth]};">${t.growth}</span>
+                    </div>
+                    <div class="grid sm:grid-cols-3 gap-4 text-sm" style="color: var(--text-secondary);">
+                        <div>
+                            <span class="text-xs" style="color: var(--text-muted);">حجم النشاط</span>
+                            <p class="font-medium mt-0.5">${(t.volume / 1000).toFixed(1)}K</p>
+                        </div>
+                        <div>
+                            <span class="text-xs" style="color: var(--text-muted);">ملاءمة لهويتك</span>
+                            <div class="flex items-center gap-2 mt-1">
+                                <div class="trend-bar flex-1"><div class="trend-bar-fill" style="width: ${t.suitability}%; background: ${t.suitability > 70 ? 'var(--accent)' : t.suitability > 40 ? 'var(--warning)' : 'var(--danger)'};"></div></div>
+                                <span class="text-xs font-bold" style="color: ${t.suitability > 70 ? 'var(--accent)' : t.suitability > 40 ? 'var(--warning)' : 'var(--danger)'};">${t.suitability}%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-end">
+                            ${t.suitability > 50
+                                ? `<button class="btn-primary btn-sm text-xs" onclick="showToast('تم إنشاء مسودة محتوى لهذا الترند وإرسالها لوكيل الامتثال', 'success')"><i class="fas fa-pen ml-1"></i> أنشئ محتوى</button>`
+                                : `<span class="text-xs" style="color: var(--text-muted);">لا يُنصح بالتفاعل</span>`
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+
+    // تحريك أشرطة الترند
+    setTimeout(() => {
+        document.querySelectorAll('.trend-bar-fill').forEach(bar => {
+            bar.style.width = bar.style.width;
+        });
+    }, 100);
+}
+
+function filterTrends() {
+    const period = document.getElementById('trendPeriod').value;
+    const platform = document.getElementById('trendPlatform').value;
+    const field = document.getElementById('trendField').value;
+    const risk = document.getElementById('trendRisk').value;
+
+    let filtered = [...trendsData];
+    if (platform !== 'all') filtered = filtered.filter(t => t.platform === platform);
+    if (field !== 'all') filtered = filtered.filter(t => t.field === field);
+    if (risk !== 'all') filtered = filtered.filter(t => t.risk === risk);
+
+    renderTrends(filtered);
+}
+
+// تهيئة الترندات
+renderTrends(trendsData);
+
+// =============================================
+// مقابلة مرشد الهوية
+// =============================================
+let currentStep = 1;
+const questions = [
+    'مرحبًا! أنا مرشد معيار للهوية الإعلامية. سأساعدك في بناء بصمتك الإعلامية الشخصية. لنبدأ: من أنت مهنيًا؟ ما تخصصك الأساسي؟',
+    'ممتاز! ما أنواع المحتوى التي تقدمها عادةً؟',
+    'من هو جمهورك المستهدف؟ وما الفئة العمرية التي تستهدفها؟',
+    'كيف تصف نبرة خطابك؟ هل هي رسمية، مبسطة، ساخرة، أم تعليمية؟',
+    'أخيرًا، ما الموضوعات التي لا ترغب في مناقشتها أو المنتجات التي ترفض الإعلان عنها؟'
+];
+
+function nextInterviewStep(step) {
+    // التحقق من الإجابة
+    const currentAns = document.getElementById('ans' + currentStep);
+    if (currentAns && !currentAns.value.trim()) {
+        showToast('يرجى الإجابة على السؤال قبل المتابعة', 'error');
+        return;
+    }
+
+    document.getElementById('interviewStep' + currentStep).classList.remove('active');
+    document.getElementById('interviewStep' + step).classList.add('active');
+    document.getElementById('interviewQuestion').textContent = questions[step - 1];
+    document.getElementById('interviewProgress').textContent = `السؤال ${step} من 5`;
+    document.getElementById('interviewBar').style.width = (step * 20) + '%';
+    currentStep = step;
+}
+
+function prevInterviewStep(step) {
+    document.getElementById('interviewStep' + currentStep).classList.remove('active');
+    document.getElementById('interviewStep' + step).classList.add('active');
+    document.getElementById('interviewQuestion').textContent = questions[step - 1];
+    document.getElementById('interviewProgress').textContent = `السؤال ${step} من 5`;
+    document.getElementById('interviewBar').style.width = (step * 20) + '%';
+    currentStep = step;
+}
+
+function finishInterview() {
+    const ans5 = document.getElementById('ans5');
+    if (ans5 && !ans5.value.trim()) {
+        showToast('يرجى الإجابة على السؤال الأخير', 'error');
+        return;
+    }
+
+    // إخفاء خطوات المقابلة
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById('interviewStep' + i).style.display = 'none';
+    }
+
+    // عرض النتيجة
+    const data = document.getElementById('fingerprintData');
+    const toneLabels = { formal: 'رسمية ومهنية', semi: 'شبه رسمية ومبسطة', casual: 'غير رسمية وساخرة', educational: 'تعليمية وشرحية' };
+    const tone = document.getElementById('ans4').value || 'semi';
+
+    data.innerHTML = `
+        <div class="grid sm:grid-cols-2 gap-4">
+            <div class="p-3 rounded-lg" style="background: rgba(0,0,0,0.2);">
+                <div class="text-xs" style="color: var(--text-muted);">التخصص</div>
+                <div class="font-medium mt-1">${document.getElementById('ans1').value || '—'}</div>
+            </div>
+            <div class="p-3 rounded-lg" style="background: rgba(0,0,0,0.2);">
+                <div class="text-xs" style="color: var(--text-muted);">أنواع المحتوى</div>
+                <div class="font-medium mt-1">${document.getElementById('ans2').value || '—'}</div>
+            </div>
+            <div class="p-3 rounded-lg" style="background: rgba(0,0,0,0.2);">
+                <div class="text-xs" style="color: var(--text-muted);">الجمهور المستهدف</div>
+                <div class="font-medium mt-1">${document.getElementById('ans3').value || '—'}</div>
+            </div>
+            <div class="p-3 rounded-lg" style="background: rgba(0,0,0,0.2);">
+                <div class="text-xs" style="color: var(--text-muted);">نبرة الخطاب</div>
+                <div class="font-medium mt-1">${toneLabels[tone] || '—'}</div>
+            </div>
+        </div>
+        <div class="p-3 rounded-lg mt-2" style="background: rgba(0,0,0,0.2);">
+            <div class="text-xs" style="color: var(--text-muted);">الموضوعات المحدودة</div>
+            <div class="font-medium mt-1">${document.getElementById('ans5').value || '—'}</div>
+        </div>
+        <p class="text-xs mt-3" style="color: var(--text-muted);">يمكنك تعديل هذه البيانات في أي وقت من صفحة "هويتي الإعلامية".</p>
+    `;
+
+    document.getElementById('interviewResult').style.display = 'block';
+    document.getElementById('interviewQuestion').textContent = 'تم إنشاء بصمتك الإعلامية بنجاح! راجع البيانات أدناه واعتمدها أو عدّلها.';
+    document.getElementById('interviewBar').style.width = '100%';
+    document.getElementById('interviewProgress').textContent = 'مكتمل';
+
+    showToast('تم إنشاء البصمة الإعلامية بنجاح', 'success');
+}
+
+// =============================================
+// الأسئلة الشائعة
+// =============================================
+function renderFAQ() {
+    const container = document.getElementById('faqList');
+    faqData.forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.style.cursor = 'pointer';
+        div.style.padding = '20px 24px';
+        div.innerHTML = `
+            <div class="flex items-center justify-between" onclick="toggleFAQ(this)">
+                <h4 class="font-bold text-sm pr-2">${item.q}</h4>
+                <i class="fas fa-chevron-down text-xs transition-transform" style="color: var(--text-muted); flex-shrink: 0;"></i>
+            </div>
+            <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin 0.4s ease;">
+                <p class="text-sm leading-relaxed pt-3" style="color: var(--text-secondary);">${item.a}</p>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function toggleFAQ(header) {
+    const answer = header.nextElementSibling;
+    const icon = header.querySelector('i');
+    const isOpen = answer.style.maxHeight !== '0px' && answer.style.maxHeight !== '';
+
+    // إغلاق الكل
+    document.querySelectorAll('.faq-answer').forEach(a => { a.style.maxHeight = '0px'; a.style.marginTop = '0'; });
+    document.querySelectorAll('.faq-answer').forEach(a => {
+        const ic = a.previousElementSibling.querySelector('i');
+        if (ic) ic.style.transform = 'rotate(0deg)';
+    });
+
+    if (!isOpen) {
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        answer.style.marginTop = '12px';
+        icon.style.transform = 'rotate(180deg)';
+    }
+}
+
+renderFAQ();
+
+// =============================================
+// النشرة البريدية
+// =============================================
+function subscribeNewsletter() {
+    const email = document.getElementById('newsletterEmail').value.trim();
+    if (!email || !email.includes('@')) {
+        showToast('يرجى إدخال بريد إلكتروني صحيح', 'error');
+        return;
+    }
+    document.getElementById('newsletterEmail').value = '';
+    showToast('تم الاشتراك في النشرة البريدية بنجاح', 'success');
+}
+
+// =============================================
+// رفع الملفات (واجهة)
+// =============================================
+document.querySelectorAll('input[type="file"]').forEach(input => {
+    input.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            const name = this.files[0].name;
+            const size = (this.files[0].size / 1024 / 1024).toFixed(2);
+            showToast(`تم اختيار: ${name} (${size} MB)`, 'info');
+        }
+    });
+});
+
+// =============================================
+// تفاعل إضافي: تحريك أشرطة الترند عند الظهور
+// =============================================
+const trendObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.trend-bar-fill').forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => { bar.style.width = width; }, 200);
+            });
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('#trendsList').forEach(el => trendObserver.observe(el));
+
+// =============================================
+// لوحة المفاتيح: إغلاق المودال بـ Escape
+// =============================================
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(m => {
+            m.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    }
+});
+
+// =============================================
+// تقليل الحركة حسب تفضيل المستخدم
+// =============================================
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.particle').forEach(p => p.style.animation = 'none');
+    document.querySelectorAll('.reveal').forEach(el => {
+        el.style.transition = 'none';
+        el.classList.add('visible');
+    });
+}
+
+
+// إتاحة الوظائف المستخدمة في أزرار النموذج التفاعلي
+Object.assign(window, {
+    navigateTo,
+    openModal,
+    closeModal,
+    showToast,
+    handleLogin,
+    handleRegister,
+    switchCheckTab,
+    runCheck,
+    filterTrends,
+    nextInterviewStep,
+    prevInterviewStep,
+    finishInterview,
+    toggleFAQ,
+    subscribeNewsletter
+});
+
+})();
+</script>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
