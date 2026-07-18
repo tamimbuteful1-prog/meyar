@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Untitled</title>
-    
-
-  </head>
-    
-  <body>
-  <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -828,6 +817,106 @@ nav{padding:12px 20px}
         .interview-step { display: none; }
         .interview-step.active { display: block; animation: slideUp 0.5s ease; }
 
+
+        /* خيارات البصمة الإعلامية — بدون حقول كتابة */
+        .fingerprint-hint {
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-bottom: 14px;
+            line-height: 1.8;
+        }
+        .choice-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 18px;
+            max-height: 390px;
+            overflow-y: auto;
+            padding: 3px 2px 8px;
+        }
+        .choice-option {
+            position: relative;
+            min-height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(15, 28, 45, 0.78);
+            color: var(--text-secondary);
+            font-family: 'IBM Plex Sans Arabic', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.55;
+            text-align: right;
+            cursor: pointer;
+            transition: all 0.22s ease;
+        }
+        .choice-option:hover {
+            color: var(--text-primary);
+            border-color: rgba(0,212,170,0.45);
+            background: rgba(0,212,170,0.06);
+            transform: translateY(-2px);
+        }
+        .choice-option.selected {
+            color: var(--text-primary);
+            border-color: var(--accent);
+            background: rgba(0,212,170,0.12);
+            box-shadow: 0 0 0 2px rgba(0,212,170,0.08);
+        }
+        .choice-option .choice-check {
+            width: 19px;
+            height: 19px;
+            min-width: 19px;
+            border-radius: 6px;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(148,163,184,0.4);
+            color: transparent;
+            font-size: 10px;
+            transition: all 0.22s ease;
+        }
+        .choice-option.selected .choice-check {
+            color: var(--bg-primary);
+            border-color: var(--accent);
+            background: var(--accent);
+        }
+        .choice-option[data-mode="single"] .choice-check { border-radius: 50%; }
+        .selection-counter {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid var(--border-accent);
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .fingerprint-summary-card {
+            padding: 16px;
+            border-radius: 14px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+        .fingerprint-summary-card .summary-label {
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+        @media (max-width: 820px) {
+            .choice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-height: none; }
+        }
+        @media (max-width: 520px) {
+            .choice-grid { grid-template-columns: 1fr; }
+            .choice-option { min-height: 52px; }
+        }
+
         /* شريط التقدم الأفقي */
         .progress-bar {
             height: 6px;
@@ -985,7 +1074,7 @@ nav{padding:12px 20px}
   <div class="section-header reveal">
     <span class="tag">القسم الأول</span>
     <h2>فكرة المشروع ورسالته</h2>
-    <p>منصة ويب ذكية تجمع عدة وكلاء ذكاء اصطناعي داخل تجربة واحدة</p>
+    <p>منصة اعلامية تجمع كل أدوات الإعلامي داخل تجربة واحدة ليحقق الامتثال للأنظمة ويبني بصمة إعلامية متفردة، عبر وكلاء الذكاء الاصطناعي وبأقل تكلفة</p>
   </div>
   <div class="idea-grid">
     <div class="idea-visual reveal">
@@ -1007,7 +1096,7 @@ nav{padding:12px 20px}
     </div>
     <div class="idea-text reveal reveal-delay-2">
       <h3>تبني منصة «معيار» بصمة إعلامية خاصة بكل مستخدم</h3>
-      <p>لا تقدم المنصة حكمًا عامًا فقط، بل تبني ملفًا خاصًا بالمستخدم يسمى البصمة الإعلامية، ثم تقارن كل محتوى بهذه البصمة، وبالعقود والالتزامات، والأنظمة واللوائح، وسياسات منصات التواصل الاجتماعي.</p>
+      <p> تبني المنصة ملفًا خاصًا بالمستخدم يسمى البصمة الإعلامية، تقارن كل محتوى بهذه البصمة، وبالعقود والالتزامات، والأنظمة واللوائح، وسياسات منصات التواصل الاجتماعي.</p>
       <p>وتصدر بعد الفحص تقريرًا منظمًا يوضح مستوى المخاطر، وأسباب التنبيهات، والأجزاء التي تحتاج إلى تعديل، والصياغات أو الحلول البديلة المقترحة.</p>
       <div class="tagline">
         <i data-lucide="shield-check" style="width:22px;height:22px"></i>
@@ -1025,10 +1114,10 @@ nav{padding:12px 20px}
     <p>جمع أدوات الإعلامي وصانع المحتوى في منصة واحدة</p>
   </div>
   <div class="obj-grid">
-    <div class="obj-card reveal"><div class="num">01</div><h4>منصة واحدة شاملة</h4><p>جمع أدوات الإعلامي وصانع المحتوى في مكان واحد بدل التشتت بين أدوات متعددة</p></div>
+    <div class="obj-card reveal"><div class="num">01</div><h4>منصة تجمع كل ما يحتاجه الإعلامي في مكان واحد</h4><p>جمع أدوات الإعلامي وصانع المحتوى في مكان واحد بدل التشتت بين أدوات متعددة</p></div>
     <div class="obj-card reveal reveal-delay-1"><div class="num">02</div><h4>مراجعة قبل النشر</h4><p>مراجعة المحتوى قبل النشر وتقليل المخالفات والمخاطر المحتملة</p></div>
     <div class="obj-card reveal reveal-delay-2"><div class="num">03</div><h4>توافق تنظيمي</h4><p>التأكد من توافق المحتوى مع الأنظمة والعقود والهوية الإعلامية</p></div>
-    <div class="obj-card reveal reveal-delay-1"><div class="num">04</div><h4>محتوى آمن واحترافي</h4><p>مساعدة المستخدم على صناعة محتوى أكثر أمانًا واحترافية</p></div>
+    <div class="obj-card reveal reveal-delay-1"><div class="num">04</div><h4> بناء هوية إعلامية واضحة</h4><p>مساعدة المستخدم على صناعة محتوى أكثر أمانًا واحترافية</p></div>
     <div class="obj-card reveal reveal-delay-2"><div class="num">05</div><h4>بديل الإدارات المكلفة</h4><p>تمكين الأفراد من الوصول إلى خدمات قريبة من مستوى الإدارات الإعلامية المتخصصة</p></div>
     <div class="obj-card reveal reveal-delay-3"><div class="num">06</div><h4>دفع حسب الاستخدام</h4><p>تقديم نموذج مرن يعتمد على الدفع حسب الاستخدام بالكريدت مع مراجعة بشرية للحالات المعقدة</p></div>
   </div>
@@ -1244,22 +1333,26 @@ nav{padding:12px 20px}
   <div class="section-header reveal">
     <span class="tag">القسم السابع</span>
     <h2>مؤشرات الأداء الرئيسية</h2>
+    <p>مؤشرات مستمرة تقيس أداء منصة معيار كاملة: الاستخدام، الجودة، الأثر، والنمو المالي</p>
   </div>
   <div class="kpi-grid">
-    <div class="kpi-card reveal"><div class="kpi-num" data-count="50">0</div><h4>مستخدم تجريبي</h4><p>الوصول إلى 50 مستخدمًا في التجربة الأولى</p></div>
-    <div class="kpi-card reveal reveal-delay-1"><div class="kpi-num">100%</div><h4>بصمة إعلامية</h4><p>نسبة إكمال إنشاء البصمة الإعلامية</p></div>
-    <div class="kpi-card reveal reveal-delay-2"><div class="kpi-num">4</div><h4>أنواع فحص</h4><p>نصوص وصور وصوت وفيديو</p></div>
-    <div class="kpi-card reveal reveal-delay-3"><div class="kpi-num">₨</div><h4>استعداد للدفع</h4><p>مستخدمون مستعدون لشراء الكريدت</p></div>
+    <div class="kpi-card reveal"><div class="kpi-num">استخدام</div><h4>المستخدمون النشطون شهريًا</h4><p>عدد المستخدمين الذين نفذوا فحصًا أو استخدموا خدمة فعلية خلال الشهر</p></div>
+    <div class="kpi-card reveal reveal-delay-1"><div class="kpi-num">ولاء</div><h4>معدل الاحتفاظ بالمستخدمين</h4><p>نسبة المستخدمين الذين يعودون إلى معيار ويكررون الاستخدام بعد تجربتهم الأولى</p></div>
+    <div class="kpi-card reveal reveal-delay-2"><div class="kpi-num">أثر</div><h4>معدل تعديل المحتوى قبل النشر</h4><p>نسبة المحتويات التي عدّلها أصحابها فعليًا بناءً على تقرير وتوصيات معيار</p></div>
+    <div class="kpi-card reveal reveal-delay-3"><div class="kpi-num">الربح</div><h4>هامش الربح التشغيلي</h4><p>الفرق بين إيرادات الاشتراكات والكريدت والخدمات وبين تكاليف التشغيل والمراجعة</p></div>
   </div>
   <div style="max-width:1000px;margin:40px auto 0">
-    <h4 style="text-align:center;color:var(--text2);margin-bottom:20px;font-size:1rem" class="reveal">مؤشرات التشغيل المستمرة</h4>
+    <h4 style="text-align:center;color:var(--text2);margin-bottom:20px;font-size:1rem" class="reveal">مؤشرات الجودة والتشغيل والنمو</h4>
     <div class="obj-grid reveal" style="grid-template-columns:repeat(3,1fr)">
-      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">المستخدمون النشطون</h4><p>عدد المستخدمين النشطين شهريًا</p></div>
-      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">عمليات الفحص</h4><p>عدد عمليات فحص المحتوى</p></div>
-      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">معدل العودة</h4><p>معدل العودة إلى المنصة</p></div>
-      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">استهلاك الكريدت</h4><p>معدل شراء واستهلاك الكريدت</p></div>
-      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">دقة المراجعة</h4><p>دقة المراجعة الذكية</p></div>
-      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">رضا المستخدمين</h4><p>نسبة رضا المستخدمين</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">حجم عمليات الفحص</h4><p>إجمالي فحوص النصوص والصور والصوت والفيديو خلال كل فترة</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">دقة نتائج الفحص</h4><p>مدى توافق نتائج الذكاء الاصطناعي مع تقييم المختص البشري</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">متوسط زمن إصدار التقرير</h4><p>المدة من رفع المحتوى حتى ظهور نتيجة قابلة للتنفيذ</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">معدل التحول إلى الدفع</h4><p>نسبة المستخدمين الذين يشترون اشتراكًا أو كريدت أو خدمة بشرية</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">متوسط الإيراد لكل مستخدم</h4><p>قيمة الإيرادات المتحققة من المستخدم خلال فترة محددة</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">متوسط تكلفة الفحص</h4><p>تكلفة الذكاء الاصطناعي والتخزين والمعالجة لكل عملية فحص</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">رضا المستخدمين</h4><p>تقييم وضوح التقرير وفائدة التنبيهات وسهولة استخدام المنصة</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">الإحالة للمراجع البشري</h4><p>نسبة الحالات التي تحتاج إلى مراجعة إعلامية أو قانونية متخصصة</p></div>
+      <div class="obj-card" style="padding:20px"><h4 style="font-size:0.9rem">حداثة المرجعية التنظيمية</h4><p>سرعة تحديث الأنظمة واللوائح وسياسات المنصات داخل قاعدة المعرفة</p></div>
     </div>
   </div>
 </section>
@@ -1853,8 +1946,8 @@ nav{padding:12px 20px}
 <div class="grid md:grid-cols-2 gap-6 mt-16 max-w-5xl mx-auto">
 <!-- Premium -->
 <div class="reveal card plan-featured" style="transition-delay: 0.15s;">
-<h3 class="text-lg font-bold mb-1">Premium</h3>
-<p class="text-xs mb-4" style="color: var(--text-muted);">للمحترفين والإعلاميين</p>
+<h3 class="text-lg font-bold mb-1">عام</h3>
+<p class="text-xs mb-4" style="color: var(--text-muted);"></p>
 <div class="mb-6">
 <span class="text-4xl font-bold" style="color: var(--accent);">79</span>
 <span class="text-sm" style="color: var(--text-muted);"> ر.س/شهر</span>
@@ -1863,9 +1956,7 @@ nav{padding:12px 20px}
 <li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> جميع أدوات الفحص</li>
 <li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> تحليل العقود</li>
 <li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> مرصد متقدم</li>
-<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> تقارير موسعة</li>
-<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> 20 عقود</li>
-<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> دعم أولوية</li>
+<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> عقود غير محدودة</li>
 </ul>
 <button class="btn-primary btn-sm w-full" onclick="showToast('تم توجيهك إلى صفحة الاشتراك', 'success')">اشترك الآن</button>
 </div>
@@ -1879,10 +1970,6 @@ nav{padding:12px 20px}
 <ul class="space-y-3 mb-6 text-sm" style="color: var(--text-secondary);">
 <li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> كل مزايا Premium</li>
 <li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> عقود غير محدودة</li>
-<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> صلاحيات مدير أعمال</li>
-<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> تنبيهات عاجلة</li>
-<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> مراجعات بشرية ذات أولوية</li>
-<li class="flex items-center gap-2"><i class="fas fa-check text-xs" style="color: var(--success);"></i> تقارير متخصصة</li>
 </ul>
 <button class="btn-secondary btn-sm w-full" onclick="showToast('سيتم التواصل معك لترتيب الاشتراك', 'info')">تواصل معنا</button>
 </div>
@@ -1920,82 +2007,112 @@ nav{padding:12px 20px}
 <hr class="divider-glow">
 
 <section class="section" id="interview" style="background: rgba(0,212,170,0.02);">
-<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 <div class="text-center reveal">
 <span class="section-label" style="background: var(--accent-dim); color: var(--accent); border: 1px solid var(--border-accent);">
 <i class="fas fa-comments"></i>
                 تجربة تفاعلية
             </span>
 <h2 class="section-title mt-4">مرشد معيار للهوية</h2>
-<p class="section-desc mx-auto">جرّب مقابلة تفاعلية مبسطة مع مرشد الهوية الإعلامية</p>
+<p class="section-desc mx-auto">لا توجد حقول كتابة: أسئلة متفرعة واختيارات واسعة تتغير حسب إجاباتك لتكوين بصمة إعلامية دقيقة</p>
 </div>
 <div class="reveal mt-12">
 <div class="card" style="border-color: var(--border-accent);">
-<!-- شريط التقدم -->
 <div class="flex items-center justify-between mb-2">
 <span class="text-xs font-medium" style="color: var(--text-muted);">تقدم المقابلة</span>
-<span class="text-xs font-bold" id="interviewProgress" style="color: var(--accent);">السؤال 1 من 5</span>
+<span class="text-xs font-bold" id="interviewProgress" style="color: var(--accent);">السؤال 1 من 16</span>
 </div>
-<div class="progress-bar mb-6">
-<div class="progress-bar-fill" id="interviewBar" style="width: 20%;"></div>
-</div>
-<!-- رسالة المرشد -->
+<div class="progress-bar mb-6"><div class="progress-bar-fill" id="interviewBar" style="width: 6.25%;"></div></div>
 <div class="flex gap-3 mb-6">
-<div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--accent), #00B894);">
-<i class="fas fa-robot text-sm" style="color: var(--bg-primary);"></i>
+<div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, var(--accent), #00B894);"><i class="fas fa-robot text-sm" style="color: var(--bg-primary);"></i></div>
+<div class="p-4 rounded-2xl rounded-tr-md max-w-2xl" style="background: rgba(0,212,170,0.08); border: 1px solid var(--border-accent);"><p class="text-sm leading-relaxed" id="interviewQuestion">ابدأ بسؤال «من أنت؟». بعد كل اختيار ستتغير الأسئلة التالية تلقائيًا حتى لا تظهر لك خيارات بعيدة عن شخصيتك أو مجالك.</p></div>
 </div>
-<div class="p-4 rounded-2xl rounded-tr-md max-w-lg" style="background: rgba(0,212,170,0.08); border: 1px solid var(--border-accent);">
-<p class="text-sm leading-relaxed" id="interviewQuestion">مرحبًا! أنا مرشد معيار للهوية الإعلامية. سأساعدك في بناء بصمتك الإعلامية الشخصية. لنبدأ: من أنت مهنيًا؟ ما تخصصك الأساسي؟</p>
-</div>
-</div>
-<!-- خطوات المقابلة -->
-<div class="interview-step active" id="interviewStep1">
-<input class="input-custom mb-3" id="ans1" placeholder="مثال: صحفي اقتصادي متخصص في أسواق المال" type="text"/>
-<button class="btn-primary btn-sm" onclick="nextInterviewStep(2)">التالي <i class="fas fa-arrow-left mr-1"></i></button>
-</div>
-<div class="interview-step" id="interviewStep2">
-<input class="input-custom mb-3" id="ans2" placeholder="مثال: مقالات تحليلية، تقارير مالية، تغريدات إخبارية" type="text"/>
-<div class="flex gap-3">
-<button class="btn-secondary btn-sm" onclick="prevInterviewStep(1)"><i class="fas fa-arrow-right mr-1"></i> السابق</button>
-<button class="btn-primary btn-sm" onclick="nextInterviewStep(3)">التالي <i class="fas fa-arrow-left mr-1"></i></button>
-</div>
-</div>
-<div class="interview-step" id="interviewStep3">
-<input class="input-custom mb-3" id="ans3" placeholder="مثال: المهتمون بالاستثمار والمستثمرون الصغار والمتوسطون" type="text"/>
-<div class="flex gap-3">
-<button class="btn-secondary btn-sm" onclick="prevInterviewStep(2)"><i class="fas fa-arrow-right mr-1"></i> السابق</button>
-<button class="btn-primary btn-sm" onclick="nextInterviewStep(4)">التالي <i class="fas fa-arrow-left mr-1"></i></button>
-</div>
-</div>
-<div class="interview-step" id="interviewStep4">
-<select class="input-custom mb-3" id="ans4">
-<option value="">اختر نبرة الخطاب...</option>
-<option value="formal">رسمية ومهنية</option>
-<option value="semi">شبه رسمية ومبسطة</option>
-<option value="casual">غير رسمية وساخرة</option>
-<option value="educational">تعليمية وشرحية</option>
-</select>
-<div class="flex gap-3">
-<button class="btn-secondary btn-sm" onclick="prevInterviewStep(3)"><i class="fas fa-arrow-right mr-1"></i> السابق</button>
-<button class="btn-primary btn-sm" onclick="nextInterviewStep(5)">التالي <i class="fas fa-arrow-left mr-1"></i></button>
-</div>
-</div>
-<div class="interview-step" id="interviewStep5">
-<textarea class="input-custom mb-3" id="ans5" placeholder="مثال: الدين، السياسة الحزبية، الإعلانات عن المنتجات المالية غير المرخصة" rows="3"></textarea>
-<div class="flex gap-3">
-<button class="btn-secondary btn-sm" onclick="prevInterviewStep(4)"><i class="fas fa-arrow-right mr-1"></i> السابق</button>
-<button class="btn-primary btn-sm" onclick="finishInterview()"><i class="fas fa-check mr-1"></i> إنشاء البصمة</button>
-</div>
-</div>
-<!-- نتيجة المقابلة -->
-<div id="interviewResult" style="display: none;">
-<div class="p-5 rounded-xl" style="background: rgba(0,212,170,0.05); border: 1px solid var(--border-accent);">
-<div class="flex items-center gap-2 mb-4">
-<i class="fas fa-fingerprint" style="color: var(--accent);"></i>
-<h4 class="font-bold" style="color: var(--accent);">تم إنشاء البصمة الإعلامية</h4>
-</div>
-<div class="space-y-3 text-sm" id="fingerprintData"></div>
-<button class="btn-primary btn-sm mt-4" onclick="showToast('تم اعتماد البصمة الإعلامية بنجاح', 'success')"><i class="fas fa-check-double ml-1"></i> اعتماد البصمة</button>
+<div class="interview-step active" id="interviewStep1" data-step-group="identityType">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> اختيار واحد</div>
+<div class="fingerprint-hint">من أنت؟ اختر الصفة التي تصف طريقة استخدامك للمنصة.</div>
+<div class="choice-grid"><button type="button" class="choice-option" data-group="identityType" data-mode="single" data-value="هاوي" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>هاوي</span></button><button type="button" class="choice-option" data-group="identityType" data-mode="single" data-value="موظف في شركة" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>موظف في شركة</span></button><button type="button" class="choice-option" data-group="identityType" data-mode="single" data-value="فرد" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>فرد</span></button><button type="button" class="choice-option" data-group="identityType" data-mode="single" data-value="فريق عمل" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>فريق عمل</span></button></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-primary btn-sm" onclick="nextInterviewStep(2)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep2" data-step-group="role">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> اختيار واحد</div>
+<div class="fingerprint-hint" id="roleQuestionHint">اختر إجابتك في السؤال الأول لعرض الأدوار المناسبة لك.</div>
+<div class="choice-grid" id="roleGrid"></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(1)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(3)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep3" data-step-group="primaryField">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> اختيار واحد</div>
+<div class="fingerprint-hint" id="fieldQuestionHint">سيظهر السؤال المناسب بناءً على دورك.</div>
+<div class="choice-grid" id="fieldGrid"></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(2)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(4)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep4" data-step-group="specialties">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> يمكنك اختيار حتى 4 تخصصات</div>
+<div class="fingerprint-hint">لن تظهر وظائف لا تناسب دورك؛ الخيارات التالية مبنية على إجاباتك السابقة.</div>
+<div id="selectedFieldContext" class="p-3 rounded-xl mb-4 text-xs" style="background:rgba(0,212,170,.05);border:1px solid rgba(0,212,170,.12);color:var(--text-secondary)">اختر دورك ومجالك أولًا لعرض التخصصات المناسبة.</div>
+<div class="choice-grid" id="specialtyGrid"></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(3)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(5)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep5" data-step-group="secondaryFields">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> يمكنك اختيار حتى 3 مجالات</div>
+<div class="fingerprint-hint">هل تظهر في محتواك موضوعات ثانوية مرتبطة بمجالك؟</div>
+<div class="choice-grid" id="secondaryFieldGrid"></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(4)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(6)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep6" data-step-group="formats">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> يمكنك اختيار حتى 6 صيغ</div>
+<div class="fingerprint-hint">كيف تقدم محتواك عادةً؟</div>
+<div class="choice-grid"><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="منشورات قصيرة" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>منشورات قصيرة</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="تغريدات وسلاسل" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>تغريدات وسلاسل</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="مقالات وتحليلات" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>مقالات وتحليلات</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="أخبار وتقارير" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>أخبار وتقارير</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="فيديو قصير" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>فيديو قصير</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="فيديو طويل" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>فيديو طويل</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="قصص يومية" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>قصص يومية</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="بث مباشر" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>بث مباشر</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="بودكاست" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>بودكاست</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="مقابلات وحوارات" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>مقابلات وحوارات</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="صور وتصاميم" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>صور وتصاميم</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="إعلانات وتعاونات" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>إعلانات وتعاونات</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="مراجعات وتجارب" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>مراجعات وتجارب</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="محتوى تعليمي" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>محتوى تعليمي</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="كواليس ويوميات" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>كواليس ويوميات</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="بيانات وتصريحات" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>بيانات وتصريحات</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="عروض وندوات" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>عروض وندوات</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="نشرات بريدية" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>نشرات بريدية</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="دورات رقمية" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>دورات رقمية</span></button><button type="button" class="choice-option" data-group="formats" data-mode="multi" data-value="تغطيات ميدانية" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>تغطيات ميدانية</span></button></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(5)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(7)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep7" data-step-group="platforms">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> اختيار مفتوح — اختر كل المنصات التي تستخدمها</div>
+<div class="fingerprint-hint">أين يظهر محتواك أو حضورك؟ لا يوجد حد أقصى للاختيار.</div>
+<div class="choice-grid"><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="X" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>X</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="Instagram" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>Instagram</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="TikTok" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>TikTok</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="Snapchat" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>Snapchat</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="YouTube" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>YouTube</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="LinkedIn" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>LinkedIn</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="Facebook" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>Facebook</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="Threads" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>Threads</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="Telegram" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>Telegram</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="WhatsApp Channels" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>WhatsApp Channels</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="بودكاست صوتي" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>بودكاست صوتي</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="موقع أو مدونة" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>موقع أو مدونة</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="نشرة بريدية" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>نشرة بريدية</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="تلفزيون" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>تلفزيون</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="إذاعة" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>إذاعة</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="فعاليات وحضور مباشر" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>فعاليات وحضور مباشر</span></button><button type="button" class="choice-option" data-group="platforms" data-mode="multi" data-value="أستخدم منصات متعددة بالتساوي" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>أستخدم منصات متعددة بالتساوي</span></button></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(6)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(8)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep8" data-step-group="audienceAges">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> يمكنك اختيار أكثر من فئة عمرية</div>
+<div class="fingerprint-hint">حدد أعمار جمهورك بدقة. لا توجد اختيارات عامة مثل «جميع الأعمار» أو «الأطفال».</div>
+<div class="choice-grid"><button type="button" class="choice-option" data-group="audienceAges" data-mode="multi" data-value="6–9 سنوات" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>6–9 سنوات</span></button><button type="button" class="choice-option" data-group="audienceAges" data-mode="multi" data-value="10–12 سنة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>10–12 سنة</span></button><button type="button" class="choice-option" data-group="audienceAges" data-mode="multi" data-value="13–15 سنة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>13–15 سنة</span></button><button type="button" class="choice-option" data-group="audienceAges" data-mode="multi" data-value="16–17 سنة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>16–17 سنة</span></button><button type="button" class="choice-option" data-group="audienceAges" data-mode="multi" data-value="18–24 سنة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>18–24 سنة</span></button><button type="button" class="choice-option" data-group="audienceAges" data-mode="multi" data-value="25–34 سنة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>25–34 سنة</span></button><button type="button" class="choice-option" data-group="audienceAges" data-mode="multi" data-value="35–44 سنة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>35–44 سنة</span></button><button type="button" class="choice-option" data-group="audienceAges" data-mode="multi" data-value="45–54 سنة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>45–54 سنة</span></button><button type="button" class="choice-option" data-group="audienceAges" data-mode="multi" data-value="55–64 سنة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>55–64 سنة</span></button><button type="button" class="choice-option" data-group="audienceAges" data-mode="multi" data-value="65 سنة فأكثر" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>65 سنة فأكثر</span></button></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(7)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(9)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep9" data-step-group="audienceInterests">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> يمكنك اختيار حتى 6 اهتمامات</div>
+<div class="fingerprint-hint">بماذا يهتم الجمهور الذي اخترته؟ ستتغير الخيارات حسب مجالك وتخصصك.</div>
+<div class="choice-grid" id="audienceInterestGrid"></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(8)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(10)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep10" data-step-group="audienceTime">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> يمكنك اختيار حتى 3 فترات</div>
+<div class="fingerprint-hint">متى يتفاعل جمهورك غالبًا؟ جميع الأوقات بتوقيت السعودية.</div>
+<div class="choice-grid"><button type="button" class="choice-option" data-group="audienceTime" data-mode="multi" data-value="6:00–8:00 صباحًا" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>6:00–8:00 صباحًا</span></button><button type="button" class="choice-option" data-group="audienceTime" data-mode="multi" data-value="8:00–10:00 صباحًا" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>8:00–10:00 صباحًا</span></button><button type="button" class="choice-option" data-group="audienceTime" data-mode="multi" data-value="10:00 صباحًا–12:00 ظهرًا" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>10:00 صباحًا–12:00 ظهرًا</span></button><button type="button" class="choice-option" data-group="audienceTime" data-mode="multi" data-value="12:00–2:00 ظهرًا" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>12:00–2:00 ظهرًا</span></button><button type="button" class="choice-option" data-group="audienceTime" data-mode="multi" data-value="2:00–4:00 عصرًا" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>2:00–4:00 عصرًا</span></button><button type="button" class="choice-option" data-group="audienceTime" data-mode="multi" data-value="4:00–6:00 مساءً" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>4:00–6:00 مساءً</span></button><button type="button" class="choice-option" data-group="audienceTime" data-mode="multi" data-value="6:00–8:00 مساءً" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>6:00–8:00 مساءً</span></button><button type="button" class="choice-option" data-group="audienceTime" data-mode="multi" data-value="8:00–10:00 مساءً" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>8:00–10:00 مساءً</span></button><button type="button" class="choice-option" data-group="audienceTime" data-mode="multi" data-value="10:00 مساءً–12:00 منتصف الليل" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>10:00 مساءً–12:00 منتصف الليل</span></button><button type="button" class="choice-option" data-group="audienceTime" data-mode="multi" data-value="12:00–2:00 ليلًا" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>12:00–2:00 ليلًا</span></button></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(9)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(11)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep11" data-step-group="goals">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> يمكنك اختيار حتى 4 أهداف</div>
+<div class="fingerprint-hint">ما الذي تريد أن يحققه حضورك الإعلامي؟</div>
+<div class="choice-grid"><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="التوعية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>التوعية</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="التعليم ونقل المعرفة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>التعليم ونقل المعرفة</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="الترفيه" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الترفيه</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="بناء الثقة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>بناء الثقة</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="بناء العلامة الشخصية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>بناء العلامة الشخصية</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="قيادة الرأي" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>قيادة الرأي</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="تغطية الأخبار" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>تغطية الأخبار</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="تنمية المجتمع" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>تنمية المجتمع</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="التسويق للخدمات" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>التسويق للخدمات</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="زيادة المبيعات" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>زيادة المبيعات</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="جذب الشراكات" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>جذب الشراكات</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="جذب الرعايات" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>جذب الرعايات</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="دعم قضية أو مبادرة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>دعم قضية أو مبادرة</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="إبراز الخبرة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>إبراز الخبرة</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="إدارة السمعة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>إدارة السمعة</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="التواصل المؤسسي" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>التواصل المؤسسي</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="تكوين مجتمع متفاعل" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>تكوين مجتمع متفاعل</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="الحصول على فرص مهنية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الحصول على فرص مهنية</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="تحويل الجمهور إلى عملاء" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>تحويل الجمهور إلى عملاء</span></button><button type="button" class="choice-option" data-group="goals" data-mode="multi" data-value="توثيق التجارب والإنجازات" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>توثيق التجارب والإنجازات</span></button></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(10)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(12)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep12" data-step-group="tones">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> يمكنك اختيار حتى 4 صفات</div>
+<div class="fingerprint-hint">كيف تريد أن يشعر الجمهور بنبرة خطابك؟</div>
+<div class="choice-grid"><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="رسمية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>رسمية</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="مهنية مبسطة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>مهنية مبسطة</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="ودودة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>ودودة</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="هادئة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>هادئة</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="مباشرة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>مباشرة</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="تحليلية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>تحليلية</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="تعليمية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>تعليمية</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="ملهمة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>ملهمة</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="قصصية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>قصصية</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="مرحة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>مرحة</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="ساخرة منضبطة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>ساخرة منضبطة</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="جريئة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>جريئة</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="حيادية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>حيادية</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="فاخرة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>فاخرة</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="شبابية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>شبابية</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="حماسية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>حماسية</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="إنسانية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>إنسانية</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="موثوقة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>موثوقة</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="مختصرة" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>مختصرة</span></button><button type="button" class="choice-option" data-group="tones" data-mode="multi" data-value="تفصيلية" data-max="4" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>تفصيلية</span></button></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(11)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(13)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep13" data-step-group="languages">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> يمكنك اختيار حتى 3 أساليب</div>
+<div class="fingerprint-hint">ما أسلوب اللغة الذي تفضله؟</div>
+<div class="choice-grid"><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="العربية الفصحى" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>العربية الفصحى</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="العربية البيضاء" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>العربية البيضاء</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="اللهجة السعودية" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>اللهجة السعودية</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="اللهجة الخليجية" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>اللهجة الخليجية</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="اللهجة الحجازية" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>اللهجة الحجازية</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="اللهجة النجدية" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>اللهجة النجدية</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="لهجة محلية خفيفة" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>لهجة محلية خفيفة</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="العربية والإنجليزية" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>العربية والإنجليزية</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="الإنجليزية" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الإنجليزية</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="لغة بسيطة جدًا" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>لغة بسيطة جدًا</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="لغة متخصصة" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>لغة متخصصة</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="لغة صحفية" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>لغة صحفية</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="لغة قصصية" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>لغة قصصية</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="لغة مختصرة ومباشرة" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>لغة مختصرة ومباشرة</span></button><button type="button" class="choice-option" data-group="languages" data-mode="multi" data-value="لغة رسمية مؤسسية" data-max="3" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>لغة رسمية مؤسسية</span></button></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(12)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(14)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep14" data-step-group="values">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> يمكنك اختيار حتى 5 قيم</div>
+<div class="fingerprint-hint">ما القيم التي يجب ألا يخرج عنها محتواك؟</div>
+<div class="choice-grid"><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="المصداقية" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>المصداقية</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الدقة" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الدقة</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الوضوح" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الوضوح</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الاحترام" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الاحترام</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الحياد" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الحياد</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الشفافية" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الشفافية</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الخصوصية" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الخصوصية</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="المسؤولية الوطنية" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>المسؤولية الوطنية</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الابتكار" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الابتكار</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الجرأة المنضبطة" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الجرأة المنضبطة</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="القرب من الجمهور" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>القرب من الجمهور</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الشمول" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الشمول</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الاستناد إلى المصادر" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الاستناد إلى المصادر</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="السرعة" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>السرعة</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الاتساق" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الاتساق</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="المهنية" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>المهنية</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الأصالة" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الأصالة</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="الفائدة" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الفائدة</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="العدالة" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>العدالة</span></button><button type="button" class="choice-option" data-group="values" data-mode="multi" data-value="حماية السمعة" data-max="5" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>حماية السمعة</span></button></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(13)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(15)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep15" data-step-group="boundaries">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> يمكنك اختيار حتى 6 حدود</div>
+<div class="fingerprint-hint">ما الموضوعات أو الحالات التي تحتاج حساسية إضافية؟</div>
+<div class="choice-grid"><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="لا توجد حدود إضافية" data-max="6" data-exclusive="true" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>لا توجد حدود إضافية</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="السياسة الحزبية" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>السياسة الحزبية</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="الجدالات الدينية" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الجدالات الدينية</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="الشائعات غير الموثقة" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الشائعات غير الموثقة</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="الإساءة والتجريح" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الإساءة والتجريح</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="تفاصيل الحياة الخاصة" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>تفاصيل الحياة الخاصة</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="إظهار أفراد العائلة" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>إظهار أفراد العائلة</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="القضايا الحساسة اجتماعيًا" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>القضايا الحساسة اجتماعيًا</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="المحتوى الصادم" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>المحتوى الصادم</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="الوعود الطبية" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الوعود الطبية</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="النصائح المالية المباشرة" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>النصائح المالية المباشرة</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="المنتجات غير المرخصة" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>المنتجات غير المرخصة</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="المقامرة والمراهنات" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>المقامرة والمراهنات</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="التدخين والنيكوتين" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>التدخين والنيكوتين</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="الكحول" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الكحول</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="المحتوى المخصص للبالغين" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>المحتوى المخصص للبالغين</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="المنافسون التجاريون" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>المنافسون التجاريون</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="الموضوعات المتعارضة مع العقود" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الموضوعات المتعارضة مع العقود</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="استخدام الأطفال في الإعلانات" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>استخدام الأطفال في الإعلانات</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="القضايا القانونية الجارية" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>القضايا القانونية الجارية</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="الإفصاح عن معلومات العمل" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الإفصاح عن معلومات العمل</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="إظهار مواقع خاصة" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>إظهار مواقع خاصة</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="المقارنات الهجومية" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>المقارنات الهجومية</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="الرد وقت الغضب" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>الرد وقت الغضب</span></button><button type="button" class="choice-option" data-group="boundaries" data-mode="multi" data-value="التعليق على أزمات لم تكتمل معلوماتها" data-max="6" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>التعليق على أزمات لم تكتمل معلوماتها</span></button></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(14)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="nextInterviewStep(16)">التالي <i class="fas fa-arrow-left mr-1"></i></button></div>
+</div><div class="interview-step" id="interviewStep16" data-step-group="risk">
+<div class="selection-counter"><i class="fas fa-hand-pointer"></i> اختيار واحد</div>
+<div class="fingerprint-hint">ما مستوى التحفظ الذي تريده قبل النشر؟</div>
+<div class="choice-grid"><button type="button" class="choice-option" data-group="risk" data-mode="single" data-value="شديد التحفظ — لا أنشر مع أي مخاطرة محتملة" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>شديد التحفظ — لا أنشر مع أي مخاطرة محتملة</span></button><button type="button" class="choice-option" data-group="risk" data-mode="single" data-value="محافظ — أفضّل الأمان والوضوح" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>محافظ — أفضّل الأمان والوضوح</span></button><button type="button" class="choice-option" data-group="risk" data-mode="single" data-value="متوازن — أقبل الجرأة ضمن ضوابط واضحة" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>متوازن — أقبل الجرأة ضمن ضوابط واضحة</span></button><button type="button" class="choice-option" data-group="risk" data-mode="single" data-value="مرن — أوازن حسب المنصة والموضوع" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>مرن — أوازن حسب المنصة والموضوع</span></button><button type="button" class="choice-option" data-group="risk" data-mode="single" data-value="جريء منضبط — أقبل المخاطرة المحسوبة" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>جريء منضبط — أقبل المخاطرة المحسوبة</span></button><button type="button" class="choice-option" data-group="risk" data-mode="single" data-value="يختلف حسب نوع المحتوى" onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>يختلف حسب نوع المحتوى</span></button></div>
+<div class="flex gap-3 flex-wrap"><button class="btn-secondary btn-sm" onclick="prevInterviewStep(15)"><i class="fas fa-arrow-right ml-1"></i> السابق</button><button class="btn-primary btn-sm" onclick="finishInterview()"><i class="fas fa-wand-magic-sparkles ml-1"></i> تحليل وإنشاء البصمة</button></div>
+</div><div id="interviewResult" style="display:none;">
+<div class="p-5 rounded-xl" style="background: rgba(0,212,170,0.06); border: 1px solid var(--border-accent);">
+<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full flex items-center justify-center" style="background: var(--accent); color: var(--bg-primary);"><i class="fas fa-fingerprint"></i></div><h4 class="font-bold" style="color: var(--accent);">تحليل البصمة الإعلامية</h4></div>
+<div class="space-y-4" id="fingerprintData"></div>
+<div class="flex gap-3 flex-wrap mt-4"><button class="btn-primary btn-sm" onclick="showToast('تم اعتماد البصمة الإعلامية بنجاح', 'success')"><i class="fas fa-check-double ml-1"></i> اعتماد البصمة</button><button class="btn-secondary btn-sm" onclick="resetInterview()"><i class="fas fa-rotate-right ml-1"></i> إعادة الاختيارات</button></div>
 </div>
 </div>
 </div>
@@ -2901,89 +3018,472 @@ renderTrends(trendsData);
 // مقابلة مرشد الهوية
 // =============================================
 let currentStep = 1;
-const questions = [
-    'مرحبًا! أنا مرشد معيار للهوية الإعلامية. سأساعدك في بناء بصمتك الإعلامية الشخصية. لنبدأ: من أنت مهنيًا؟ ما تخصصك الأساسي؟',
-    'ممتاز! ما أنواع المحتوى التي تقدمها عادةً؟',
-    'من هو جمهورك المستهدف؟ وما الفئة العمرية التي تستهدفها؟',
-    'كيف تصف نبرة خطابك؟ هل هي رسمية، مبسطة، ساخرة، أم تعليمية؟',
-    'أخيرًا، ما الموضوعات التي لا ترغب في مناقشتها أو المنتجات التي ترفض الإعلان عنها؟'
-];
+const totalInterviewSteps = 16;
+const specialtyMap = {"الإعلام والصحافة": ["مذيع تلفزيوني", "مذيع إذاعي", "مقدم برامج", "مراسل ميداني", "صحفي أخبار", "صحفي اقتصادي", "صحفي رياضي", "صحفي ثقافي", "صحفي تقني", "صحفي استقصائي", "محرر أخبار", "كاتب رأي", "منتج أخبار", "رئيس تحرير", "مدير محتوى", "محلل إعلامي", "مدقق معلومات", "مصور صحفي", "متحدث رسمي", "صانع محتوى إعلامي"], "صناعة المحتوى والمؤثرون": ["صانع فيديو قصير", "يوتيوبر", "صانع محتوى TikTok", "صانع محتوى Snapchat", "صانع محتوى Instagram", "صانع محتوى X", "بودكاستر", "مدوّن", "كاتب نشرات بريدية", "صانع محتوى تعليمي", "صانع محتوى ترفيهي", "صانع محتوى يوميات", "مراجع منتجات", "صانع محتوى إعلاني", "مدير مجتمع", "مدير محتوى", "مدير أعمال مؤثر", "وكيل مواهب", "استراتيجي محتوى", "مؤثر متعدد المنصات"], "الرياضة": ["لاعب كرة قدم", "لاعب كرة سلة", "لاعب كرة طائرة", "لاعب كرة يد", "لاعب تنس", "لاعب بادل", "سبّاح", "عدّاء أو لاعب ألعاب قوى", "فارس أو مختص فروسية", "لاعب رياضات قتالية", "لاعب رياضات بحرية", "مدرب رياضي", "مدرب لياقة", "حكم رياضي", "محلل رياضي", "معلّق رياضي", "صحفي رياضي", "إداري نادٍ", "مدير فريق", "وكيل لاعبين", "كشاف مواهب", "أخصائي أداء رياضي", "أخصائي علاج طبيعي رياضي", "منظم بطولات", "صانع محتوى رياضي"], "الطعام والطبخ والمطاعم": ["شيف تنفيذي", "طباخ محترف", "طاهٍ منزلي", "خباز", "حلواني", "صانع شوكولاتة", "طاهي مأكولات شعبية", "طاهي مأكولات عالمية", "طاهي صحي", "طاهي نباتي", "طاهي مشويات", "باريستا", "مختص قهوة", "ناقد مطاعم", "مراجع أطعمة", "مطور وصفات", "مصور طعام", "منسق أطباق", "صاحب مطعم", "مدير مطعم", "صاحب مقهى", "صاحب عربة طعام", "خبير ضيافة", "أخصائي تغذية", "صانع محتوى طبخ"], "الصحة والطب": ["طبيب عام", "طبيب أسرة", "طبيب أطفال", "طبيب أسنان", "طبيب جلدية", "طبيب نفسي", "جراح", "استشاري طبي", "صيدلي", "ممرض", "أخصائي علاج طبيعي", "أخصائي نفسي", "أخصائي علاج وظيفي", "أخصائي نطق وتخاطب", "مختص صحة عامة", "مختص مختبرات", "مختص أشعة", "مسعف", "إداري صحي", "باحث طبي", "طالب صحي", "صانع محتوى صحي"], "اللياقة والتغذية": ["مدرب شخصي", "مدرب لياقة جماعية", "مدرب كمال أجسام", "مدرب جري", "مدرب سباحة", "مدرب يوغا", "مدرب بيلاتس", "مدرب مرونة وحركة", "مدرب تمارين منزلية", "أخصائي تغذية", "أخصائي تغذية رياضية", "معد برامج تدريب", "مالك نادٍ رياضي", "مراجع معدات رياضية", "صانع محتوى لياقة", "صانع محتوى تغذية"], "التعليم والتدريب": ["معلم مدرسة", "معلمة رياض أطفال", "أستاذ جامعي", "محاضر", "مدرب مهني", "مدرب لغة", "مدرب تقني", "مرشد طلابي", "مستشار تعليمي", "مصمم تعليمي", "مدير مدرسة", "مشرف تربوي", "مختص تعليم إلكتروني", "معلم خصوصي", "باحث تربوي", "صانع دورات", "صانع محتوى تعليمي", "طالب جامعي"], "التقنية والذكاء الاصطناعي": ["مهندس برمجيات", "مطور ويب", "مطور تطبيقات", "مهندس ذكاء اصطناعي", "عالم بيانات", "محلل بيانات", "مختص أمن سيبراني", "مهندس سحابة", "مهندس شبكات", "مدير منتج تقني", "مصمم تجربة مستخدم", "مصمم واجهات", "محلل نظم", "مختص دعم تقني", "مؤسس شركة تقنية", "مراجع أجهزة", "مراجع تطبيقات", "مدرب تقني", "باحث تقني", "صانع محتوى تقني"], "الأعمال وريادة الأعمال": ["مؤسس مشروع", "رائد أعمال", "مدير تنفيذي", "مدير عمليات", "مدير مشاريع", "مستشار إدارة", "مدير تطوير أعمال", "صاحب منشأة صغيرة", "مستثمر ملائكي", "مدير مبيعات", "مدير خدمة عملاء", "محلل أعمال", "خبير امتياز تجاري", "مستشار استراتيجي", "مدير شراكات", "صانع محتوى أعمال"], "التسويق والإعلان والعلاقات العامة": ["مدير تسويق", "مسوق رقمي", "مدير علامة تجارية", "مختص إعلانات مدفوعة", "مدير محتوى", "كاتب إعلاني", "مختص علاقات عامة", "مدير تواصل مؤسسي", "مختص تحسين محركات البحث", "مدير حملات", "محلل تسويق", "مصمم إبداعي", "منتج إعلانات", "منظم فعاليات", "مختص تسويق بالمؤثرين", "مسوق عبر البريد", "صانع محتوى تسويقي"], "المال والاستثمار والمحاسبة": ["محلل مالي", "مستشار استثمار", "محاسب", "مراجع حسابات", "مصرفي", "مدير مالي", "محلل أسواق", "خبير تأمين", "مخطط مالي", "مختص زكاة وضرائب", "محلل ائتمان", "مدير محافظ", "رائد أعمال مالي", "باحث اقتصادي", "صانع محتوى مالي"], "القانون والأنظمة": ["محامٍ", "مستشار قانوني", "باحث قانوني", "موثق", "محكم", "مختص امتثال", "مختص عقود", "مختص ملكية فكرية", "مختص قانون تجاري", "مختص قانون إعلامي", "مختص قانون تقني", "مختص حماية بيانات", "طالب قانون", "كاتب قانوني", "صانع محتوى قانوني"], "الثقافة والكتب واللغة": ["كاتب", "روائي", "شاعر", "ناقد أدبي", "مترجم", "ناشر", "محرر كتب", "أمين مكتبة", "لغوي", "مدقق لغوي", "خطاط", "مؤرخ", "باحث تراث", "مراجع كتب", "منظم نادٍ للقراءة", "صانع محتوى ثقافي"], "الفنون والتمثيل والموسيقى": ["ممثل", "ممثل مسرحي", "مغنٍ", "موسيقي", "ملحن", "شاعر غنائي", "منتج موسيقي", "مهندس صوت", "فنان تشكيلي", "رسام", "نحات", "مصمم جرافيك", "راقص", "كوميدي", "مدير فني", "ناقد فني", "صانع محتوى فني"], "السينما والتصوير والإنتاج": ["مخرج", "منتج", "كاتب سيناريو", "مدير تصوير", "مصور فوتوغرافي", "مصور فيديو", "مونتير", "مهندس صوت", "مصمم إضاءة", "مصمم إنتاج", "مساعد مخرج", "مخرج وثائقي", "مصور مناسبات", "مصور منتجات", "صانع أفلام قصيرة", "ناقد سينمائي", "صانع محتوى سينمائي"], "الموضة والجمال والعناية": ["مصمم أزياء", "منسق أزياء", "عارض أزياء", "خياط", "مصمم مجوهرات", "خبيرة تجميل", "فنان مكياج", "مصفف شعر", "مختص عناية بالبشرة", "مختص عطور", "طبيب جلدية تجميلي", "مراجع منتجات جمال", "صاحب علامة أزياء", "صاحب صالون", "مصور أزياء", "صانع محتوى موضة", "صانع محتوى جمال"], "السفر والسياحة والضيافة": ["مرشد سياحي", "مخطط رحلات", "وكيل سفر", "مدون سفر", "مصور سفر", "مرشد متاحف", "مدير فندق", "موظف ضيافة", "مدير منتجع", "منظم رحلات", "مضيف طيران", "طيار", "مرشد مغامرات", "مختص سياحة داخلية", "مراجع فنادق", "صانع محتوى سياحي"], "السيارات والنقل": ["مهندس سيارات", "ميكانيكي سيارات", "فني كهرباء سيارات", "فني تعديل سيارات", "سائق سباقات", "مراجع سيارات", "صحفي سيارات", "بائع سيارات", "مدير معرض", "خبير تأمين سيارات", "مدرب قيادة", "مختص سيارات كهربائية", "مختص دراجات نارية", "مختص نقل ولوجستيات", "صانع محتوى سيارات"], "العقار والعمارة والتصميم الداخلي": ["وسيط عقاري", "مسوق عقاري", "مطور عقاري", "مستثمر عقاري", "مدير أملاك", "مثمن عقاري", "مهندس معماري", "مصمم داخلي", "مهندس مدني", "مشرف بناء", "مدير مشاريع عقارية", "خبير تمويل عقاري", "مصور عقاري", "صانع محتوى عقاري", "صانع محتوى ديكور"], "الأسرة والطفل والتربية": ["مرشد أسري", "أخصائي تربية", "أخصائي طفولة مبكرة", "أب صانع محتوى", "أم صانعة محتوى", "معلم أطفال", "أخصائي نطق", "أخصائي سلوك", "طبيب أطفال", "مستشار رضاعة", "منظم حياة أسرية", "مراجع منتجات أطفال", "صانع محتوى تربوي", "صانع محتوى أسري"], "الألعاب والرياضات الإلكترونية": ["لاعب محترف", "بث ألعاب مباشر", "معلّق رياضات إلكترونية", "مدرب فريق إلكتروني", "محلل ألعاب", "مطور ألعاب", "مصمم ألعاب", "فنان ألعاب", "كاتب قصص ألعاب", "مختبر ألعاب", "صحفي ألعاب", "منظم بطولات", "مدير فريق إلكتروني", "مراجع ألعاب", "صانع محتوى ألعاب"], "العلوم والبحث والفضاء": ["باحث علمي", "عالم فيزياء", "عالم كيمياء", "عالم أحياء", "جيولوجي", "فلكي", "مهندس فضاء", "باحث طبي", "باحث اجتماعي", "محلل بيانات بحثية", "مخترع", "مشرف مختبر", "طالب دراسات عليا", "كاتب علمي", "صانع محتوى علمي"], "البيئة والاستدامة والزراعة": ["مهندس بيئي", "مختص استدامة", "مزارع", "مهندس زراعي", "خبير مياه", "مختص طاقة متجددة", "مختص إعادة تدوير", "مختص حياة فطرية", "باحث مناخ", "مختص بستنة", "مربي نحل", "مربي مواشٍ", "ناشط بيئي", "صانع محتوى بيئي", "صانع محتوى زراعي"], "المجتمع والعمل التطوعي": ["ناشط مجتمعي", "متطوع", "مدير جمعية", "مسؤول مبادرات", "أخصائي اجتماعي", "باحث اجتماعي", "مختص تنمية مجتمعية", "مسؤول مسؤولية اجتماعية", "منسق متطوعين", "جامع تبرعات", "مدير مؤسسة غير ربحية", "صانع محتوى مجتمعي"], "الدين والقيم": ["داعية", "خطيب", "إمام", "باحث شرعي", "معلم قرآن", "قارئ قرآن", "مختص فقه", "مختص سيرة", "كاتب قيم", "مقدم برنامج ديني", "صانع محتوى ديني", "صانع محتوى أخلاقي"], "السياسة والشؤون العامة": ["محلل سياسي", "باحث سياسات عامة", "دبلوماسي", "صحفي سياسي", "أكاديمي علوم سياسية", "مستشار حكومي", "مسؤول علاقات حكومية", "متحدث رسمي", "باحث علاقات دولية", "كاتب شؤون عامة", "صانع محتوى سياسي", "صانع محتوى توعوي عام"], "الأمن والسلامة والدفاع المدني": ["مختص أمن وسلامة", "رجل أمن", "إطفائي", "مسعف طوارئ", "مختص دفاع مدني", "مسؤول صحة وسلامة مهنية", "مدرب سلامة", "مختص إدارة أزمات", "مختص أمن منشآت", "محقق سلامة", "صانع محتوى توعوي للسلامة"], "الهندسة والصناعة والحرف": ["مهندس مدني", "مهندس معماري", "مهندس كهربائي", "مهندس ميكانيكي", "مهندس صناعي", "مهندس كيميائي", "مهندس بترول", "مهندس تعدين", "مهندس جودة", "مختص تصنيع", "فني صيانة", "نجار", "حداد", "سباك", "كهربائي", "حرفي", "مخترع", "صانع محتوى هندسي"], "التجارة الإلكترونية والبيع بالتجزئة": ["صاحب متجر إلكتروني", "صاحب متجر تقليدي", "مدير متجر", "تاجر تجزئة", "مدير منتجات", "مختص مشتريات", "مختص سلسلة إمداد", "مدير مخزون", "مدير خدمة عملاء", "مسوق متجر", "مقدم بث بيع مباشر", "مراجع منتجات", "مختص منصات تجارة إلكترونية", "صانع محتوى تجارة"], "الترفيه والفعاليات": ["منظم فعاليات", "مقدم حفلات", "مدير مسرح", "منتج فعاليات", "منسق حفلات", "منسق زفاف", "مصمم تجارب", "مدير ترفيه", "كوميدي", "فنان استعراضي", "مقدم مسابقات", "مدير مهرجان", "صانع محتوى ترفيهي"], "أسلوب الحياة واليوميات": ["صانع محتوى يوميات", "صانع محتوى تطوير ذات", "صانع محتوى إنتاجية", "صانع محتوى تنظيم منزل", "صانع محتوى علاقات", "صانع محتوى هوايات", "صانع محتوى تجارب شخصية", "صانع محتوى فاخر", "صانع محتوى اقتصادي", "صانع محتوى حياة بسيطة", "مراجع تجارب وخدمات", "مدون شخصي"], "الحيوانات والطب البيطري": ["طبيب بيطري", "مساعد بيطري", "مربي حيوانات", "مدرب كلاب", "مختص سلوك حيواني", "منقذ حيوانات", "مربي خيل", "مربي طيور", "مربي قطط", "صاحب متجر حيوانات", "مختص تغذية حيوانية", "صانع محتوى حيوانات"], "الوظائف والموارد البشرية": ["مدير موارد بشرية", "مختص توظيف", "مستقطب مواهب", "مختص تطوير مواهب", "مدرب مهني", "مستشار سيرة ذاتية", "مختص ثقافة مؤسسية", "مختص رواتب ومزايا", "مختص تعلم وتطوير", "مدير علاقات موظفين", "مستشار مسار مهني", "صانع محتوى وظائف"], "الحكومة والخدمات العامة": ["موظف حكومي", "متحدث رسمي", "مسؤول تواصل حكومي", "مدير خدمة مستفيدين", "مسؤول تحول رقمي", "محلل سياسات عامة", "مدير برنامج حكومي", "مدير مشروع حكومي", "مسؤول علاقات مستفيدين", "كاتب محتوى حكومي", "صانع محتوى توعوي حكومي"], "المنزل والديكور والأعمال اليدوية": ["مصمم ديكور", "منظم منزل", "مصمم أثاث", "نجار", "خزاف", "صانع شموع", "صانع صابون", "حرفي نسيج", "فنان تطريز", "منسق زهور", "مختص أعمال منزلية", "صانع مشاريع DIY", "مراجع أدوات منزلية", "صانع محتوى منزلي"], "محتوى عام ومتعدد المجالات": ["صانع محتوى عام", "شخصية عامة", "مؤثر متعدد المجالات", "مقدم حوارات متنوعة", "مراجع تجارب متنوعة", "مدون يوميات", "كاتب رأي عام", "مدير محتوى متعدد", "صاحب منصة إعلامية", "ممارس عام متعدد الاهتمامات"]};
+const allFields = Object.keys(specialtyMap);
+const identityRoleMap = {"هاوي": ["هاوي تصوير فوتوغرافي", "هاوي تصوير فيديو", "هاوي تقديم وحوار", "هاوي كتابة وتدوين", "هاوي بودكاست", "هاوي طبخ ووصفات", "هاوي رياضة ولياقة", "هاوي ألعاب إلكترونية", "هاوي تقنية وأجهزة", "هاوي سفر وتجارب", "هاوي سيارات", "هاوي فنون ورسم", "هاوي موسيقى", "هاوي قراءة وكتب", "هاوي أعمال يدوية وديكور", "هاوي مراجعات منتجات", "هاوي يوميات وأسلوب حياة", "طالب يتعلم صناعة المحتوى", "هاوي متعدد الاهتمامات"], "موظف في شركة": ["مسؤول تسويق", "مسؤول محتوى", "مدير حسابات التواصل الاجتماعي", "مسؤول تواصل مؤسسي", "مسؤول علاقات عامة", "متحدث رسمي", "كاتب محتوى", "مصمم أو مصور", "منتج محتوى مرئي", "مسؤول إعلانات وحملات", "مسؤول علامة تجارية", "مسؤول شراكات", "مسؤول مبيعات", "مسؤول خدمة عملاء", "مسؤول موارد بشرية", "مدير مشروع", "مدير منتج", "مدير تنفيذي", "مختص قانوني أو امتثال", "مختص تقني", "باحث أو محلل", "موظف يمثل جهة في الإعلام"], "فرد": ["مقدم برامج", "صحفي أو محرر", "مراسل ميداني", "صانع محتوى", "مؤثر", "بودكاستر", "كاتب أو مؤلف", "خبير أو مستشار", "مدرب أو متحدث", "رائد أعمال", "صاحب منشأة أو متجر", "مدير تنفيذي أو قائد", "متحدث رسمي", "مسوّق أو مسؤول علامة", "مدير أعمال أو وكيل مواهب", "فنان أو شخصية ترفيهية", "رياضي محترف", "طباخ أو شيف", "مصور أو مخرج", "أكاديمي أو باحث", "طبيب أو ممارس صحي", "محامٍ أو مختص قانوني", "مهندس أو مختص تقني", "معلم أو تربوي", "ناشط مجتمعي", "موظف حكومي", "شخصية عامة", "طالب أو مبتدئ في المجال", "مستقل متعدد المهارات", "محتوى شخصي متعدد الأدوار"], "فريق عمل": ["فريق إدارة إعلامية", "فريق صناعة محتوى", "فريق تسويق", "فريق علاقات عامة وتواصل مؤسسي", "فريق إدارة حسابات اجتماعية", "فريق إنتاج مرئي", "فريق بودكاست", "فريق أخبار وتحرير", "فريق إعلام رياضي", "فريق وكالة إبداعية", "فريق شركة ناشئة", "فريق متجر أو علامة تجارية", "فريق فعالية أو مهرجان", "فريق جمعية أو مبادرة", "فريق جهة حكومية", "فريق تعليمي", "فريق صحي", "فريق تقني", "فريق إدارة شخصية عامة", "فريق متعدد التخصصات"]};
+const roleFieldMap = {"مقدم برامج": ["الإعلام والصحافة", "الرياضة", "المال والاستثمار والمحاسبة", "الثقافة والكتب واللغة", "الفنون والتمثيل والموسيقى", "الترفيه والفعاليات", "التقنية والذكاء الاصطناعي", "الصحة والطب", "الدين والقيم", "السياسة والشؤون العامة", "السفر والسياحة والضيافة", "أسلوب الحياة واليوميات"], "صحفي أو محرر": ["الإعلام والصحافة", "السياسة والشؤون العامة", "المال والاستثمار والمحاسبة", "الرياضة", "الثقافة والكتب واللغة", "التقنية والذكاء الاصطناعي", "الصحة والطب", "السيارات والنقل", "السفر والسياحة والضيافة", "العلوم والبحث والفضاء"], "مراسل ميداني": ["الإعلام والصحافة", "السياسة والشؤون العامة", "الرياضة", "المجتمع والعمل التطوعي", "الحكومة والخدمات العامة", "الأمن والسلامة والدفاع المدني", "الترفيه والفعاليات"], "بودكاستر": ["الإعلام والصحافة", "صناعة المحتوى والمؤثرون", "الأعمال وريادة الأعمال", "الثقافة والكتب واللغة", "التقنية والذكاء الاصطناعي", "الصحة والطب", "الرياضة", "الأسرة والطفل والتربية", "السياسة والشؤون العامة", "أسلوب الحياة واليوميات"], "كاتب أو مؤلف": ["الثقافة والكتب واللغة", "الإعلام والصحافة", "الأعمال وريادة الأعمال", "القانون والأنظمة", "العلوم والبحث والفضاء", "الدين والقيم", "السياسة والشؤون العامة", "أسلوب الحياة واليوميات"], "رياضي محترف": ["الرياضة", "اللياقة والتغذية", "الصحة والطب", "أسلوب الحياة واليوميات", "الأعمال وريادة الأعمال"], "طباخ أو شيف": ["الطعام والطبخ والمطاعم", "اللياقة والتغذية", "السفر والسياحة والضيافة", "الأعمال وريادة الأعمال", "أسلوب الحياة واليوميات"], "طبيب أو ممارس صحي": ["الصحة والطب", "اللياقة والتغذية", "الأسرة والطفل والتربية", "العلوم والبحث والفضاء", "التعليم والتدريب"], "محامٍ أو مختص قانوني": ["القانون والأنظمة", "الأعمال وريادة الأعمال", "الإعلام والصحافة", "التقنية والذكاء الاصطناعي", "الحكومة والخدمات العامة"], "مهندس أو مختص تقني": ["التقنية والذكاء الاصطناعي", "الهندسة والصناعة والحرف", "العلوم والبحث والفضاء", "الأعمال وريادة الأعمال", "التعليم والتدريب"], "معلم أو تربوي": ["التعليم والتدريب", "الأسرة والطفل والتربية", "الثقافة والكتب واللغة", "التقنية والذكاء الاصطناعي", "العلوم والبحث والفضاء"], "فنان أو شخصية ترفيهية": ["الفنون والتمثيل والموسيقى", "السينما والتصوير والإنتاج", "الترفيه والفعاليات", "الموضة والجمال والعناية", "أسلوب الحياة واليوميات"], "مصور أو مخرج": ["السينما والتصوير والإنتاج", "الإعلام والصحافة", "الموضة والجمال والعناية", "السفر والسياحة والضيافة", "العقار والعمارة والتصميم الداخلي", "الطعام والطبخ والمطاعم"], "رائد أعمال": ["الأعمال وريادة الأعمال", "التسويق والإعلان والعلاقات العامة", "التجارة الإلكترونية والبيع بالتجزئة", "المال والاستثمار والمحاسبة", "التقنية والذكاء الاصطناعي"], "صاحب منشأة أو متجر": ["التجارة الإلكترونية والبيع بالتجزئة", "الأعمال وريادة الأعمال", "التسويق والإعلان والعلاقات العامة", "الطعام والطبخ والمطاعم", "الموضة والجمال والعناية", "العقار والعمارة والتصميم الداخلي"], "خبير أو مستشار": ["الإعلام والصحافة", "صناعة المحتوى والمؤثرون", "الرياضة", "الطعام والطبخ والمطاعم", "الصحة والطب", "اللياقة والتغذية", "التعليم والتدريب", "التقنية والذكاء الاصطناعي", "الأعمال وريادة الأعمال", "التسويق والإعلان والعلاقات العامة", "المال والاستثمار والمحاسبة", "القانون والأنظمة", "الثقافة والكتب واللغة", "الفنون والتمثيل والموسيقى", "السينما والتصوير والإنتاج", "الموضة والجمال والعناية", "السفر والسياحة والضيافة", "السيارات والنقل", "العقار والعمارة والتصميم الداخلي", "الأسرة والطفل والتربية", "الألعاب والرياضات الإلكترونية", "العلوم والبحث والفضاء", "البيئة والاستدامة والزراعة", "المجتمع والعمل التطوعي", "الدين والقيم", "السياسة والشؤون العامة", "الأمن والسلامة والدفاع المدني", "الهندسة والصناعة والحرف", "التجارة الإلكترونية والبيع بالتجزئة", "الترفيه والفعاليات", "أسلوب الحياة واليوميات", "الحيوانات والطب البيطري", "الوظائف والموارد البشرية", "الحكومة والخدمات العامة", "المنزل والديكور والأعمال اليدوية", "محتوى عام ومتعدد المجالات"], "صانع محتوى": ["الإعلام والصحافة", "صناعة المحتوى والمؤثرون", "الرياضة", "الطعام والطبخ والمطاعم", "الصحة والطب", "اللياقة والتغذية", "التعليم والتدريب", "التقنية والذكاء الاصطناعي", "الأعمال وريادة الأعمال", "التسويق والإعلان والعلاقات العامة", "المال والاستثمار والمحاسبة", "القانون والأنظمة", "الثقافة والكتب واللغة", "الفنون والتمثيل والموسيقى", "السينما والتصوير والإنتاج", "الموضة والجمال والعناية", "السفر والسياحة والضيافة", "السيارات والنقل", "العقار والعمارة والتصميم الداخلي", "الأسرة والطفل والتربية", "الألعاب والرياضات الإلكترونية", "العلوم والبحث والفضاء", "البيئة والاستدامة والزراعة", "المجتمع والعمل التطوعي", "الدين والقيم", "السياسة والشؤون العامة", "الأمن والسلامة والدفاع المدني", "الهندسة والصناعة والحرف", "التجارة الإلكترونية والبيع بالتجزئة", "الترفيه والفعاليات", "أسلوب الحياة واليوميات", "الحيوانات والطب البيطري", "الوظائف والموارد البشرية", "الحكومة والخدمات العامة", "المنزل والديكور والأعمال اليدوية", "محتوى عام ومتعدد المجالات"], "مؤثر": ["الإعلام والصحافة", "صناعة المحتوى والمؤثرون", "الرياضة", "الطعام والطبخ والمطاعم", "الصحة والطب", "اللياقة والتغذية", "التعليم والتدريب", "التقنية والذكاء الاصطناعي", "الأعمال وريادة الأعمال", "التسويق والإعلان والعلاقات العامة", "المال والاستثمار والمحاسبة", "القانون والأنظمة", "الثقافة والكتب واللغة", "الفنون والتمثيل والموسيقى", "السينما والتصوير والإنتاج", "الموضة والجمال والعناية", "السفر والسياحة والضيافة", "السيارات والنقل", "العقار والعمارة والتصميم الداخلي", "الأسرة والطفل والتربية", "الألعاب والرياضات الإلكترونية", "العلوم والبحث والفضاء", "البيئة والاستدامة والزراعة", "المجتمع والعمل التطوعي", "الدين والقيم", "السياسة والشؤون العامة", "الأمن والسلامة والدفاع المدني", "الهندسة والصناعة والحرف", "التجارة الإلكترونية والبيع بالتجزئة", "الترفيه والفعاليات", "أسلوب الحياة واليوميات", "الحيوانات والطب البيطري", "الوظائف والموارد البشرية", "الحكومة والخدمات العامة", "المنزل والديكور والأعمال اليدوية", "محتوى عام ومتعدد المجالات"], "شخصية عامة": ["الإعلام والصحافة", "صناعة المحتوى والمؤثرون", "الرياضة", "الطعام والطبخ والمطاعم", "الصحة والطب", "اللياقة والتغذية", "التعليم والتدريب", "التقنية والذكاء الاصطناعي", "الأعمال وريادة الأعمال", "التسويق والإعلان والعلاقات العامة", "المال والاستثمار والمحاسبة", "القانون والأنظمة", "الثقافة والكتب واللغة", "الفنون والتمثيل والموسيقى", "السينما والتصوير والإنتاج", "الموضة والجمال والعناية", "السفر والسياحة والضيافة", "السيارات والنقل", "العقار والعمارة والتصميم الداخلي", "الأسرة والطفل والتربية", "الألعاب والرياضات الإلكترونية", "العلوم والبحث والفضاء", "البيئة والاستدامة والزراعة", "المجتمع والعمل التطوعي", "الدين والقيم", "السياسة والشؤون العامة", "الأمن والسلامة والدفاع المدني", "الهندسة والصناعة والحرف", "التجارة الإلكترونية والبيع بالتجزئة", "الترفيه والفعاليات", "أسلوب الحياة واليوميات", "الحيوانات والطب البيطري", "الوظائف والموارد البشرية", "الحكومة والخدمات العامة", "المنزل والديكور والأعمال اليدوية", "محتوى عام ومتعدد المجالات"], "مستقل متعدد المهارات": ["الإعلام والصحافة", "صناعة المحتوى والمؤثرون", "الرياضة", "الطعام والطبخ والمطاعم", "الصحة والطب", "اللياقة والتغذية", "التعليم والتدريب", "التقنية والذكاء الاصطناعي", "الأعمال وريادة الأعمال", "التسويق والإعلان والعلاقات العامة", "المال والاستثمار والمحاسبة", "القانون والأنظمة", "الثقافة والكتب واللغة", "الفنون والتمثيل والموسيقى", "السينما والتصوير والإنتاج", "الموضة والجمال والعناية", "السفر والسياحة والضيافة", "السيارات والنقل", "العقار والعمارة والتصميم الداخلي", "الأسرة والطفل والتربية", "الألعاب والرياضات الإلكترونية", "العلوم والبحث والفضاء", "البيئة والاستدامة والزراعة", "المجتمع والعمل التطوعي", "الدين والقيم", "السياسة والشؤون العامة", "الأمن والسلامة والدفاع المدني", "الهندسة والصناعة والحرف", "التجارة الإلكترونية والبيع بالتجزئة", "الترفيه والفعاليات", "أسلوب الحياة واليوميات", "الحيوانات والطب البيطري", "الوظائف والموارد البشرية", "الحكومة والخدمات العامة", "المنزل والديكور والأعمال اليدوية", "محتوى عام ومتعدد المجالات"], "محتوى شخصي متعدد الأدوار": ["الإعلام والصحافة", "صناعة المحتوى والمؤثرون", "الرياضة", "الطعام والطبخ والمطاعم", "الصحة والطب", "اللياقة والتغذية", "التعليم والتدريب", "التقنية والذكاء الاصطناعي", "الأعمال وريادة الأعمال", "التسويق والإعلان والعلاقات العامة", "المال والاستثمار والمحاسبة", "القانون والأنظمة", "الثقافة والكتب واللغة", "الفنون والتمثيل والموسيقى", "السينما والتصوير والإنتاج", "الموضة والجمال والعناية", "السفر والسياحة والضيافة", "السيارات والنقل", "العقار والعمارة والتصميم الداخلي", "الأسرة والطفل والتربية", "الألعاب والرياضات الإلكترونية", "العلوم والبحث والفضاء", "البيئة والاستدامة والزراعة", "المجتمع والعمل التطوعي", "الدين والقيم", "السياسة والشؤون العامة", "الأمن والسلامة والدفاع المدني", "الهندسة والصناعة والحرف", "التجارة الإلكترونية والبيع بالتجزئة", "الترفيه والفعاليات", "أسلوب الحياة واليوميات", "الحيوانات والطب البيطري", "الوظائف والموارد البشرية", "الحكومة والخدمات العامة", "المنزل والديكور والأعمال اليدوية", "محتوى عام ومتعدد المجالات"], "هاوي متعدد الاهتمامات": ["الإعلام والصحافة", "صناعة المحتوى والمؤثرون", "الرياضة", "الطعام والطبخ والمطاعم", "الصحة والطب", "اللياقة والتغذية", "التعليم والتدريب", "التقنية والذكاء الاصطناعي", "الأعمال وريادة الأعمال", "التسويق والإعلان والعلاقات العامة", "المال والاستثمار والمحاسبة", "القانون والأنظمة", "الثقافة والكتب واللغة", "الفنون والتمثيل والموسيقى", "السينما والتصوير والإنتاج", "الموضة والجمال والعناية", "السفر والسياحة والضيافة", "السيارات والنقل", "العقار والعمارة والتصميم الداخلي", "الأسرة والطفل والتربية", "الألعاب والرياضات الإلكترونية", "العلوم والبحث والفضاء", "البيئة والاستدامة والزراعة", "المجتمع والعمل التطوعي", "الدين والقيم", "السياسة والشؤون العامة", "الأمن والسلامة والدفاع المدني", "الهندسة والصناعة والحرف", "التجارة الإلكترونية والبيع بالتجزئة", "الترفيه والفعاليات", "أسلوب الحياة واليوميات", "الحيوانات والطب البيطري", "الوظائف والموارد البشرية", "الحكومة والخدمات العامة", "المنزل والديكور والأعمال اليدوية", "محتوى عام ومتعدد المجالات"], "طالب يتعلم صناعة المحتوى": ["الإعلام والصحافة", "صناعة المحتوى والمؤثرون", "الرياضة", "الطعام والطبخ والمطاعم", "الصحة والطب", "اللياقة والتغذية", "التعليم والتدريب", "التقنية والذكاء الاصطناعي", "الأعمال وريادة الأعمال", "التسويق والإعلان والعلاقات العامة", "المال والاستثمار والمحاسبة", "القانون والأنظمة", "الثقافة والكتب واللغة", "الفنون والتمثيل والموسيقى", "السينما والتصوير والإنتاج", "الموضة والجمال والعناية", "السفر والسياحة والضيافة", "السيارات والنقل", "العقار والعمارة والتصميم الداخلي", "الأسرة والطفل والتربية", "الألعاب والرياضات الإلكترونية", "العلوم والبحث والفضاء", "البيئة والاستدامة والزراعة", "المجتمع والعمل التطوعي", "الدين والقيم", "السياسة والشؤون العامة", "الأمن والسلامة والدفاع المدني", "الهندسة والصناعة والحرف", "التجارة الإلكترونية والبيع بالتجزئة", "الترفيه والفعاليات", "أسلوب الحياة واليوميات", "الحيوانات والطب البيطري", "الوظائف والموارد البشرية", "الحكومة والخدمات العامة", "المنزل والديكور والأعمال اليدوية", "محتوى عام ومتعدد المجالات"]};
+const relatedFieldMap = {"الإعلام والصحافة": ["صناعة المحتوى والمؤثرون", "السياسة والشؤون العامة", "الثقافة والكتب واللغة", "التسويق والإعلان والعلاقات العامة", "السينما والتصوير والإنتاج"], "صناعة المحتوى والمؤثرون": ["الإعلام والصحافة", "التسويق والإعلان والعلاقات العامة", "أسلوب الحياة واليوميات", "الترفيه والفعاليات", "السينما والتصوير والإنتاج"], "الرياضة": ["اللياقة والتغذية", "الصحة والطب", "الإعلام والصحافة", "الأعمال وريادة الأعمال", "أسلوب الحياة واليوميات"], "الطعام والطبخ والمطاعم": ["اللياقة والتغذية", "السفر والسياحة والضيافة", "التجارة الإلكترونية والبيع بالتجزئة", "الأعمال وريادة الأعمال", "أسلوب الحياة واليوميات"], "الصحة والطب": ["اللياقة والتغذية", "العلوم والبحث والفضاء", "الأسرة والطفل والتربية", "التعليم والتدريب"], "التقنية والذكاء الاصطناعي": ["الأعمال وريادة الأعمال", "العلوم والبحث والفضاء", "التعليم والتدريب", "الهندسة والصناعة والحرف", "التسويق والإعلان والعلاقات العامة"], "الأعمال وريادة الأعمال": ["التسويق والإعلان والعلاقات العامة", "المال والاستثمار والمحاسبة", "التجارة الإلكترونية والبيع بالتجزئة", "التقنية والذكاء الاصطناعي", "الوظائف والموارد البشرية"], "التسويق والإعلان والعلاقات العامة": ["صناعة المحتوى والمؤثرون", "الأعمال وريادة الأعمال", "التجارة الإلكترونية والبيع بالتجزئة", "الإعلام والصحافة", "السينما والتصوير والإنتاج"], "الثقافة والكتب واللغة": ["الإعلام والصحافة", "التعليم والتدريب", "الفنون والتمثيل والموسيقى", "الدين والقيم"], "الفنون والتمثيل والموسيقى": ["السينما والتصوير والإنتاج", "الترفيه والفعاليات", "الموضة والجمال والعناية", "الثقافة والكتب واللغة"], "السفر والسياحة والضيافة": ["الطعام والطبخ والمطاعم", "السينما والتصوير والإنتاج", "أسلوب الحياة واليوميات", "الترفيه والفعاليات"], "الأسرة والطفل والتربية": ["التعليم والتدريب", "الصحة والطب", "أسلوب الحياة واليوميات", "المجتمع والعمل التطوعي"], "الألعاب والرياضات الإلكترونية": ["التقنية والذكاء الاصطناعي", "الترفيه والفعاليات", "الرياضة", "صناعة المحتوى والمؤثرون"], "العقار والعمارة والتصميم الداخلي": ["الهندسة والصناعة والحرف", "المنزل والديكور والأعمال اليدوية", "الأعمال وريادة الأعمال", "المال والاستثمار والمحاسبة"]};
+const roleKeywordMap = {"صحفي أو محرر": ["صحفي", "محرر", "كاتب", "مراسل", "منتج أخبار", "مدقق معلومات"], "مراسل ميداني": ["مراسل", "صحفي", "مصور صحفي", "تغطيات"], "رياضي محترف": ["لاعب", "سبّاح", "عدّاء", "فارس", "مدرب", "حكم", "محلل رياضي", "معلّق رياضي", "إداري نادٍ", "وكيل لاعبين", "كشاف مواهب", "أخصائي أداء"], "طباخ أو شيف": ["شيف", "طباخ", "طاه", "خباز", "حلواني", "صانع شوكولاتة", "باريستا", "مختص قهوة", "مطور وصفات", "صانع محتوى طبخ"], "طبيب أو ممارس صحي": ["طبيب", "صيدلي", "ممرض", "أخصائي", "مختص", "باحث طبي", "مسعف"], "محامٍ أو مختص قانوني": ["محام", "مستشار قانوني", "باحث قانوني", "موثق", "محكم", "مختص"], "مهندس أو مختص تقني": ["مهندس", "مطور", "عالم بيانات", "محلل بيانات", "مختص", "مدير منتج تقني", "مصمم تجربة", "باحث تقني"], "معلم أو تربوي": ["معلم", "أستاذ", "محاضر", "مدرب", "مرشد", "مستشار تعليمي", "مصمم تعليمي", "مدير مدرسة", "مشرف تربوي", "باحث تربوي"], "مصور أو مخرج": ["مخرج", "منتج", "مصور", "مونتير", "مدير تصوير", "مصمم إضاءة", "صانع أفلام"], "فنان أو شخصية ترفيهية": ["ممثل", "مغن", "موسيقي", "ملحن", "فنان", "رسام", "نحات", "راقص", "كوميدي", "مدير فني"]};
+const fieldInterestMap = {"الإعلام والصحافة": ["الأخبار العاجلة", "التحليلات والتفسير", "التحقق من المعلومات", "المقابلات والشخصيات", "التغطيات الميدانية", "قضايا المجتمع", "كواليس الإعلام", "مهارات الكتابة والتقديم"], "صناعة المحتوى والمؤثرون": ["أفكار المحتوى", "أدوات التصوير والمونتاج", "النمو على المنصات", "الترندات", "التعاونات الإعلانية", "بناء العلامة الشخصية", "تحليل الحسابات", "كواليس صناع المحتوى"], "الرياضة": ["نتائج المباريات", "تحليل الأداء", "أخبار اللاعبين والأندية", "التدريب واللياقة", "الانتقالات والعقود", "التكتيك", "البطولات المحلية والدولية", "قصص الرياضيين"], "الطعام والطبخ والمطاعم": ["وصفات عملية", "مطاعم وتجارب", "حلويات ومخبوزات", "قهوة ومشروبات", "أكل صحي", "مأكولات شعبية", "تقنيات الطبخ", "أدوات ومكونات"], "الصحة والطب": ["التوعية الصحية", "الوقاية", "شرح الأمراض", "الأدوية والاستخدام الآمن", "الصحة النفسية", "صحة الأسرة", "الخدمات الصحية", "الأبحاث الطبية"], "اللياقة والتغذية": ["تمارين ولياقة", "تغذية صحية", "خسارة الدهون", "بناء العضلات", "الجري والتحمل", "العادات الصحية", "مراجعة المكملات", "برامج التدريب"], "التعليم والتدريب": ["شرح المناهج", "مهارات الدراسة", "التعلم الرقمي", "التطوير المهني", "اللغات", "اختبارات وشهادات", "طرق التدريس", "مصادر تعليمية"], "التقنية والذكاء الاصطناعي": ["أخبار التقنية", "أدوات الذكاء الاصطناعي", "برمجة وتطوير", "أمن سيبراني", "أجهزة وتطبيقات", "تحليل البيانات", "منتجات رقمية", "شروحات وتجارب"], "الأعمال وريادة الأعمال": ["تأسيس المشاريع", "الإدارة والتشغيل", "المبيعات", "تطوير الأعمال", "القيادة", "دراسات الحالات", "الابتكار", "فرص السوق"], "التسويق والإعلان والعلاقات العامة": ["استراتيجيات التسويق", "إعلانات المنصات", "العلامات التجارية", "العلاقات العامة", "تحليل الحملات", "كتابة المحتوى", "تسويق المؤثرين", "سلوك المستهلك"], "المال والاستثمار والمحاسبة": ["الادخار والميزانية", "الأسواق والاستثمار", "الاقتصاد", "المحاسبة", "التمويل الشخصي", "التأمين", "الشركات والنتائج", "التوعية المالية"], "القانون والأنظمة": ["شرح الأنظمة", "العقود", "حقوق الأفراد", "الملكية الفكرية", "الامتثال", "قضايا الأعمال", "الخصوصية والبيانات", "التوعية القانونية"], "الثقافة والكتب واللغة": ["مراجعات الكتب", "الأدب والرواية", "اللغة والكتابة", "الشعر", "التاريخ والتراث", "الترجمة", "القراءة والتعلم", "النقد الثقافي"], "الفنون والتمثيل والموسيقى": ["أعمال فنية", "التمثيل والمسرح", "الموسيقى", "الفن التشكيلي", "كواليس الإنتاج", "نقد فني", "مواهب جديدة", "تقنيات الأداء"], "السينما والتصوير والإنتاج": ["الأفلام والمسلسلات", "التصوير", "الإخراج", "المونتاج", "كتابة السيناريو", "معدات الإنتاج", "كواليس الصناعة", "النقد السينمائي"], "الموضة والجمال والعناية": ["الأزياء والتنسيق", "العناية بالبشرة", "المكياج", "الشعر", "العطور", "مراجعة المنتجات", "اتجاهات الموضة", "العلامات المحلية"], "السفر والسياحة والضيافة": ["وجهات سفر", "السياحة الداخلية", "الفنادق", "تخطيط الرحلات", "المغامرات", "الثقافات المحلية", "الطيران", "تجارب الضيافة"], "السيارات والنقل": ["مراجعات السيارات", "الصيانة", "السيارات الكهربائية", "القيادة والسلامة", "السباقات", "الأسعار والمقارنات", "التقنيات الحديثة", "الدراجات والنقل"], "العقار والعمارة والتصميم الداخلي": ["الشراء والاستثمار", "التصميم الداخلي", "العمارة", "البناء والتشطيب", "التمويل العقاري", "الديكور", "السوق والأسعار", "الجولات العقارية"], "الأسرة والطفل والتربية": ["التربية", "صحة الطفل", "التعليم المبكر", "العلاقات الأسرية", "تنظيم المنزل", "أنشطة الأطفال", "سلوك الطفل", "تجارب الوالدين"], "الألعاب والرياضات الإلكترونية": ["أخبار الألعاب", "مراجعات الألعاب", "البث المباشر", "البطولات", "الأجهزة والملحقات", "تطوير الألعاب", "استراتيجيات اللعب", "مجتمع اللاعبين"], "العلوم والبحث والفضاء": ["الاكتشافات العلمية", "الفضاء والفلك", "تجارب مبسطة", "البحث العلمي", "الابتكار", "الطبيعة والأحياء", "الفيزياء والكيمياء", "المهن العلمية"], "البيئة والاستدامة والزراعة": ["الاستدامة", "إعادة التدوير", "الزراعة", "المياه والطاقة", "الحياة الفطرية", "التغير المناخي", "المنتجات المستدامة", "الحدائق والنباتات"], "المجتمع والعمل التطوعي": ["المبادرات", "التطوع", "قصص الأثر", "التنمية المجتمعية", "القطاع غير الربحي", "المسؤولية الاجتماعية", "فرص المشاركة", "قضايا المجتمع"], "الدين والقيم": ["التفسير والحديث", "السيرة", "الأخلاق والقيم", "العبادات", "التوعية الدينية", "الأسرة والمجتمع", "المناسبات الدينية", "الأسئلة الشرعية"], "السياسة والشؤون العامة": ["الأحداث السياسية", "السياسات العامة", "العلاقات الدولية", "الشؤون المحلية", "التحليل السياسي", "الدبلوماسية", "الاقتصاد السياسي", "الوعي المدني"], "الأمن والسلامة والدفاع المدني": ["السلامة المنزلية", "السلامة المهنية", "الطوارئ", "الإسعافات الأولية", "إدارة الأزمات", "أمن المنشآت", "الوقاية من الحرائق", "التوعية الأمنية"], "الهندسة والصناعة والحرف": ["المشاريع الهندسية", "التصنيع", "الصيانة", "الحرف المهنية", "الجودة", "الابتكار الصناعي", "المواد والأدوات", "المهن التقنية"], "التجارة الإلكترونية والبيع بالتجزئة": ["المنتجات والعروض", "إدارة المتاجر", "تجربة العميل", "الشحن والتوصيل", "التسويق الرقمي", "المراجعات والمقارنات", "التجارة الاجتماعية", "خدمة العملاء"], "الترفيه والفعاليات": ["الفعاليات والمهرجانات", "الحفلات", "المسابقات", "التجارب الترفيهية", "الكوميديا", "المسرح", "تنظيم المناسبات", "الأنشطة العائلية"], "أسلوب الحياة واليوميات": ["اليوميات", "الإنتاجية", "تطوير الذات", "العلاقات", "تنظيم الحياة", "التجارب الشخصية", "الهوايات", "المشتريات والخدمات"], "الحيوانات والطب البيطري": ["رعاية الحيوانات", "الصحة البيطرية", "التدريب والسلوك", "التغذية", "الإنقاذ والتبني", "الخيول والطيور", "منتجات الحيوانات", "قصص وتجارب"], "الوظائف والموارد البشرية": ["فرص العمل", "السيرة الذاتية", "المقابلات", "التطوير المهني", "بيئة العمل", "التوظيف", "المهارات القيادية", "حقوق الموظف"], "الحكومة والخدمات العامة": ["الخدمات الحكومية", "التحول الرقمي", "الأنظمة والإجراءات", "خدمة المستفيد", "المبادرات الوطنية", "التوعية العامة", "البرامج الحكومية", "الفرص والمناقصات"], "المنزل والديكور والأعمال اليدوية": ["الديكور", "تنظيم المنزل", "الأثاث", "الأعمال اليدوية", "التجديد والصيانة", "الأدوات المنزلية", "الحدائق", "مشاريع اصنعها بنفسك"], "محتوى عام ومتعدد المجالات": ["الأحداث اليومية", "الترندات", "تجارب ومراجعات", "قصص شخصية", "تطوير الذات", "تقنية ومنتجات", "ترفيه", "موضوعات مجتمعية"]};
+const roleFieldSpecialtyMap = {"مقدم برامج": {"الإعلام والصحافة": ["مقدم برنامج حواري", "مقدم نشرة أو موجز أخبار", "مقدم مقابلات", "مقدم برنامج إذاعي", "مقدم برنامج تلفزيوني", "مقدم برنامج رقمي", "مقدم تغطيات مباشرة", "مقدم برنامج صباحي"], "الرياضة": ["مقدم برنامج رياضي", "مقدم استوديو تحليلي", "مقدم لقاءات رياضية", "مقدم أخبار رياضية", "مقدم بودكاست رياضي", "مقدم تغطيات بطولات"], "المال والاستثمار والمحاسبة": ["مقدم برنامج اقتصادي", "مقدم حوارات أعمال", "مقدم أخبار الأسواق", "مقدم بودكاست مالي", "مقدم مقابلات مع رواد الأعمال"], "الثقافة والكتب واللغة": ["مقدم برنامج ثقافي", "مقدم نادي قراءة", "مقدم حوارات أدبية", "مقدم برنامج تراثي", "مقدم لقاءات مع كتاب"], "الفنون والتمثيل والموسيقى": ["مقدم برنامج فني", "مقدم لقاءات فنية", "مقدم تغطيات حفلات", "مقدم برنامج موسيقي", "مقدم كواليس فنية"], "الترفيه والفعاليات": ["مقدم مسابقات", "مقدم فعاليات", "مقدم حفلات", "مقدم برنامج ترفيهي", "مقدم بث مباشر للفعاليات"], "التقنية والذكاء الاصطناعي": ["مقدم برنامج تقني", "مقدم مراجعات أجهزة", "مقدم حوارات ذكاء اصطناعي", "مقدم أخبار تقنية", "مقدم بودكاست تقني"], "الصحة والطب": ["مقدم برنامج صحي", "مقدم حوارات طبية", "مقدم توعية صحية", "مقدم بودكاست صحي"], "الدين والقيم": ["مقدم برنامج ديني", "مقدم حوارات قيمية", "مقدم برنامج اجتماعي هادف", "مقدم بودكاست ديني"], "السياسة والشؤون العامة": ["مقدم برنامج سياسي", "مقدم حوارات شؤون عامة", "مقدم نشرات سياسية", "مقدم مقابلات مع مسؤولين"], "السفر والسياحة والضيافة": ["مقدم برنامج سفر", "مقدم تجارب سياحية", "مقدم جولات ميدانية", "مقدم برنامج ضيافة"], "أسلوب الحياة واليوميات": ["مقدم برنامج اجتماعي", "مقدم برنامج صباحي", "مقدم حوارات حياتية", "مقدم تجارب ويوميات"]}};
+const platformSourceMap = {"Instagram": ["Instagram Insights", "https://help.instagram.com/788388387972460/"], "Facebook": ["Meta Business Suite Insights", "https://www.facebook.com/business/help/397273916756139"], "YouTube": ["YouTube Audience Analytics", "https://support.google.com/youtube/answer/9314416"], "TikTok": ["TikTok Creator Analytics", "https://support.tiktok.com/en/using-tiktok/creating-videos/creator-tools-on-tiktok"], "Snapchat": ["Snapchat Insights", "https://help.snapchat.com/hc/en-us/articles/24892451593108-Viewing-and-Understanding-Analytics"], "X": ["X Analytics", "https://business.x.com/en/advertising/analytics"], "LinkedIn": ["LinkedIn Analytics & tools", "https://www.linkedin.com/help/linkedin/answer/a1432051"]};
+const ageTimeRecommendations = {"6–9 سنوات": ["4:00–6:00 مساءً", "6:00–8:00 مساءً"], "10–12 سنة": ["4:00–6:00 مساءً", "6:00–8:00 مساءً"], "13–15 سنة": ["4:00–6:00 مساءً", "6:00–8:00 مساءً", "8:00–10:00 مساءً"], "16–17 سنة": ["6:00–8:00 مساءً", "8:00–10:00 مساءً"], "18–24 سنة": ["6:00–8:00 مساءً", "8:00–10:00 مساءً", "10:00 مساءً–12:00 منتصف الليل"], "25–34 سنة": ["6:00–8:00 مساءً", "8:00–10:00 مساءً"], "35–44 سنة": ["6:00–8:00 مساءً", "8:00–10:00 مساءً"], "45–54 سنة": ["4:00–6:00 مساءً", "6:00–8:00 مساءً"], "55–64 سنة": ["10:00 صباحًا–12:00 ظهرًا", "4:00–6:00 مساءً", "6:00–8:00 مساءً"], "65 سنة فأكثر": ["8:00–10:00 صباحًا", "10:00 صباحًا–12:00 ظهرًا", "4:00–6:00 مساءً"]};
 
-function nextInterviewStep(step) {
-    // التحقق من الإجابة
-    const currentAns = document.getElementById('ans' + currentStep);
-    if (currentAns && !currentAns.value.trim()) {
-        showToast('يرجى الإجابة على السؤال قبل المتابعة', 'error');
+function escapeFingerprintHTML(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function uniqueItems(items) {
+    return [...new Set((items || []).filter(Boolean))];
+}
+
+function renderChoiceGrid(containerId, items, group, options = {}) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const mode = options.mode || 'multi';
+    const max = options.max || 0;
+    container.innerHTML = uniqueItems(items).map(item => {
+        const maxAttr = max ? ` data-max="${max}"` : '';
+        const exclusiveAttr = options.exclusiveValue === item ? ' data-exclusive="true"' : '';
+        return `<button type="button" class="choice-option" data-group="${escapeFingerprintHTML(group)}" data-mode="${mode}" data-value="${escapeFingerprintHTML(item)}"${maxAttr}${exclusiveAttr} onclick="toggleInterviewChoice(this)"><span class="choice-check"><i class="fas fa-check"></i></span><span>${escapeFingerprintHTML(item)}</span></button>`;
+    }).join('');
+}
+
+function clearGroup(group) {
+    document.querySelectorAll(`.choice-option[data-group="${group}"].selected`).forEach(item => item.classList.remove('selected'));
+}
+
+function getInterviewSelections(group) {
+    return [...document.querySelectorAll(`.choice-option[data-group="${group}"].selected`)].map(item => item.dataset.value);
+}
+
+function roleQuestionFor(identity) {
+    const messages = {
+        'هاوي':'ما الهواية أو نوع المحتوى الذي تمارسه؟',
+        'موظف في شركة':'ما دورك داخل الشركة؟',
+        'فرد':'ما صفتك المهنية أو الإعلامية؟',
+        'فريق عمل':'ما نوع فريق العمل؟'
+    };
+    return messages[identity] || 'ما دورك؟';
+}
+
+function renderRoles(identity) {
+    renderChoiceGrid('roleGrid', identityRoleMap[identity] || [], 'role', {mode:'single'});
+    const hint = document.getElementById('roleQuestionHint');
+    if (hint) hint.textContent = roleQuestionFor(identity);
+}
+
+function getFieldsForRole(identity, role) {
+    if (roleFieldMap[role]) return roleFieldMap[role];
+    if (identity === 'موظف في شركة' || identity === 'فريق عمل') return allFields;
+
+    const roleText = role || '';
+    if (roleText.includes('طبخ') || roleText.includes('شيف')) return roleFieldMap['طباخ أو شيف'];
+    if (roleText.includes('رياضة') || roleText.includes('لياقة')) return ['الرياضة','اللياقة والتغذية','الصحة والطب','أسلوب الحياة واليوميات'];
+    if (roleText.includes('تقنية') || roleText.includes('أجهزة')) return ['التقنية والذكاء الاصطناعي','الألعاب والرياضات الإلكترونية','العلوم والبحث والفضاء','الهندسة والصناعة والحرف'];
+    if (roleText.includes('تصوير') || roleText.includes('فيديو')) return ['السينما والتصوير والإنتاج','الإعلام والصحافة','السفر والسياحة والضيافة','الموضة والجمال والعناية','الطعام والطبخ والمطاعم'];
+    if (roleText.includes('كتابة') || roleText.includes('كتب')) return ['الثقافة والكتب واللغة','الإعلام والصحافة','أسلوب الحياة واليوميات','التعليم والتدريب'];
+    if (roleText.includes('بودكاست') || roleText.includes('تقديم')) return roleFieldMap['مقدم برامج'];
+    if (roleText.includes('ألعاب')) return ['الألعاب والرياضات الإلكترونية','التقنية والذكاء الاصطناعي','الترفيه والفعاليات'];
+    if (roleText.includes('سفر')) return ['السفر والسياحة والضيافة','أسلوب الحياة واليوميات','الطعام والطبخ والمطاعم','السينما والتصوير والإنتاج'];
+    if (roleText.includes('سيارات')) return ['السيارات والنقل','التقنية والذكاء الاصطناعي','الرياضة','أسلوب الحياة واليوميات'];
+    if (roleText.includes('فنون') || roleText.includes('رسم') || roleText.includes('موسيقى')) return ['الفنون والتمثيل والموسيقى','السينما والتصوير والإنتاج','الترفيه والفعاليات'];
+    if (roleText.includes('مراجعات')) return ['التجارة الإلكترونية والبيع بالتجزئة','التقنية والذكاء الاصطناعي','السيارات والنقل','الموضة والجمال والعناية','الطعام والطبخ والمطاعم'];
+    if (roleText.includes('يوميات')) return ['أسلوب الحياة واليوميات','صناعة المحتوى والمؤثرون','السفر والسياحة والضيافة','الترفيه والفعاليات'];
+    return allFields;
+}
+
+function renderFields(role) {
+    const identity = getInterviewSelections('identityType')[0];
+    const fields = getFieldsForRole(identity, role);
+    renderChoiceGrid('fieldGrid', fields, 'primaryField', {mode:'single'});
+    const hint = document.getElementById('fieldQuestionHint');
+    if (hint) {
+        hint.textContent = (identity === 'موظف في شركة' || identity === 'فريق عمل')
+            ? 'في أي قطاع تعمل الجهة أو يخدم الفريق؟'
+            : `ما المجال الذي يمثل أغلب عملك أو محتواك بوصفك ${role}؟`;
+    }
+}
+
+function presenterSpecialties(field) {
+    const exact = roleFieldSpecialtyMap['مقدم برامج'][field];
+    if (exact) return exact;
+    return [`مقدم برنامج متخصص في ${field}`,'مقدم مقابلات وحوارات','مقدم بث مباشر','مقدم فعاليات','مقدم بودكاست','مقدم محتوى رقمي'];
+}
+
+function creatorSpecialties(field, role) {
+    const fieldItems = specialtyMap[field] || [];
+    const contentItems = fieldItems.filter(item => /صانع محتوى|مدوّن|مراجع|مصور|مقدم|بودكاست/.test(item));
+    return uniqueItems([
+        `${role} متخصص في ${field}`,
+        `صانع محتوى تعليمي في ${field}`,
+        `صانع محتوى قصير في ${field}`,
+        `مراجع تجارب ومنتجات في ${field}`,
+        ...contentItems
+    ]).slice(0,18);
+}
+
+function employeeOrTeamSpecialties(identity, role, field) {
+    const base = [
+        `${role} في قطاع ${field}`,
+        `تخطيط المحتوى في ${field}`,
+        `إدارة الحملات في ${field}`,
+        `إدارة الهوية والرسائل في ${field}`,
+        `التغطيات والتقارير في ${field}`,
+        `إدارة المجتمع والجمهور في ${field}`
+    ];
+    const relevant = (specialtyMap[field] || []).filter(item => /مدير|مسؤول|مختص|كاتب|مصور|منتج|مسوق|متحدث|محرر|محلل/.test(item));
+    return uniqueItems([...base, ...relevant]).slice(0,20);
+}
+
+function getSpecialtiesFor(role, field, identity) {
+    if (role === 'مقدم برامج') return presenterSpecialties(field);
+    if (identity === 'موظف في شركة' || identity === 'فريق عمل') return employeeOrTeamSpecialties(identity, role, field);
+    if (/صانع محتوى|مؤثر|هاوي|محتوى شخصي|طالب يتعلم/.test(role || '')) return creatorSpecialties(field, role);
+
+    const exactRoleMap = roleFieldSpecialtyMap[role] && roleFieldSpecialtyMap[role][field];
+    if (exactRoleMap) return exactRoleMap;
+
+    const items = specialtyMap[field] || [];
+    const keywords = roleKeywordMap[role] || [];
+    const filtered = keywords.length ? items.filter(item => keywords.some(keyword => item.includes(keyword))) : [];
+    if (filtered.length >= 4) return filtered;
+
+    return uniqueItems([
+        ...filtered,
+        `${role} متخصص في ${field}`,
+        `ممارس مهني في ${field}`,
+        `خبير أو محلل في ${field}`,
+        `صانع محتوى متخصص في ${field}`,
+        ...items.slice(0,10)
+    ]).slice(0,18);
+}
+
+function renderSpecialties(field) {
+    const identity = getInterviewSelections('identityType')[0];
+    const role = getInterviewSelections('role')[0];
+    const items = getSpecialtiesFor(role, field, identity);
+    renderChoiceGrid('specialtyGrid', items, 'specialties', {mode:'multi', max:4});
+    const context = document.getElementById('selectedFieldContext');
+    if (context) context.innerHTML = `<i class="fas fa-route ml-2" style="color:var(--accent)"></i> مسارك الحالي: <strong style="color:var(--text-primary)">${escapeFingerprintHTML(identity)}</strong> ← <strong style="color:var(--text-primary)">${escapeFingerprintHTML(role)}</strong> ← <strong style="color:var(--text-primary)">${escapeFingerprintHTML(field)}</strong>`;
+}
+
+function renderSecondaryFields() {
+    const field = getInterviewSelections('primaryField')[0];
+    const related = relatedFieldMap[field] || allFields.filter(item => item !== field).slice(0,12);
+    renderChoiceGrid('secondaryFieldGrid', ['لا توجد مجالات ثانوية', ...related.filter(item => item !== field)], 'secondaryFields', {mode:'multi', max:3, exclusiveValue:'لا توجد مجالات ثانوية'});
+}
+
+function renderAudienceInterests() {
+    const field = getInterviewSelections('primaryField')[0];
+    const specialties = getInterviewSelections('specialties');
+    const base = fieldInterestMap[field] || [
+        `أخبار ومستجدات ${field}`,`نصائح عملية في ${field}`,`شروحات ومهارات ${field}`,`تجارب وقصص ${field}`,
+        `مراجعات ومقارنات ${field}`,`فرص واتجاهات ${field}`,`منتجات وخدمات ${field}`,`أسئلة المجتمع في ${field}`
+    ];
+    const specialtyHints = specialties.slice(0,2).map(item => `محتوى متخصص حول ${item}`);
+    renderChoiceGrid('audienceInterestGrid', uniqueItems([...base, ...specialtyHints]), 'audienceInterests', {mode:'multi', max:6});
+}
+
+function toggleInterviewChoice(button) {
+    const group = button.dataset.group;
+    const mode = button.dataset.mode || 'multi';
+    const max = Number(button.dataset.max || 0);
+    const isExclusive = button.dataset.exclusive === 'true';
+    const groupButtons = [...document.querySelectorAll(`.choice-option[data-group="${group}"]`)];
+
+    if (isExclusive) {
+        const shouldSelect = !button.classList.contains('selected');
+        groupButtons.forEach(item => item.classList.remove('selected'));
+        if (shouldSelect) button.classList.add('selected');
         return;
     }
 
-    document.getElementById('interviewStep' + currentStep).classList.remove('active');
-    document.getElementById('interviewStep' + step).classList.add('active');
-    document.getElementById('interviewQuestion').textContent = questions[step - 1];
-    document.getElementById('interviewProgress').textContent = `السؤال ${step} من 5`;
-    document.getElementById('interviewBar').style.width = (step * 20) + '%';
+    groupButtons.filter(item => item.dataset.exclusive === 'true').forEach(item => item.classList.remove('selected'));
+
+    if (mode === 'single') {
+        groupButtons.forEach(item => item.classList.remove('selected'));
+        button.classList.add('selected');
+
+        if (group === 'identityType') {
+            ['role','primaryField','specialties','secondaryFields','audienceInterests'].forEach(clearGroup);
+            document.getElementById('fieldGrid').innerHTML = '';
+            document.getElementById('specialtyGrid').innerHTML = '';
+            document.getElementById('secondaryFieldGrid').innerHTML = '';
+            document.getElementById('audienceInterestGrid').innerHTML = '';
+            renderRoles(button.dataset.value);
+        }
+        if (group === 'role') {
+            ['primaryField','specialties','secondaryFields','audienceInterests'].forEach(clearGroup);
+            document.getElementById('specialtyGrid').innerHTML = '';
+            document.getElementById('secondaryFieldGrid').innerHTML = '';
+            document.getElementById('audienceInterestGrid').innerHTML = '';
+            renderFields(button.dataset.value);
+        }
+        if (group === 'primaryField') {
+            ['specialties','secondaryFields','audienceInterests'].forEach(clearGroup);
+            document.getElementById('secondaryFieldGrid').innerHTML = '';
+            document.getElementById('audienceInterestGrid').innerHTML = '';
+            renderSpecialties(button.dataset.value);
+        }
+        return;
+    }
+
+    if (button.classList.contains('selected')) {
+        button.classList.remove('selected');
+        return;
+    }
+
+    const selectedCount = groupButtons.filter(item => item.classList.contains('selected')).length;
+    if (max && selectedCount >= max) {
+        showToast(`يمكنك اختيار ${max} خيارات كحد أقصى`, 'error');
+        return;
+    }
+    button.classList.add('selected');
+}
+
+function getStepMessage(step) {
+    const identity = getInterviewSelections('identityType')[0];
+    const role = getInterviewSelections('role')[0];
+    const messages = {
+        1:'من أنت؟ اختر طريقة استخدامك للمنصة.',
+        2:roleQuestionFor(identity),
+        3:(identity === 'موظف في شركة' || identity === 'فريق عمل') ? 'حدد قطاع الجهة حتى لا تظهر لك تخصصات بعيدة عن عملك.' : `حدد المجال الأقرب إلى عملك بوصفك ${role || 'مستخدمًا'}.`,
+        4:'اختر تخصصك الدقيق. الخيارات هنا ناتجة عن إجاباتك السابقة وليست قائمة عامة.',
+        5:'اختر فقط المجالات الثانوية التي تظهر فعلًا في محتواك.',
+        6:'حدد الصيغ التي تستخدمها لتقديم المحتوى.',
+        7:'اختر جميع المنصات التي تستخدمها؛ الاختيار مفتوح بلا حد أقصى.',
+        8:'حدد أعمار جمهورك بأرقام واضحة.',
+        9:'حدد اهتمامات الجمهور داخل المجال الذي اخترته.',
+        10:'اختر فترات التفاعل المتوقعة بتوقيت السعودية. ستراجع النتيجة منطق هذا الاختيار.',
+        11:'حدد ما الذي تريد أن يحققه حضورك الإعلامي.',
+        12:'اختر الصفات التي يجب أن يشعر بها الجمهور في نبرة خطابك.',
+        13:'حدد اللغة والأسلوب اللغوي الأقرب إليك.',
+        14:'اختر القيم التي لا بد أن يحافظ عليها محتواك.',
+        15:'حدد الخطوط الحمراء والموضوعات التي تحتاج حساسية إضافية.',
+        16:'أخيرًا، حدد مستوى التحفظ الذي تريده قبل النشر.'
+    };
+    return messages[step] || '';
+}
+
+function prepareDynamicStep(step) {
+    if (step === 2 && !document.getElementById('roleGrid').children.length) {
+        const identity = getInterviewSelections('identityType')[0];
+        if (identity) renderRoles(identity);
+    }
+    if (step === 3 && !document.getElementById('fieldGrid').children.length) {
+        const role = getInterviewSelections('role')[0];
+        if (role) renderFields(role);
+    }
+    if (step === 4 && !document.getElementById('specialtyGrid').children.length) {
+        const field = getInterviewSelections('primaryField')[0];
+        if (field) renderSpecialties(field);
+    }
+    if (step === 5) renderSecondaryFields();
+    if (step === 9) renderAudienceInterests();
+}
+
+function validateInterviewStep() {
+    const activeStep = document.getElementById('interviewStep' + currentStep);
+    const group = activeStep ? activeStep.dataset.stepGroup : '';
+    if (!group) return true;
+    if (!getInterviewSelections(group).length) {
+        showToast('اختر خيارًا واحدًا على الأقل للمتابعة', 'error');
+        return false;
+    }
+    return true;
+}
+
+function showInterviewStep(step) {
+    const current = document.getElementById('interviewStep' + currentStep);
+    if (current) current.classList.remove('active');
+    prepareDynamicStep(step);
+    const target = document.getElementById('interviewStep' + step);
+    if (target) target.classList.add('active');
     currentStep = step;
+    document.getElementById('interviewProgress').textContent = `السؤال ${step} من ${totalInterviewSteps}`;
+    document.getElementById('interviewBar').style.width = ((step / totalInterviewSteps) * 100) + '%';
+    document.getElementById('interviewQuestion').textContent = getStepMessage(step);
+}
+
+function nextInterviewStep(step) {
+    if (!validateInterviewStep()) return;
+    showInterviewStep(step);
 }
 
 function prevInterviewStep(step) {
-    document.getElementById('interviewStep' + currentStep).classList.remove('active');
-    document.getElementById('interviewStep' + step).classList.add('active');
-    document.getElementById('interviewQuestion').textContent = questions[step - 1];
-    document.getElementById('interviewProgress').textContent = `السؤال ${step} من 5`;
-    document.getElementById('interviewBar').style.width = (step * 20) + '%';
-    currentStep = step;
+    showInterviewStep(step);
+}
+
+function listText(items, emptyText = 'لم يُحدد') {
+    if (!items || !items.length) return emptyText;
+    if (items.length === 1) return items[0];
+    if (items.length === 2) return items.join(' و');
+    return items.slice(0, -1).join('، ') + '، و' + items[items.length - 1];
+}
+
+function describeTone(tones) {
+    const descriptions = {
+        'رسمية':'صياغة منضبطة تحافظ على المكانة المهنية','مهنية مبسطة':'تبسيط المعلومة دون فقدان الدقة','ودودة':'قرب إنساني يشعر الجمهور بسهولة التواصل',
+        'هادئة':'عرض متزن بعيد عن الانفعال والمبالغة','مباشرة':'وصول سريع إلى الفكرة دون مقدمات طويلة','تحليلية':'تفسير الأسباب والنتائج وربط المعلومات ببعضها',
+        'تعليمية':'شرح متدرج يسهّل الفهم والتطبيق','ملهمة':'لغة تشجع الجمهور على الحركة والتغيير','قصصية':'تحويل المعلومات إلى سرد وتجارب قابلة للتذكر',
+        'مرحة':'حضور خفيف يحافظ على الاحترام','ساخرة منضبطة':'سخرية ذكية تتجنب الإساءة والالتباس','جريئة':'طرح واضح وقوي مع مراعاة المخاطر',
+        'حيادية':'فصل الرأي عن المعلومة وإظهار أكثر من زاوية','فاخرة':'لغة منتقاة وصورة عالية القيمة','شبابية':'إيقاع حديث ومفردات قريبة من الجمهور الشاب',
+        'حماسية':'طاقة مرتفعة تدعم التفاعل والدعوة إلى الإجراء','إنسانية':'إظهار التعاطف والسياق الإنساني في الرسالة','موثوقة':'لغة دقيقة وواثقة تستند إلى مصادر واضحة',
+        'مختصرة':'اقتصاد في الكلمات وتركيز على الرسالة الأساسية','تفصيلية':'تقديم السياق والخطوات والمعلومات بصورة موسعة'
+    };
+    return tones.map(tone => descriptions[tone]).filter(Boolean).join('، ');
+}
+
+function describeRisk(risk) {
+    const descriptions = {
+        'شديد التحفظ — لا أنشر مع أي مخاطرة محتملة':'ستُضبط المراجعة على أعلى حساسية، مع التنبيه حتى عند المخاطر الضعيفة والاحتمالات غير المؤكدة.',
+        'محافظ — أفضّل الأمان والوضوح':'ستعطي المراجعة الأولوية للسلامة النظامية والوضوح، وتقترح بدائل أكثر تحفظًا عند وجود التباس.',
+        'متوازن — أقبل الجرأة ضمن ضوابط واضحة':'ستوازن المراجعة بين قوة الرسالة والحماية، وتسمح بالطرح الجريء عندما يكون منضبطًا وقابلًا للتبرير.',
+        'مرن — أوازن حسب المنصة والموضوع':'سيغيّر معيار حساسية الفحص بحسب نوع المحتوى والمنصة والجمهور والسياق.',
+        'جريء منضبط — أقبل المخاطرة المحسوبة':'ستحافظ المراجعة على قوة الطرح، مع إبراز المخاطر بوضوح قبل ترك القرار النهائي لك.',
+        'يختلف حسب نوع المحتوى':'سيتم ضبط مستوى التحفظ في كل فحص بحسب حساسية المحتوى وطبيعته.'
+    };
+    return descriptions[risk] || 'سيطبق معيار مستوى تحفظ متوازنًا أثناء المراجعة.';
+}
+
+function assessAudienceTime(ages, selectedTimes) {
+    const recommended = uniqueItems(ages.flatMap(age => ageTimeRecommendations[age] || []));
+    const overlap = selectedTimes.some(time => recommended.includes(time));
+    const lateNightWithYoungAudience = ages.some(age => ['6–9 سنوات','10–12 سنة','13–15 سنة'].includes(age)) && selectedTimes.includes('12:00–2:00 ليلًا');
+    const suspicious = !overlap || lateNightWithYoungAudience;
+    return {
+        suspicious,
+        recommended,
+        title: suspicious ? 'اختيار وقت التفاعل يحتاج مراجعة' : 'اختيار وقت التفاعل منطقي مبدئيًا',
+        note: suspicious
+            ? `اخترت ${listText(selectedTimes)}، بينما النوافذ المرجحة مبدئيًا للفئات العمرية المحددة هي ${listText(recommended)}. هذه ملاحظة استدلالية وليست حكمًا نهائيًا.`
+            : `اختيارك ${listText(selectedTimes)} يتقاطع مع النوافذ المرجحة مبدئيًا للفئات العمرية المحددة.`
+    };
+}
+
+function renderPlatformSources(platforms) {
+    const sources = uniqueItems(platforms.map(platform => platformSourceMap[platform]).filter(Boolean).map(item => JSON.stringify(item))).map(item => JSON.parse(item));
+    if (!sources.length) return '<span>المرجع النهائي: تحليلات الحساب الفعلية داخل المنصة التي تستخدمها.</span>';
+    return sources.map(([name,url]) => `<a href="${escapeFingerprintHTML(url)}" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">${escapeFingerprintHTML(name)}</a>`).join(' · ');
 }
 
 function finishInterview() {
-    const ans5 = document.getElementById('ans5');
-    if (ans5 && !ans5.value.trim()) {
-        showToast('يرجى الإجابة على السؤال الأخير', 'error');
-        return;
-    }
+    if (!validateInterviewStep()) return;
+    const selections = {
+        identityType:getInterviewSelections('identityType'), role:getInterviewSelections('role'), primaryField:getInterviewSelections('primaryField'),
+        specialties:getInterviewSelections('specialties'), secondaryFields:getInterviewSelections('secondaryFields'), formats:getInterviewSelections('formats'),
+        platforms:getInterviewSelections('platforms'), audienceAges:getInterviewSelections('audienceAges'), audienceInterests:getInterviewSelections('audienceInterests'),
+        audienceTime:getInterviewSelections('audienceTime'), goals:getInterviewSelections('goals'), tones:getInterviewSelections('tones'),
+        languages:getInterviewSelections('languages'), values:getInterviewSelections('values'), boundaries:getInterviewSelections('boundaries'), risk:getInterviewSelections('risk')
+    };
 
-    // إخفاء خطوات المقابلة
-    for (let i = 1; i <= 5; i++) {
-        document.getElementById('interviewStep' + i).style.display = 'none';
-    }
+    for (let i=1;i<=totalInterviewSteps;i++) document.getElementById('interviewStep'+i).style.display='none';
 
-    // عرض النتيجة
-    const data = document.getElementById('fingerprintData');
-    const toneLabels = { formal: 'رسمية ومهنية', semi: 'شبه رسمية ومبسطة', casual: 'غير رسمية وساخرة', educational: 'تعليمية وشرحية' };
-    const tone = document.getElementById('ans4').value || 'semi';
+    const identity=selections.identityType[0];
+    const role=selections.role[0];
+    const primaryField=selections.primaryField[0];
+    const specialties=listText(selections.specialties);
+    const secondary=selections.secondaryFields.includes('لا توجد مجالات ثانوية') ? 'لا تعتمد على مجالات ثانوية ثابتة' : listText(selections.secondaryFields);
+    const formatsText=listText(selections.formats);
+    const platformsText=listText(selections.platforms);
+    const agesText=listText(selections.audienceAges);
+    const interestsText=listText(selections.audienceInterests);
+    const goalsText=listText(selections.goals);
+    const tonesText=listText(selections.tones);
+    const languagesText=listText(selections.languages);
+    const valuesText=listText(selections.values);
+    const boundariesText=selections.boundaries.includes('لا توجد حدود إضافية') ? 'لم تحدد خطوطًا حمراء إضافية خارج الأنظمة والعقود وسياسات المنصات' : listText(selections.boundaries);
+    const risk=selections.risk[0];
+    const toneAnalysis=describeTone(selections.tones);
+    const timeAssessment=assessAudienceTime(selections.audienceAges, selections.audienceTime);
+    const timeColor=timeAssessment.suspicious ? 'var(--gold)' : 'var(--accent)';
+    const timeBg=timeAssessment.suspicious ? 'rgba(245,166,35,.06)' : 'rgba(0,212,170,.06)';
+    const timeBorder=timeAssessment.suspicious ? 'rgba(245,166,35,.22)' : 'rgba(0,212,170,.18)';
 
-    data.innerHTML = `
-        <div class="grid sm:grid-cols-2 gap-4">
-            <div class="p-3 rounded-lg" style="background: rgba(0,0,0,0.2);">
-                <div class="text-xs" style="color: var(--text-muted);">التخصص</div>
-                <div class="font-medium mt-1">${document.getElementById('ans1').value || '—'}</div>
-            </div>
-            <div class="p-3 rounded-lg" style="background: rgba(0,0,0,0.2);">
-                <div class="text-xs" style="color: var(--text-muted);">أنواع المحتوى</div>
-                <div class="font-medium mt-1">${document.getElementById('ans2').value || '—'}</div>
-            </div>
-            <div class="p-3 rounded-lg" style="background: rgba(0,0,0,0.2);">
-                <div class="text-xs" style="color: var(--text-muted);">الجمهور المستهدف</div>
-                <div class="font-medium mt-1">${document.getElementById('ans3').value || '—'}</div>
-            </div>
-            <div class="p-3 rounded-lg" style="background: rgba(0,0,0,0.2);">
-                <div class="text-xs" style="color: var(--text-muted);">نبرة الخطاب</div>
-                <div class="font-medium mt-1">${toneLabels[tone] || '—'}</div>
-            </div>
+    document.getElementById('fingerprintData').innerHTML = `
+      <div class="p-4 rounded-xl" style="background:rgba(0,212,170,.09);border:1px solid var(--border-accent)">
+        <div class="font-bold mb-2" style="color:var(--accent)">تم تحليل اختياراتك عبر 16 محورًا وإنشاء بصمتك الإعلامية</div>
+        <p class="text-sm leading-relaxed" style="color:var(--text-secondary)">لم تُعرض عليك قائمة عامة؛ كل مرحلة بُنيت على اختياراتك السابقة.</p>
+      </div>
+      <div class="fingerprint-summary-card">
+        <div class="summary-label">تم تحديد طريقة استخدامك للمنصة</div>
+        <p class="text-sm leading-relaxed" style="color:var(--text-secondary)">أنت تستخدم معيار بوصفك <strong style="color:var(--text-primary)">${escapeFingerprintHTML(identity)}</strong>، ودورك الأقرب هو <strong style="color:var(--text-primary)">${escapeFingerprintHTML(role)}</strong>. لذلك ستتغير التقارير وصياغة التنبيهات بحسب كون المحتوى شخصيًا أو مؤسسيًا أو صادرًا عن فريق.</p>
+      </div>
+      <div class="fingerprint-summary-card">
+        <div class="summary-label">تم تحديد هويتك المهنية والتخصصية</div>
+        <p class="text-sm leading-relaxed" style="color:var(--text-secondary)">مجالك الأساسي هو <strong style="color:var(--text-primary)">${escapeFingerprintHTML(primaryField)}</strong>، وتخصصاتك الأقرب هي <strong style="color:var(--text-primary)">${escapeFingerprintHTML(specialties)}</strong>، و${escapeFingerprintHTML(secondary)}. سيمنع معيار ظهور توصيات تخص وظائف أو مجالات لا تتصل بمسارك.</p>
+      </div>
+      <div class="fingerprint-summary-card">
+        <div class="summary-label">أسلوبك الإعلامي</div>
+        <p class="text-sm leading-relaxed" style="color:var(--text-secondary)">أسلوبك يجمع بين <strong style="color:var(--text-primary)">${escapeFingerprintHTML(tonesText)}</strong>، وتفضّل <strong style="color:var(--text-primary)">${escapeFingerprintHTML(languagesText)}</strong>. ويترجم ذلك إلى: ${escapeFingerprintHTML(toneAnalysis)}.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="fingerprint-summary-card"><div class="summary-label">طريقة تقديمك</div><p class="text-sm leading-relaxed" style="color:var(--text-secondary)">تقدّم محتواك عبر <strong style="color:var(--text-primary)">${escapeFingerprintHTML(formatsText)}</strong>، وتنشر في <strong style="color:var(--text-primary)">${escapeFingerprintHTML(platformsText)}</strong>. اختيار المنصات مفتوح وسيطبق معيار قواعد كل منصة على حدة.</p></div>
+        <div class="fingerprint-summary-card"><div class="summary-label">أعمار جمهورك</div><p class="text-sm leading-relaxed" style="color:var(--text-secondary)">الفئات العمرية المحددة هي <strong style="color:var(--text-primary)">${escapeFingerprintHTML(agesText)}</strong>. سيضبط معيار مستوى اللغة والحساسية والإعلانات بما يناسب هذه الأعمار.</p></div>
+        <div class="fingerprint-summary-card"><div class="summary-label">اهتمامات جمهورك</div><p class="text-sm leading-relaxed" style="color:var(--text-secondary)">يهتم جمهورك غالبًا بـ <strong style="color:var(--text-primary)">${escapeFingerprintHTML(interestsText)}</strong>. ستستخدم هذه الاهتمامات لتقييم ملاءمة الموضوع والعنوان والصيغة.</p></div>
+        <div class="fingerprint-summary-card"><div class="summary-label">أهداف حضورك</div><p class="text-sm leading-relaxed" style="color:var(--text-secondary)">تهدف من محتواك إلى <strong style="color:var(--text-primary)">${escapeFingerprintHTML(goalsText)}</strong>. لذلك ستوازن التوصيات بين سلامة المحتوى وقدرته على تحقيق هذه الأهداف.</p></div>
+      </div>
+      <div class="fingerprint-summary-card" style="border-color:${timeBorder};background:${timeBg}">
+        <div class="summary-label" style="color:${timeColor}"><i class="fas ${timeAssessment.suspicious ? 'fa-triangle-exclamation' : 'fa-circle-check'} ml-2"></i>${escapeFingerprintHTML(timeAssessment.title)}</div>
+        <p class="text-sm leading-relaxed mb-3" style="color:var(--text-secondary)">${escapeFingerprintHTML(timeAssessment.note)}</p>
+        <p class="text-xs leading-relaxed" style="color:var(--text-muted)"><strong style="color:var(--text-primary)">تنبيه مهم:</strong> لا يوجد وقت عالمي صحيح لكل الحسابات. المرجع الأوثق هو بيانات جمهور حسابك نفسه خلال الأسابيع الأخيرة. مصادر التحقق الرسمية: ${renderPlatformSources(selections.platforms)}.</p>
+      </div>
+      <div class="fingerprint-summary-card"><div class="summary-label">قيمك الأساسية</div><p class="text-sm leading-relaxed" style="color:var(--text-secondary)">يجب أن يبقى محتواك متوافقًا مع <strong style="color:var(--text-primary)">${escapeFingerprintHTML(valuesText)}</strong>. وسيظهر تنبيه عندما تتعارض الصياغة أو الصورة أو السلوك مع هذه القيم.</p></div>
+      <div class="fingerprint-summary-card" style="border-color:rgba(245,166,35,.2);background:rgba(245,166,35,.05)">
+        <div class="summary-label" style="color:var(--gold)">حدودك ومستوى الحماية</div>
+        <p class="text-sm leading-relaxed mb-2" style="color:var(--text-secondary)">تم ضبط خطوطك الحمراء على: <strong style="color:var(--text-primary)">${escapeFingerprintHTML(boundariesText)}</strong>.</p>
+        <p class="text-sm leading-relaxed" style="color:var(--text-secondary)">${escapeFingerprintHTML(describeRisk(risk))}</p>
+      </div>
+      <div class="p-4 rounded-xl" style="background:rgba(0,212,170,.05);border:1px solid rgba(0,212,170,.16)">
+        <div class="text-xs font-bold mb-3" style="color:var(--accent)">ما الذي سيفعله معيار بهذه البصمة؟</div>
+        <div class="space-y-2 text-sm" style="color:var(--text-secondary)">
+          <div><i class="fas fa-check-circle ml-2" style="color:var(--accent)"></i>يعرض أسئلة وتوصيات تتبع دورك وتخصصك، لا قوائم عامة غير مرتبطة بك.</div>
+          <div><i class="fas fa-check-circle ml-2" style="color:var(--accent)"></i>يراجع مناسبة الرسالة للفئات العمرية واهتمامات الجمهور.</div>
+          <div><i class="fas fa-check-circle ml-2" style="color:var(--accent)"></i>ينبّه عندما يكون وقت التفاعل المختار غير منطقي مبدئيًا ويطلب الرجوع إلى تحليلات الحساب.</div>
+          <div><i class="fas fa-check-circle ml-2" style="color:var(--accent)"></i>يتحقق من توافق النبرة واللغة مع أسلوبك الإعلامي.</div>
+          <div><i class="fas fa-check-circle ml-2" style="color:var(--accent)"></i>يرصد التعارض مع قيمك وخطوطك الحمراء وعقودك والتزاماتك.</div>
         </div>
-        <div class="p-3 rounded-lg mt-2" style="background: rgba(0,0,0,0.2);">
-            <div class="text-xs" style="color: var(--text-muted);">الموضوعات المحدودة</div>
-            <div class="font-medium mt-1">${document.getElementById('ans5').value || '—'}</div>
-        </div>
-        <p class="text-xs mt-3" style="color: var(--text-muted);">يمكنك تعديل هذه البيانات في أي وقت من صفحة "هويتي الإعلامية".</p>
-    `;
+      </div>`;
 
-    document.getElementById('interviewResult').style.display = 'block';
-    document.getElementById('interviewQuestion').textContent = 'تم إنشاء بصمتك الإعلامية بنجاح! راجع البيانات أدناه واعتمدها أو عدّلها.';
-    document.getElementById('interviewBar').style.width = '100%';
-    document.getElementById('interviewProgress').textContent = 'مكتمل';
-
-    showToast('تم إنشاء البصمة الإعلامية بنجاح', 'success');
+    document.getElementById('interviewResult').style.display='block';
+    document.getElementById('interviewQuestion').textContent='تم تحليل المسار المتفرع. النتيجة تشرح هويتك، تخصصك، جمهورك، وقت التفاعل المتوقع، وحدودك.';
+    document.getElementById('interviewBar').style.width='100%';
+    document.getElementById('interviewProgress').textContent='مكتمل';
+    showToast('تم تحليل الاختيارات وإنشاء البصمة الإعلامية بنجاح','success');
 }
+
+function resetInterview() {
+    document.querySelectorAll('.choice-option.selected').forEach(item=>item.classList.remove('selected'));
+    for(let i=1;i<=totalInterviewSteps;i++){
+        const step=document.getElementById('interviewStep'+i);
+        if (!step) continue;
+        step.style.display='';
+        step.classList.toggle('active',i===1);
+    }
+    ['roleGrid','fieldGrid','specialtyGrid','secondaryFieldGrid','audienceInterestGrid'].forEach(id=>{
+        const el=document.getElementById(id); if(el) el.innerHTML='';
+    });
+    const context=document.getElementById('selectedFieldContext');
+    if(context) context.innerHTML='اختر دورك ومجالك أولًا لعرض التخصصات المناسبة.';
+    document.getElementById('interviewResult').style.display='none';
+    document.getElementById('fingerprintData').innerHTML='';
+    document.getElementById('interviewQuestion').textContent='ابدأ بسؤال «من أنت؟». بعد كل اختيار ستتغير الأسئلة التالية تلقائيًا حتى لا تظهر لك خيارات بعيدة عن شخصيتك أو مجالك.';
+    document.getElementById('interviewProgress').textContent=`السؤال 1 من ${totalInterviewSteps}`;
+    document.getElementById('interviewBar').style.width=(100/totalInterviewSteps)+'%';
+    currentStep=1;
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+    const context=document.getElementById('selectedFieldContext');
+    if(context) context.innerHTML='اختر دورك ومجالك أولًا لعرض التخصصات المناسبة.';
+});
 
 // =============================================
 // الأسئلة الشائعة
@@ -3107,9 +3607,11 @@ Object.assign(window, {
     switchCheckTab,
     runCheck,
     filterTrends,
+    toggleInterviewChoice,
     nextInterviewStep,
     prevInterviewStep,
     finishInterview,
+    resetInterview,
     toggleFAQ,
     subscribeNewsletter
 });
@@ -3118,8 +3620,4 @@ Object.assign(window, {
 </script>
 
 </body>
-</html>
-    
-  </body>
-  
 </html>
