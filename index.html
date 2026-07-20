@@ -1182,6 +1182,264 @@ section[id]{scroll-margin-top:96px}
   .nav-links{direction:rtl;align-items:flex-start}
   .nav-links a{width:100%;text-align:right}
 }
+
+/* ==================================================
+   قائمة أقسام المشروع الجانبية
+================================================== */
+#navbar{
+  justify-content:flex-start;
+  min-height:74px;
+}
+
+.project-menu-trigger{
+  position:fixed;
+  z-index:1500;
+  top:50%;
+  right:0;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  width:58px;
+  min-height:168px;
+  padding:16px 10px;
+  border:1px solid rgba(0,212,170,.32);
+  border-right:0;
+  border-radius:18px 0 0 18px;
+  background:linear-gradient(180deg,rgba(17,24,39,.97),rgba(10,15,26,.97));
+  color:var(--text1);
+  font-family:'Noto Kufi Arabic',sans-serif;
+  cursor:pointer;
+  box-shadow:0 16px 45px rgba(0,0,0,.38),0 0 28px rgba(0,212,170,.08);
+  backdrop-filter:blur(18px);
+  transition:width .3s ease,background .3s ease,border-color .3s ease,box-shadow .3s ease;
+}
+.project-menu-trigger:hover{
+  width:66px;
+  border-color:var(--teal);
+  background:linear-gradient(180deg,rgba(0,212,170,.17),rgba(10,15,26,.98));
+  box-shadow:0 16px 48px rgba(0,0,0,.44),0 0 32px rgba(0,212,170,.16);
+}
+.project-menu-trigger svg{
+  width:23px;
+  height:23px;
+  color:var(--teal);
+}
+.project-menu-trigger span{
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  white-space:nowrap;
+  font-size:.76rem;
+  font-weight:700;
+  letter-spacing:.4px;
+}
+
+.project-sidebar-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1998;
+  background:rgba(2,6,12,.68);
+  backdrop-filter:blur(5px);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .35s ease,visibility .35s ease;
+}
+.project-sidebar-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.project-sidebar{
+  position:fixed;
+  top:0;
+  right:0;
+  z-index:1999;
+  width:min(410px,92vw);
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  background:
+    radial-gradient(circle at 100% 0,rgba(0,212,170,.12),transparent 34%),
+    linear-gradient(180deg,#111827 0%,#0A0F1A 100%);
+  border-left:1px solid rgba(0,212,170,.23);
+  box-shadow:-24px 0 70px rgba(0,0,0,.48);
+  transform:translateX(105%);
+  visibility:hidden;
+  transition:transform .42s cubic-bezier(.4,0,.2,1),visibility .42s ease;
+}
+.project-sidebar.open{
+  transform:translateX(0);
+  visibility:visible;
+}
+
+.project-sidebar-header{
+  position:relative;
+  flex:0 0 auto;
+  padding:32px 28px 24px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+.project-sidebar-kicker{
+  display:inline-block;
+  margin-bottom:9px;
+  color:var(--teal);
+  font-size:.75rem;
+  font-weight:700;
+}
+.project-sidebar-header h2{
+  margin:0 0 8px;
+  font-size:1.45rem;
+  color:var(--text1);
+}
+.project-sidebar-header p{
+  margin:0;
+  color:var(--text3);
+  font-size:.85rem;
+  line-height:1.8;
+}
+.project-sidebar-close{
+  position:absolute;
+  top:24px;
+  left:22px;
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:12px;
+  background:rgba(255,255,255,.035);
+  color:var(--text2);
+  cursor:pointer;
+  transition:all .25s ease;
+}
+.project-sidebar-close:hover{
+  color:var(--teal);
+  border-color:rgba(0,212,170,.4);
+  background:rgba(0,212,170,.09);
+  transform:rotate(5deg);
+}
+
+.project-sidebar-links{
+  flex:1 1 auto;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  padding:15px 16px 30px;
+  scrollbar-width:thin;
+  scrollbar-color:var(--teal) transparent;
+}
+.project-sidebar-links::-webkit-scrollbar{width:5px}
+.project-sidebar-links::-webkit-scrollbar-track{background:transparent}
+.project-sidebar-links::-webkit-scrollbar-thumb{
+  background:rgba(0,212,170,.65);
+  border-radius:10px;
+}
+
+.project-sidebar-link{
+  display:grid;
+  grid-template-columns:38px minmax(0,1fr) 20px;
+  align-items:center;
+  gap:11px;
+  min-height:58px;
+  margin-bottom:7px;
+  padding:10px 12px;
+  color:var(--text2);
+  text-decoration:none;
+  border:1px solid transparent;
+  border-radius:13px;
+  background:rgba(255,255,255,.018);
+  transition:all .26s ease;
+}
+.project-sidebar-link:hover{
+  color:var(--text1);
+  background:rgba(0,212,170,.075);
+  border-color:rgba(0,212,170,.22);
+  transform:translateX(-4px);
+}
+.project-sidebar-link.active{
+  color:var(--text1);
+  background:linear-gradient(90deg,rgba(0,212,170,.16),rgba(0,212,170,.045));
+  border-color:rgba(0,212,170,.38);
+  box-shadow:inset -3px 0 0 var(--teal);
+}
+.project-sidebar-number{
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:rgba(0,212,170,.08);
+  color:var(--teal);
+  font-family:'Noto Kufi Arabic',sans-serif;
+  font-size:.7rem;
+  font-weight:800;
+}
+.project-sidebar-link.active .project-sidebar-number{
+  background:var(--teal);
+  color:var(--navy);
+}
+.project-sidebar-label{
+  min-width:0;
+  font-size:.88rem;
+  line-height:1.55;
+  font-weight:500;
+}
+.project-sidebar-link > svg{
+  width:17px;
+  height:17px;
+  color:var(--text3);
+  transition:transform .25s ease,color .25s ease;
+}
+.project-sidebar-link:hover > svg,
+.project-sidebar-link.active > svg{
+  color:var(--teal);
+  transform:translateX(-3px);
+}
+
+body.project-sidebar-open{
+  overflow:hidden;
+}
+
+@media(max-width:768px){
+  #navbar{padding:12px 18px}
+  .project-menu-trigger{
+    top:auto;
+    right:14px;
+    bottom:18px;
+    width:auto;
+    min-height:0;
+    flex-direction:row;
+    padding:12px 16px;
+    border:1px solid rgba(0,212,170,.35);
+    border-radius:14px;
+  }
+  .project-menu-trigger:hover{width:auto}
+  .project-menu-trigger span{
+    writing-mode:horizontal-tb;
+    transform:none;
+    font-size:.78rem;
+  }
+  .project-sidebar{
+    width:min(390px,94vw);
+  }
+  .project-sidebar-header{
+    padding:28px 22px 20px;
+  }
+  .project-sidebar-links{
+    padding-right:12px;
+    padding-left:12px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .project-sidebar,
+  .project-sidebar-overlay,
+  .project-menu-trigger,
+  .project-sidebar-link{
+    transition:none!important;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1192,15 +1450,139 @@ section[id]{scroll-margin-top:96px}
 <div id="floatingShapes"></div>
 <!-- Navigation -->
 <nav id="navbar">
-<a class="nav-logo" href="#">
-<div class="shield"><i data-lucide="shield-check" style="width:24px;height:24px"></i></div>
-<span>معيار</span>
-</a>
-<div class="nav-links" id="navLinks"><a data-order="1" href="#home">الرئيسية</a><a data-order="2" href="#idea">فكرة المشروع ورسالته</a><a data-order="3" href="#objectives">الأهداف الرئيسية ومؤشرات الأداء</a><a data-order="4" href="#challenge">التحدي وعناصر التميز</a><a data-order="5" href="#strategy">استراتيجية المحتوى</a><a data-order="6" href="#launch">خطة ومحتوى الإطلاق</a><a data-order="7" href="#policies">دليل السياسات التحريرية</a><a data-order="8" href="#identity">دليل الهوية البصرية والتحريرية</a><a data-order="9" href="#ai">توظيف الذكاء الاصطناعي</a><a data-order="10" href="#roadmap">آفاق التطوير المستقبلية</a><a data-order="11" href="#cost">التكلفة</a><a data-order="12" href="#revenue">مصادر الدخل</a><a data-order="13" href="#funding">مصادر التمويل المحتملة</a><a data-order="14" href="#partnerships">فرص الشراكات</a><a data-order="15" href="#prototype">النموذج الأولي</a><a data-order="20" href="#interview">مرشد معيار للهوية</a><a data-order="21" href="#academy">أكاديمية معيار</a><a data-order="22" href="#faq">الأسئلة الشائعة</a></div>
-<button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
-<i data-lucide="menu" style="width:24px;height:24px"></i>
-</button>
+  <a class="nav-logo" href="#home" aria-label="العودة إلى الرئيسية">
+    <div class="shield"><i data-lucide="shield-check" style="width:24px;height:24px"></i></div>
+    <span>معيار</span>
+  </a>
 </nav>
+
+<!-- زر فتح قائمة الأقسام من يمين الشاشة -->
+<button
+  type="button"
+  class="project-menu-trigger"
+  id="projectMenuTrigger"
+  aria-label="فتح قائمة أقسام المشروع"
+  aria-controls="projectSidebar"
+  aria-expanded="false"
+>
+  <i data-lucide="list-tree" aria-hidden="true"></i>
+  <span>أقسام المشروع</span>
+</button>
+
+<!-- خلفية القائمة الجانبية -->
+<div class="project-sidebar-overlay" id="projectSidebarOverlay" aria-hidden="true"></div>
+
+<!-- القائمة الجانبية الطويلة -->
+<aside
+  class="project-sidebar"
+  id="projectSidebar"
+  aria-label="أقسام المشروع"
+  aria-hidden="true"
+>
+  <div class="project-sidebar-header">
+    <div>
+      <span class="project-sidebar-kicker">التنقل السريع</span>
+      <h2>أقسام المشروع</h2>
+      <p>اختر القسم المطلوب للانتقال إليه مباشرة.</p>
+    </div>
+    <button type="button" class="project-sidebar-close" id="projectSidebarClose" aria-label="إغلاق القائمة">
+      <i data-lucide="x" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <div class="project-sidebar-links" id="navLinks" role="navigation" aria-label="روابط أقسام المشروع">
+<a class="project-sidebar-link" data-section-link="home" href="#home">
+      <span class="project-sidebar-number">01</span>
+      <span class="project-sidebar-label">الرئيسية</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="idea" href="#idea">
+      <span class="project-sidebar-number">02</span>
+      <span class="project-sidebar-label">فكرة المشروع ورسالته</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="objectives" href="#objectives">
+      <span class="project-sidebar-number">03</span>
+      <span class="project-sidebar-label">الأهداف الرئيسية ومؤشرات الأداء</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="challenge" href="#challenge">
+      <span class="project-sidebar-number">04</span>
+      <span class="project-sidebar-label">التحدي وعناصر التميز</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="strategy" href="#strategy">
+      <span class="project-sidebar-number">05</span>
+      <span class="project-sidebar-label">استراتيجية المحتوى</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="launch" href="#launch">
+      <span class="project-sidebar-number">06</span>
+      <span class="project-sidebar-label">خطة ومحتوى الإطلاق</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="policies" href="#policies">
+      <span class="project-sidebar-number">07</span>
+      <span class="project-sidebar-label">دليل السياسات التحريرية</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="identity" href="#identity">
+      <span class="project-sidebar-number">08</span>
+      <span class="project-sidebar-label">دليل الهوية البصرية والتحريرية</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="ai" href="#ai">
+      <span class="project-sidebar-number">09</span>
+      <span class="project-sidebar-label">توظيف الذكاء الاصطناعي</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="roadmap" href="#roadmap">
+      <span class="project-sidebar-number">10</span>
+      <span class="project-sidebar-label">آفاق التطوير المستقبلية</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="cost" href="#cost">
+      <span class="project-sidebar-number">11</span>
+      <span class="project-sidebar-label">التكلفة</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="revenue" href="#revenue">
+      <span class="project-sidebar-number">12</span>
+      <span class="project-sidebar-label">مصادر الدخل</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="funding" href="#funding">
+      <span class="project-sidebar-number">13</span>
+      <span class="project-sidebar-label">مصادر التمويل المحتملة</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="partnerships" href="#partnerships">
+      <span class="project-sidebar-number">14</span>
+      <span class="project-sidebar-label">فرص الشراكات</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="prototype" href="#prototype">
+      <span class="project-sidebar-number">15</span>
+      <span class="project-sidebar-label">النموذج الأولي</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="interview" href="#interview">
+      <span class="project-sidebar-number">16</span>
+      <span class="project-sidebar-label">مرشد معيار للهوية</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="academy" href="#academy">
+      <span class="project-sidebar-number">17</span>
+      <span class="project-sidebar-label">أكاديمية معيار</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+<a class="project-sidebar-link" data-section-link="faq" href="#faq">
+      <span class="project-sidebar-number">18</span>
+      <span class="project-sidebar-label">الأسئلة الشائعة</span>
+      <i data-lucide="arrow-left" aria-hidden="true"></i>
+    </a>
+  </div>
+</aside>
 <!-- Hero Section -->
 <section class="hero" id="home">
 <div class="hero-glow g1"></div>
@@ -3763,6 +4145,115 @@ Object.assign(window, {
 
 })();
 </script>
+
+<script>
+(function(){
+  const sidebar = document.getElementById('projectSidebar');
+  const overlay = document.getElementById('projectSidebarOverlay');
+  const trigger = document.getElementById('projectMenuTrigger');
+  const closeButton = document.getElementById('projectSidebarClose');
+  const sectionLinks = Array.from(document.querySelectorAll('.project-sidebar-link'));
+  let lastFocusedElement = null;
+
+  if (!sidebar || !overlay || !trigger || !closeButton) return;
+
+  function openProjectSidebar(){
+    lastFocusedElement = document.activeElement;
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+    document.body.classList.add('project-sidebar-open');
+    sidebar.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('aria-hidden', 'false');
+    trigger.setAttribute('aria-expanded', 'true');
+    closeButton.focus();
+  }
+
+  function closeProjectSidebar(restoreFocus = true){
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.classList.remove('project-sidebar-open');
+    sidebar.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+    trigger.setAttribute('aria-expanded', 'false');
+
+    if (restoreFocus && lastFocusedElement && typeof lastFocusedElement.focus === 'function'){
+      lastFocusedElement.focus();
+    }
+  }
+
+  trigger.addEventListener('click', openProjectSidebar);
+  closeButton.addEventListener('click', () => closeProjectSidebar());
+  overlay.addEventListener('click', () => closeProjectSidebar());
+
+  sectionLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      const selector = link.getAttribute('href');
+      const target = selector ? document.querySelector(selector) : null;
+
+      if (target){
+        event.preventDefault();
+        closeProjectSidebar(false);
+        window.setTimeout(() => {
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+          history.replaceState(null, '', selector);
+        }, 80);
+      }
+    });
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && sidebar.classList.contains('open')){
+      closeProjectSidebar();
+    }
+
+    if (event.key === 'Tab' && sidebar.classList.contains('open')){
+      const focusable = Array.from(
+        sidebar.querySelectorAll('a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])')
+      );
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first){
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last){
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  const observedSections = sectionLinks
+    .map(link => document.getElementById(link.dataset.sectionLink))
+    .filter(Boolean);
+
+  if ('IntersectionObserver' in window && observedSections.length){
+    const activeObserver = new IntersectionObserver(entries => {
+      const visibleEntry = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visibleEntry) return;
+
+      sectionLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.sectionLink === visibleEntry.target.id);
+      });
+    }, {
+      rootMargin:'-28% 0px -58% 0px',
+      threshold:[0, .1, .25, .5]
+    });
+
+    observedSections.forEach(section => activeObserver.observe(section));
+  }
+
+  if (window.lucide && typeof window.lucide.createIcons === 'function'){
+    window.lucide.createIcons();
+  }
+})();
+</script>
+
 </body>
 </html>
     
