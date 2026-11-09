@@ -1,0 +1,79 @@
+{
+  "_note": "قائمة النماذج قابلة للتحديث دون إعادة بناء الموقع. يختار معيار النموذج تلقائيًا (لا يختاره المستخدم). لا يمكن تغيير عناوين API من هنا؛ العناوين ثابتة في الكود.",
+  "checked_on": "2026-11-02",
+  "anthropic": {
+    "source": "https://platform.claude.com/docs/en/models/overview",
+    "verification": "تحقق من أسماء النماذج من صفحة النماذج الرسمية بتاريخ 2026-10-31.",
+    "default": "claude-sonnet-5-5",
+    "models": [
+      {
+        "id": "claude-sonnet-5-5",
+        "label": "Claude Sonnet 5.5",
+        "structured_output": false,
+        "price_usd_per_mtok": {
+          "input": 2.0,
+          "output": 10.0
+        }
+      },
+      {
+        "id": "claude-haiku-5-5",
+        "label": "Claude Haiku 5.5 (أسرع وأقل تكلفة)",
+        "structured_output": true,
+        "price_usd_per_mtok": {
+          "input": 0.1,
+          "output": 0.5
+        }
+      },
+      {
+        "id": "claude-opus-5-5",
+        "label": "Claude Opus 5.5 (أعلى قدرة وأعلى تكلفة)",
+        "structured_output": false,
+        "price_usd_per_mtok": {
+          "input": 4.0,
+          "output": 20.0
+        }
+      }
+    ],
+    "max_output_tokens": 8000,
+    "effort": "medium",
+    "_effort_note": "يُرسل output_config.effort لضبط عمق التفكير وتكلفته. التفكير يُحتسب ضمن توكنز الإخراج، لذلك max_output_tokens أعلى من حجم JSON المتوقع.",
+    "pricing": {
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "checked_on": "2026-11-02",
+      "note": "أسعار Base input/output للمطوّرين من صفحة الأسعار الرسمية. سعر Haiku 5.5 المذكور للطلبات حتى 100 ألف توكن (طلبات معيار أصغر بكثير)."
+    }
+  },
+  "openai": {
+    "source": "https://platform.openai.com/docs/models",
+    "verification": "لم يُتحقق من أسماء نماذج OpenAI من وثائقها الرسمية وقت الإعداد. لذلك يختار معيار تلقائيًا أقوى نموذج GPT عام من قائمة النماذج المتاحة في حساب المستخدم (طلب القائمة مجاني ولا يُجري تحليلًا). يمكن تحديد نموذج افتراضي هنا بعد التحقق.",
+    "default": null,
+    "models": [],
+    "max_output_tokens": 8000,
+    "pricing": {
+      "source": "https://platform.openai.com/docs/pricing",
+      "checked_on": null,
+      "note": "لم يمكن الوصول إلى صفحة أسعار OpenAI الرسمية من بيئة الإعداد، فلا توجد أسعار موثقة. لإظهار تقدير بالريال: أضف النموذج في models مع price_usd_per_mtok واجعله default بعد التحقق من الصفحة الرسمية، وحدّث checked_on."
+    }
+  },
+  "limits": {
+    "max_input_chars": 6000,
+    "max_reference_chars": 18000,
+    "max_references": 12
+  },
+  "currency": {
+    "usd_to_sar": 3.75,
+    "note": "سعر الصرف الرسمي الثابت للريال مقابل الدولار (3.75)."
+  },
+  "estimate": {
+    "chars_per_token_arabic": [
+      1.8,
+      3.2
+    ],
+    "chars_per_token_other": [
+      2.8,
+      4.2
+    ],
+    "output_tokens_typical_min": 900,
+    "_note": "نطاق تقريبي لتحويل الحروف إلى توكنز. التقدير يحسب الطلب الكامل (التعليمات الثابتة + النص + المراجع المختارة) ويضيف المخرجات من حد أدنى معتاد حتى الحد الأقصى."
+  }
+}

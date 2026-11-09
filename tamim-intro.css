@@ -1,0 +1,39 @@
+.tamim-intro{position:relative;z-index:3;isolation:isolate;overflow:hidden;min-height:100svh;background:transparent;color:#ebe5d8;padding:0 var(--gutter);display:flex;flex-direction:column;font-family:var(--body);text-shadow:0 1px 2px rgba(0,0,0,.55),0 0 18px rgba(8,10,14,.55)}
+.tamim-intro::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 22% 62%,rgba(214,170,120,.13) 0,transparent 51%),linear-gradient(125deg,transparent 52%,rgba(190,205,225,.05));pointer-events:none}
+.tamim-masthead{height:100px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(235,229,216,.13);gap:1rem}
+.tamim-signature{font-family:var(--display);font-size:1rem;font-weight:650;text-decoration:none}
+.tamim-edition{margin-inline-start:auto;font-size:.74rem;letter-spacing:.17em;color:#918c83;font-family:var(--display)}
+.tamim-layout{flex:1;display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:4vw;max-width:1440px;width:100%;margin:auto;min-height:610px}
+.tamim-copy{position:relative;z-index:2;padding:55px 0 80px}
+.tamim-kicker{color:#e2675f;font-weight:500;display:flex;align-items:center;gap:.65rem;margin-bottom:1.6rem;font-size:1rem}
+.tamim-kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:#b83a3c}
+.tamim-name{font-family:var(--display);font-weight:650;font-size:clamp(2.8rem,5vw,5.2rem);line-height:1.3;letter-spacing:0;margin:0 0 1.5rem;text-shadow:0 2px 3px rgba(0,0,0,.6),0 0 40px rgba(8,10,14,.7)}
+.tamim-name span{display:block}.tamim-name em{color:#c9433f;font-style:normal}
+.tamim-description{font-size:clamp(1.05rem,1.6vw,1.3rem);color:#c4beb1;margin:0 0 2.1rem}
+.tamim-actions{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center}
+.tamim-action{display:inline-flex;align-items:center;justify-content:center;gap:2rem;min-height:58px;padding:.75rem 1.55rem;border-radius:999px;text-decoration:none;font-size:1.05rem;font-weight:600;transition:transform .25s,background .25s;min-width:170px;text-shadow:none}
+.tamim-action:hover{transform:translateY(-3px)}.tamim-action svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tamim-action-main{min-width:min(100%,320px);min-height:66px;padding:.85rem 2rem;font-size:1.25rem;justify-content:space-between;background:#b83a3c;color:#f6efe2;box-shadow:0 10px 28px -14px rgba(0,0,0,.85)}.tamim-action-main:hover{background:#a03034}
+.tamim-action-fame{border:1px solid rgba(235,229,216,.28);background:transparent;color:#ebe5d8}.tamim-action-fame:hover{background:rgba(235,229,216,.08)}
+.tamim-follow{margin-top:2.5rem;display:flex;align-items:center;flex-wrap:wrap;gap:1.1rem}
+.tamim-follow-label{font-size:.9rem;color:#918c83;display:inline-flex;align-items:center;gap:.6rem}.tamim-follow-label svg{width:42px;height:24px;fill:none;stroke:#b83a3c;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.tamim-socials{display:flex;gap:.5rem;list-style:none;padding:0;margin:0;direction:ltr}
+.tamim-socials a{display:grid;place-items:center;width:45px;height:45px;border:1px solid rgba(235,229,216,.22);border-radius:50%;transition:background .2s,transform .2s;text-decoration:none;background:rgba(235,229,216,.05);color:#ebe5d8}
+.tamim-socials a:hover{background:rgba(235,229,216,.15);transform:translateY(-3px)}
+.tamim-socials svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.65;fill:none;stroke-linecap:round;stroke-linejoin:round}.tamim-socials .fill{stroke:none;fill:currentColor}
+.tamim-portrait{align-self:stretch;position:relative;min-height:620px;margin:0;display:flex;align-items:flex-end;justify-content:center;z-index:0}
+.tamim-portrait::before{content:"";position:absolute;bottom:0;width:90%;height:80%;border-radius:48% 48% 0 0;background:radial-gradient(70% 55% at 50% 30%,rgba(196,210,228,.2),rgba(196,210,228,0) 75%),linear-gradient(150deg,rgba(38,48,61,.85),rgba(16,21,27,.9));border:1px solid rgba(235,229,216,.12);box-shadow:0 30px 60px -20px rgba(0,0,0,.7);z-index:-2}
+.tamim-orbit{position:absolute;width:96%;aspect-ratio:1;border:1.5px solid rgba(184,58,60,.55);border-radius:50%;bottom:8%;z-index:-1;transform:rotate(-17deg) scaleY(.84)}
+.tamim-orbit::after{content:"";position:absolute;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#fff 0,#e3e6ea 16%,#9aa1a9 52%,#444a52 100%);top:12%;right:10%;box-shadow:2px 5px 5px rgba(0,0,0,.55)}
+.tamim-portrait img{width:100%;height:100%;max-height:780px;position:absolute;bottom:-1px;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 18px 35px rgba(0,0,0,.55))}
+.tamim-credit{position:absolute;bottom:32px;left:0;font-size:.67rem;letter-spacing:.15em;writing-mode:vertical-rl;direction:ltr;color:#8b867d;z-index:2}
+.tamim-bottom{min-height:72px;border-top:1px solid rgba(235,229,216,.13);display:flex;align-items:center;justify-content:space-between;gap:1rem;position:relative;z-index:2;background:transparent}
+.tamim-bottom p{font-size:.8rem;color:#918c83;margin:0}.tamim-discover{display:flex;align-items:center;gap:1rem;text-decoration:none;font-size:.85rem;font-weight:500;min-height:48px}.tamim-discover span{font-size:1.4rem;color:#e2675f;transition:transform .2s}.tamim-discover:hover span{transform:translateY(4px)}
+html.tamim-intro-visible .nav{opacity:0;visibility:hidden;pointer-events:none}
+.tamim-intro-ready .tamim-copy{animation:tamim-enter .8s cubic-bezier(.2,.7,.1,1) both}.tamim-intro-ready .tamim-portrait{animation:tamim-enter 1s .1s cubic-bezier(.2,.7,.1,1) both}
+@keyframes tamim-enter{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:1600px){.tamim-layout{min-height:760px}}
+@media(max-width:900px){.tamim-layout{gap:1rem;min-height:570px}.tamim-name{font-size:clamp(2.6rem,6vw,4rem)}.tamim-portrait{min-height:560px}.tamim-actions{gap:.6rem}.tamim-action{min-width:145px;gap:1.3rem}.tamim-follow{gap:.6rem}.tamim-follow-label svg{width:28px}}
+@media(max-width:620px){.tamim-masthead{height:74px}.tamim-signature{font-size:.85rem}.tamim-edition{font-size:.62rem;letter-spacing:.1em}.tamim-layout{display:flex;flex-direction:column;gap:0;min-height:0}.tamim-copy{align-self:stretch;padding:35px 0 0}.tamim-kicker{font-size:.9rem;margin-bottom:.7rem}.tamim-name{font-size:clamp(2.3rem,10vw,3.4rem);line-height:1.25;margin-bottom:.9rem}.tamim-name span{display:inline}.tamim-name span+span::before{content:" "}.tamim-description{font-size:1rem;margin-bottom:1.3rem}.tamim-actions{flex-wrap:nowrap}.tamim-action{flex:1;min-width:0;min-height:60px;font-size:1.12rem;padding:.7rem 1rem;justify-content:space-between}.tamim-follow{margin-top:1.3rem;justify-content:space-between}.tamim-socials a{width:42px;height:42px}.tamim-portrait{align-self:center;width:min(100%,410px);min-height:340px;height:clamp(340px,88vw,440px);margin-top:15px}.tamim-portrait::before{width:88%;height:90%}.tamim-portrait img{width:100%;max-height:110%;height:110%;object-position:bottom}.tamim-orbit{bottom:0;width:100%}.tamim-credit{left:0;bottom:30px;font-size:.55rem}.tamim-bottom{min-height:65px}.tamim-bottom p{font-size:.72rem}.tamim-discover{font-size:.78rem;gap:.6rem}}
+@media(max-width:620px){.tamim-name{font-size:clamp(2.2rem,10vw,3.2rem)}}
+@media(prefers-reduced-motion:reduce){.tamim-intro *{animation:none!important;transition:none!important}}
