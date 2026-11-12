@@ -1,3 +1,4 @@
+[hidden]{display:none!important}
 @font-face{font-family:"Changa";font-weight:400;font-display:swap;src:url(../assets/fonts/changa-arabic-400-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC}
 @font-face{font-family:"Changa";font-weight:400;font-display:swap;src:url(../assets/fonts/changa-latin-400-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+2000-206F}
 @font-face{font-family:"Changa";font-weight:600;font-display:swap;src:url(../assets/fonts/changa-arabic-600-normal.woff2) format("woff2");unicode-range:U+0600-06FF,U+0750-077F,U+FB50-FDFF,U+FE70-FEFC}

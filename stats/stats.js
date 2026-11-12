@@ -11,16 +11,16 @@
   function day(d) { return d.toISOString().slice(0, 10); }
   function period() {
     var end = new Date(), start = new Date();
-    if (range === 'all') return { start: START, end: day(end) };
-    start.setDate(start.getDate() - (Number(range) - 1));
-    return { start: day(start), end: day(end) };
+    if (range !== 'all') start.setDate(start.getDate() - (Number(range) - 1));
+    var s0 = range === 'all' ? START : day(start);
+    return { start: s0 + 'T00:00:00Z', end: day(end) + 'T23:59:59Z' };
   }
   function get(path, q) {
     var u = API + path + '?' + new URLSearchParams(q).toString();
     return fetch(u, { headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' } })
       .then(function (r) {
         if (r.status === 401 || r.status === 403) throw new Error('auth');
-        if (!r.ok) throw new Error('http ' + r.status);
+        if (!r.ok) return r.text().then(function (t) { var m = t; try { m = JSON.parse(t).error || JSON.stringify(JSON.parse(t).errors) || t; } catch (_) {} throw new Error(r.status + ': ' + String(m).replace(/<[^>]*>/g, ' ').slice(0, 160)); });
         return r.json();
       });
   }
@@ -50,7 +50,7 @@
     $('derr').hidden = true; $('upd').textContent = 'جاري التحميل…';
     Promise.all([
       get('/stats/hits', { start: p.start, end: p.end, limit: 100 }),
-      get('/stats/total', { start: p.start, end: p.end })
+      get('/stats/total', { start: p.start, end: p.end }).catch(function () { return {}; })
     ]).then(function (res) {
       var hits = (res[0] && res[0].hits) || [], tot = res[1] || {};
       var c = {};
@@ -78,7 +78,7 @@
       $('upd').textContent = 'آخر تحديث ' + AR(now.toLocaleTimeString('ar-SA-u-nu-latn', { hour: '2-digit', minute: '2-digit' })) + ' · الأرقام مجهولة الهوية';
     }).catch(function (e) {
       if (e.message === 'auth') { try { localStorage.removeItem(KEY); } catch (_) {} token = null; showLogin('المفتاح غير صحيح أو لا يملك صلاحية القراءة.'); return; }
-      $('upd').textContent = ''; $('derr').hidden = false; $('derr').textContent = 'تعذّر جلب الأرقام، حاول التحديث بعد قليل.';
+      $('upd').textContent = ''; $('derr').hidden = false; $('derr').textContent = 'تعذّر جلب الأرقام (' + e.message + ')';
     });
   }
 
