@@ -1,7 +1,7 @@
 /* Anonymous counters for Meyar (GoatCounter, no cookies, no personal data).
    Counts: visits, real API checks, file downloads, prompt copies, social clicks. */
 (function () {
-  var CODE = ''; // GoatCounter site code, e.g. "meyar" -> https://meyar.goatcounter.com
+  var CODE = 'tamim'; // GoatCounter site code, e.g. "meyar" -> https://meyar.goatcounter.com
   if (!CODE || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return;
   var END = 'https://' + CODE + '.goatcounter.com/count';
 
