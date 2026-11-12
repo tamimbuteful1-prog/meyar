@@ -47,3 +47,21 @@ html.tamim-intro-visible .nav{opacity:0;visibility:hidden;pointer-events:none}
 .tamim-action-main{position:relative;justify-content:center}
 .tamim-action-main svg{position:absolute;left:2.4rem;top:50%;transform:translateY(-50%)}
 @media(max-width:620px){.tamim-brand{font-size:clamp(1.9rem,8.6vw,2.6rem)}.tamim-initiative{font-size:.78rem;margin-bottom:1.3rem}.tamim-actions .tamim-action-main{justify-content:center}.tamim-action-main svg{left:1.2rem}}
+
+/* gauge removed: single-column hero */
+.hero{grid-template-columns:minmax(0,1fr)}
+.hero .hero-copy{max-width:44rem}
+
+/* founder (last section) */
+.founder{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:clamp(4rem,10vh,7rem) 1.5rem clamp(4rem,10vh,6rem)}
+.founder-kicker{font-family:var(--display, "Alexandria", sans-serif);font-weight:600;font-size:.95rem;letter-spacing:.04em;color:#c23d2e;margin:0 0 1.6rem}
+.founder-photo{position:relative;margin:0;width:min(62vw,300px);padding:12px 12px 46px;background:linear-gradient(170deg,#ebe5d6,#d6cfbb);box-shadow:0 30px 60px -24px rgba(0,0,0,.85),0 2px 0 rgba(255,255,255,.35) inset;transform:rotate(-2.5deg);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.founder-photo:hover{transform:rotate(0) translateY(-6px)}
+.founder-photo::before{content:"";position:absolute;top:-10px;left:50%;width:18px;height:18px;border-radius:50%;transform:translateX(-50%);background:radial-gradient(circle at 35% 30%,#fff,#a9abb0 45%,#5d6066 80%);box-shadow:0 3px 5px rgba(0,0,0,.55);z-index:2}
+.founder-photo img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;filter:saturate(.95) contrast(1.03)}
+.founder-name{font-family:var(--display, "Alexandria", sans-serif);font-weight:800;font-size:clamp(2rem,5vw,3.2rem);line-height:1.2;color:#ebe5d8;margin:2rem 0 .35rem}
+.founder-role{color:rgba(235,229,216,.62);font-size:1rem;margin:0 0 1.6rem}
+.founder-socials{display:flex;gap:.75rem;justify-content:center;list-style:none;margin:0;padding:0}
+.founder-kicker{position:relative;z-index:3;background:rgba(23,27,35,.88);padding:.4rem 1rem;border-radius:999px;border:1px solid rgba(194,61,46,.45)}
+.founder-photo,.founder-name,.founder-role,.founder-socials{position:relative;z-index:3}
+.founder-name{text-shadow:0 4px 24px rgba(0,0,0,.6)}
