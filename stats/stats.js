@@ -19,7 +19,8 @@
     var u = API + path + '?' + new URLSearchParams(q).toString();
     return fetch(u, { headers: { Authorization: 'Bearer ' + token, 'Content-Type': 'application/json' } })
       .then(function (r) {
-        if (r.status === 401 || r.status === 403) throw new Error('auth');
+        if (r.status === 401) throw new Error('auth');
+        if (r.status === 403 || r.status === 404) throw new Error('perm');
         if (!r.ok) return r.text().then(function (t) { var m = t; try { m = JSON.parse(t).error || JSON.stringify(JSON.parse(t).errors) || t; } catch (_) {} throw new Error(r.status + ': ' + String(m).replace(/<[^>]*>/g, ' ').slice(0, 160)); });
         return r.json();
       });
@@ -77,6 +78,7 @@
       var now = new Date();
       $('upd').textContent = 'آخر تحديث ' + AR(now.toLocaleTimeString('ar-SA-u-nu-latn', { hour: '2-digit', minute: '2-digit' })) + ' · الأرقام مجهولة الهوية';
     }).catch(function (e) {
+      if (e.message === 'perm') { try { localStorage.removeItem(KEY); } catch (_) {} token = null; showLogin('المفتاح صلاحيته «Read sites». لازم مفتاح جديد بصلاحية «Read statistics».'); return; }
       if (e.message === 'auth') { try { localStorage.removeItem(KEY); } catch (_) {} token = null; showLogin('المفتاح غير صحيح أو لا يملك صلاحية القراءة.'); return; }
       $('upd').textContent = ''; $('derr').hidden = false; $('derr').textContent = 'تعذّر جلب الأرقام (' + e.message + ')';
     });
