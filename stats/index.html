@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src https://tamim.goatcounter.com; base-uri 'none'; form-action 'none'">
+<title>لوحة معيار — خاصة</title>
+<link rel="stylesheet" href="./stats.css">
+<script src="./stats.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand">معيار<span>.</span> <small>لوحة الأرقام</small></div>
+  <div class="actions">
+    <button id="refresh" class="ghost" type="button" hidden>تحديث</button>
+    <button id="logout" class="ghost" type="button" hidden>خروج</button>
+  </div>
+</header>
+
+<main>
+  <!-- login -->
+  <section id="login" class="login" hidden>
+    <div class="paper">
+      <h1>لوحتك الخاصة</h1>
+      <p>الصق مفتاح القراءة من GoatCounter مرة واحدة، ويبقى محفوظًا في هذا الجهاز فقط.</p>
+      <label for="token">مفتاح API (قراءة الإحصاءات)</label>
+      <input id="token" type="password" autocomplete="off" spellcheck="false" dir="ltr" placeholder="paste token">
+      <button id="save" type="button" class="primary">دخول</button>
+      <p class="err" id="lerr" hidden></p>
+      <details>
+        <summary>من وين أجيب المفتاح؟</summary>
+        <ol>
+          <li>افتح <b dir="ltr">tamim.goatcounter.com</b> ثم <b>Settings</b>.</li>
+          <li>اختر <b>API</b> ثم <b>New API key</b>.</li>
+          <li>فعّل <b>Read statistics</b> فقط، واحفظ، ثم انسخ المفتاح.</li>
+        </ol>
+      </details>
+    </div>
+  </section>
+
+  <!-- dashboard -->
+  <section id="dash" hidden>
+    <nav class="range" id="range">
+      <button type="button" data-r="1">اليوم</button>
+      <button type="button" data-r="7" class="on">٧ أيام</button>
+      <button type="button" data-r="30">٣٠ يوم</button>
+      <button type="button" data-r="all">من البداية</button>
+    </nav>
+
+    <div class="hero card">
+      <div>
+        <p class="lbl">الزيارات</p>
+        <p class="big" id="v-visits">—</p>
+      </div>
+      <svg id="chart" viewBox="0 0 600 140" preserveAspectRatio="none" aria-hidden="true"></svg>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <p class="lbl">استخدموا الفحص عبر API</p>
+        <p class="num" id="v-api">—</p>
+        <p class="sub"><span>Claude <b id="v-api-c">—</b></span><span>OpenAI <b id="v-api-o">—</b></span></p>
+      </div>
+      <div class="card">
+        <p class="lbl">حمّلوا الملفات</p>
+        <p class="num" id="v-dl">—</p>
+      </div>
+      <div class="card">
+        <p class="lbl">نسخوا البرومبت</p>
+        <p class="num" id="v-cp">—</p>
+      </div>
+      <div class="card">
+        <p class="lbl">ضغطوا على حساباتك</p>
+        <p class="num" id="v-soc">—</p>
+        <p class="sub"><span>X <b id="v-x">—</b></span><span>Instagram <b id="v-ig">—</b></span><span>TikTok <b id="v-tt">—</b></span></p>
+      </div>
+    </div>
+
+    <p class="foot" id="upd"></p>
+    <p class="err" id="derr" hidden></p>
+  </section>
+</main>
+</body>
+</html>
