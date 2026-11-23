@@ -1,5 +1,5 @@
 /* «اسأل فلان!» section and page */
-.ask-frame { display: block; width: 100%; height: 56rem; border: 0; background: transparent; }
+.ask-frame { display: block; width: 100%; height: 48rem; border: 0; background: transparent; }
 .tool.ask { padding-bottom: clamp(2rem, 6vh, 4rem); }
 
 /* standalone page: only the tool */
@@ -22,3 +22,5 @@ html.ask-embed #gauge-canvas { display: none !important; }
 html.ask-embed #api { padding: 0; max-width: none; }
 html.ask-embed .setup { position: static; }
 html.ask-embed .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+.tool.ask { position: relative; z-index: 2; }
+.ask-frame { background: rgba(14, 18, 23, .94); border-radius: 22px; padding: 0; box-shadow: 0 0 0 1px rgba(235, 229, 216, .1); }
