@@ -1,0 +1,24 @@
+/* «اسأل فلان!» section and page */
+.ask-frame { display: block; width: 100%; height: 56rem; border: 0; background: transparent; }
+.tool.ask { padding-bottom: clamp(2rem, 6vh, 4rem); }
+
+/* standalone page: only the tool */
+html.ask-page .tamim-intro,
+html.ask-page .hero,
+html.ask-page #anatomy,
+html.ask-page #files,
+html.ask-page #founder { display: none !important; }
+html.ask-page #api { padding-top: clamp(6rem, 12vh, 8rem); }
+
+/* embedded inside the home page: no page chrome, transparent background */
+html.ask-embed body { background: transparent; }
+html.ask-embed body::before { display: none; }
+html.ask-embed #board,
+html.ask-embed .nav,
+html.ask-embed .foot,
+html.ask-embed .skip,
+html.ask-embed #api > .section-head,
+html.ask-embed #gauge-canvas { display: none !important; }
+html.ask-embed #api { padding: 0; max-width: none; }
+html.ask-embed .setup { position: static; }
+html.ask-embed .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }

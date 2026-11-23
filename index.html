@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./tamim-intro.css" />
     <script src="./t.js" defer></script>
     <script src="./tamim-intro.js" defer></script>
+    <script src="./ask-embed.js" defer></script>
+    <link rel="stylesheet" href="./ask.css" />
     <script type="module" crossorigin src="./assets/index-B-Z4jyRB.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CPMTuU82.css">
   </head>
@@ -55,6 +57,7 @@
       <a class="brand" href="#top" aria-label="معيار — أعلى الصفحة">معيار<span class="dot" aria-hidden="true"></span></a>
       <nav aria-label="أقسام الصفحة">
         <a href="#api">الفحص</a>
+        <a href="#ask">اسأل فلان!</a>
         <a href="#files">الملفات</a>
       </nav>
     </header>
@@ -68,6 +71,7 @@
           <p class="lede reveal">راجع نصك وافهم المراجع النظامية المرتبطة به قبل النشر.</p>
           <div class="cta reveal">
             <a class="btn btn-primary" href="#api">فحص نص باستخدام API</a>
+            <a class="btn btn-quiet" href="#ask">اسأل فلان!</a>
             <a class="btn btn-quiet" href="#files">تحميل الملفات ونسخ البرومبت</a>
           </div>
         </div>
@@ -101,9 +105,8 @@
 
         <div class="bench reveal">
           <div class="setup">
-            <div class="seg" role="radiogroup" aria-label="نوع المهمة" id="task-group">
+            <div class="seg" role="radiogroup" aria-label="نوع المهمة" id="task-group" hidden>
               <button type="button" role="radio" aria-checked="true" data-task="check">فحص نص</button>
-              <button type="button" role="radio" aria-checked="false" data-task="question">اسأل معيار</button>
             </div>
 
             <div class="seg seg-provider" role="radiogroup" aria-label="مزود الذكاء الاصطناعي" id="provider-group">
@@ -202,10 +205,21 @@
         <div id="output" class="output" aria-live="polite"></div>
       </section>
 
+      <!-- ============================================================ Ask Fulan -->
+      <section id="ask" class="tool ask" aria-labelledby="ask-h" tabindex="-1">
+        <header class="section-head reveal">
+          <p class="kicker">المسار الثاني</p>
+          <h2 id="ask-h">اسأل فلان!</h2>
+          <p>«فلان!» مساعد معيار. اسأله عن أي شيء يخص النشر والمحتوى، ويجاوبك من المراجع النظامية المعروضة.</p>
+          <p class="hint">يعمل بنفس مفتاح API (أدخله هنا مرة ثانية)، ويمكنك فتحه في <a href="./ask.html">صفحة مستقلة</a>.</p>
+        </header>
+        <iframe id="ask-frame" class="ask-frame" src="./ask.html" title="اسأل فلان!" loading="lazy"></iframe>
+      </section>
+
       <!-- ============================================================ Files path -->
       <section id="files" class="tool files" aria-labelledby="files-h" tabindex="-1">
         <header class="section-head reveal">
-          <p class="kicker">المسار الثاني</p>
+          <p class="kicker">المسار الثالث</p>
           <h2 id="files-h">استخدم معيار داخل مساعدك</h2>
           <p>دون مفتاح API: أرفق المراجع والبرومبت في ChatGPT أو Claude.</p>
         </header>
