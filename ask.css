@@ -26,3 +26,9 @@ html.ask-embed .reveal { opacity: 1 !important; transform: none !important; filt
 .ask-frame { background: rgba(14, 18, 23, .94); border-radius: 22px; padding: 0; box-shadow: 0 0 0 1px rgba(235, 229, 216, .1); }
 .fix-reason { margin: .45rem 0 .6rem; font-size: .92rem; line-height: 1.75; color: #3e5547; }
 .fix-reason b { color: #2c7a50; }
+.why-short { font-weight: 600; font-size: 1.08rem; line-height: 1.8; }
+.why-more { margin-top: .35rem; }
+.why-more summary { cursor: pointer; color: #8f1d21; font-weight: 600; font-size: .92rem; list-style: none; }
+.why-more summary::-webkit-details-marker { display: none; }
+.why-more[open] summary { margin-bottom: .35rem; }
+.why-more p { font-size: .95rem; line-height: 1.8; }
