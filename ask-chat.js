@@ -207,7 +207,7 @@
     var lastUser = state.history.filter(function (m) { return m.role === 'user'; }).slice(-1).map(function (m) { return m.content; }).join(' ');
     var refs = search(text, 7);
     // always include the general content controls (dignity, hate/incitement, objective criticism)
-    ['av-media-law:5#1', 'av-media-exec-reg:4#2', 'press-law:9'].forEach(function (id) {
+    ['av-media-law:5#1', 'av-media-exec-reg:4#2', 'press-law:9', 'anti-cybercrime-law:3', 'anti-cybercrime-law:6'].forEach(function (id) {
       var seg = (state.corpus.segments || []).filter(function (x) { return x.id === id; })[0];
       if (seg && refs.indexOf(seg) < 0) refs.push(seg);
     });
