@@ -35,3 +35,6 @@ html.ask-embed .reveal { opacity: 1 !important; transform: none !important; filt
 .attach-field { margin: .6rem 0 .2rem; }
 .attach-field label { display: block; font-size: .88rem; font-weight: 600; margin-bottom: .3rem; }
 .attach-field input { width: 100%; min-height: 2.6rem; border-radius: 12px; border: 1px solid rgba(24,36,43,.25); background: rgba(255,255,255,.55); padding: 0 .9rem; font: inherit; font-size: .95rem; color: inherit; }
+.fix-soft { margin-top: .75rem; padding-top: .7rem; border-top: 1px dashed rgba(44,122,80,.35); }
+.fix-soft b { display: block; color: #9a6a12; font-size: .92rem; margin-bottom: .2rem; }
+.fix-soft p { margin: 0 0 .5rem; line-height: 1.8; }
